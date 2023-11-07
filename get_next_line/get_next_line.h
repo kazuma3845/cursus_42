@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:56 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/06 15:49:25 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:35:37 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
-typedef struct c_struct
-{
-	char	*str;
-}	t_struct;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);

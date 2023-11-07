@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/06 16:33:15 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:16:14 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 char	*get_next_line(int fd)
 {
 	static char	*left;
-	t_struct	tab;
 	char		*buffer;
 	char		*str;
 
 	buffer = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
+	if (buffer)
+		return (0);
 	str = fill_line_buffer(fd, left, buffer);
 	free(buffer);
 	left = set_line(str);
-	return (tab.str);
+	return (str);
 }
 
 char	*fill_line_buffer(int fd, char *left, char *buffer)
 {
-	char		*str;
-	ssize_t		i;
+	char	*str;
+	ssize_t	i;
 
 	i = read(fd, buffer, BUFFER_SIZE);
 	if (i == -1)
@@ -37,21 +38,27 @@ char	*fill_line_buffer(int fd, char *left, char *buffer)
 		free(left);
 		return (NULL);
 	}
+	if (i == 0)
+		return (0);
 	str = ft_strjoin(left, buffer);
 	return (str);
 }
 
 char	*set_line(char *line_buffer)
 {
-	static char	*str;
-	char		*hades;
+	static char	*left;
+	char		*str;
 	int			i;
 
 	i = 0;
 	while (line_buffer[i] != '\n' || line_buffer[i])
 		i++;
-	str = ft_strdup(line_buffer + i);
-	return (str);
+	str = malloc(sizeof(char *) * i + 1);
+	if (str)
+		return (0);
+	ft_strlcpy(str, line_buffer, i);
+	left = ft_strdup(line_buffer + i);
+	return (left);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
