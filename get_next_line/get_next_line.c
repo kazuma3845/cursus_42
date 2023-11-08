@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/07 11:16:14 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:18:07 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,67 +17,78 @@ char	*get_next_line(int fd)
 	static char	*left;
 	char		*buffer;
 	char		*str;
+	char		*wait;
 
 	buffer = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
-	if (buffer)
-		return (0);
-	str = fill_line_buffer(fd, left, buffer);
+	if (buffer == NULL)
+		return (NULL);
+	if (BUFFER_SIZE < 0 || read(fd, 0, 0) < 0 || fd < 0)
+	{
+		free(left);
+		free(buffer);
+		left = NULL;
+		buffer = NULL;
+		return (NULL);
+	}
+	wait = fill_line_buffer(fd, left, buffer);
 	free(buffer);
-	left = set_line(str);
+	if (wait == NULL)
+		return (NULL);
+	left = ft_line_left(wait);
+	str = ft_line_str(wait);
+	free(wait);
 	return (str);
 }
 
 char	*fill_line_buffer(int fd, char *left, char *buffer)
 {
-	char	*str;
-	ssize_t	i;
+	ssize_t	rnum;
 
-	i = read(fd, buffer, BUFFER_SIZE);
-	if (i == -1)
+	rnum = 1;
+	while (rnum > 0)
 	{
-		free(left);
-		return (NULL);
+		rnum = read(fd, buffer, BUFFER_SIZE);
+		if (rnum == -1)
+		{
+			free(left);
+			return (NULL);
+		}
+		else if (rnum == 0)
+			break ;
+		if (left == NULL)
+			left = ft_strdup(buffer);
+		else
+			left = ft_strjoin(left, buffer);
+		if (ft_strchr(buffer, '\n') != NULL)
+			break ;
 	}
-	if (i == 0)
-		return (0);
-	str = ft_strjoin(left, buffer);
-	return (str);
-}
-
-char	*set_line(char *line_buffer)
-{
-	static char	*left;
-	char		*str;
-	int			i;
-
-	i = 0;
-	while (line_buffer[i] != '\n' || line_buffer[i])
-		i++;
-	str = malloc(sizeof(char *) * i + 1);
-	if (str)
-		return (0);
-	ft_strlcpy(str, line_buffer, i);
-	left = ft_strdup(line_buffer + i);
 	return (left);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_line_left(char *wait)
 {
-	size_t	i;
-	int		j;
+	char	*left;
+	int		i;
 
 	i = 0;
-	j = 0;
-	while (src[j] != '\0')
-		j++;
-	if (dstsize != 0)
-	{
-		while (i != dstsize - 1 && src[i] != '\0')
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (j);
+	while (wait[i] != '\n' && wait[i])
+		i++;
+	if (wait[i] == '\n')
+		i++;
+	left = ft_strdup(wait + i);
+	return (left);
+}
+
+char	*ft_line_str(char *wait)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	while (wait[i] != '\n' && wait[i])
+		i++;
+	if (wait[i] == '\n')
+		i++;
+	str = ft_strduplicate(wait, i);
+	return (str);
 }
