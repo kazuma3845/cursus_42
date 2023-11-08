@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/08 16:18:07 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:05:20 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,12 @@ char	*fill_line_buffer(int fd, char *left, char *buffer)
 char	*ft_line_left(char *wait)
 {
 	char	*left;
-	int		i;
 
-	i = 0;
-	while (wait[i] != '\n' && wait[i])
-		i++;
-	if (wait[i] == '\n')
-		i++;
-	left = ft_strdup(wait + i);
+	while (*wait != '\n' && *wait)
+		wait++;
+	if (*wait == '\n')
+		wait++;
+	left = ft_strdup(wait);
 	return (left);
 }
 
