@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:50:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/10/26 14:36:54 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:37:12 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	ft_atoi(const char *str)
 			j *= -1;
 		i++;
 	}
-	if (str[i] == '+' || str[i] == '-')
-		return (0);
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		retourn *= 10;
@@ -40,12 +38,11 @@ int	ft_atoi(const char *str)
 	}
 	return (retourn * j);
 }
-/*
+
 int main()
 {
-	char a[] = "   		--++-000015003hhbcdj8545";
+	char a[] = "   		--000015003hhbcdj8545";
 
 	printf("%d", ft_atoi(a));
 	return (0);
 }
-*/
