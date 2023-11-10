@@ -6,23 +6,33 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:23 by tomuller          #+#    #+#             */
-/*   Updated: 2023/10/30 13:11:03 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:53:07 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+# include <fcntl.h>
+# include <limits.h>
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include <stdarg.h>
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+typedef struct c_num
+{
+	int	c;
+}	t_num;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -67,5 +77,24 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_putchar(char c, t_num *r);
+void	ft_putstr(char *c, t_num *r);
+void	ft_putnbr(int n, t_num *c);
+void	ft_putnbru(long int n, t_num *c);
+void	ft_puthex(long int string, t_num *c, char *str);
+void	ft_puthex2(long int i, t_num *c, char *str);
+void	ft_real(char *buffer, t_num *c);
+void	ft_putptr(void *replace, t_num *c);
+char	*ft_impr(char *str, int replace, void *string, t_num *c);
+int		ft_finds(const char *ltr);
+int		ft_findp(const char *ltr);
+int		ft_findpourcent(const char *ltr);
+char	*ft_putpourcent(char *new, t_num *c);
+int		ft_printf(const char *str, ...);
+char	*get_next_line(int fd);
+char	*ft_strjoin2(char *s1, char *s2);
+char	*fill_line_buffer(int fd, char *left);
+char	*line_str(char *str);
+char	*line_left(char *str);
 
 #endif
