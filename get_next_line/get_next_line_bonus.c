@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/10 11:47:18 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:09:47 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*left;
+	static char	*left[OPEN_MAX];
 	char		*str;
 
 	if (BUFFER_SIZE < 0 || read(fd, 0, 0) < 0 || fd < 0)
 	{
-		free(left);
-		left = NULL;
+		free(left[fd]);
+		left[fd] = NULL;
 		return (NULL);
 	}
-	str = fill_line_buffer(fd, left);
+	str = fill_line_buffer(fd, left[fd]);
 	if (str == NULL)
 		return (NULL);
-	left = line_left(str);
+	left[fd] = line_left(str);
 	str = line_str(str);
 	return (str);
 }
