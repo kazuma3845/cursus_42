@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/10 12:09:47 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:15:41 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*line_left(char *str)
 
 char	*line_str(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\n' && str[i])
