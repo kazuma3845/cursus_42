@@ -6,11 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:41:37 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/17 13:54:03 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:20:29 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../header/so_long.h"
 
 int	main(int argc, char *argv[])
 {
@@ -36,7 +36,7 @@ char	**ft_read(char *file)
 
 	ligne = 0;
 	fd = open(file, O_RDONLY);
-	str = (char **)malloc(sizeof(char *) * 7);
+	str = (char **)malloc(sizeof(char *) * 11);/////////////////////////////////////////////////////////////////////
 	while ((str[ligne] = get_next_line(fd)) != NULL)
 		ligne++;
 	close(fd);

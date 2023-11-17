@@ -6,14 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:10:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/17 13:30:09 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:18:32 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include "get_next_line.h"
-#include "so_long.h"
-#include <unistd.h>
+#include "../header/so_long.h"
 
 int	error_car(char **map)
 {
@@ -108,7 +105,7 @@ int	error_size(char **map)
 	while (map[len.ligne] != NULL)
 	{
 		if ((map[len.ligne][len.col] == '\n' && len.col != (ft_strlen(map[0])
-					- 1)) || (map[len.ligne][len.col] == '\0'
+				- 1)) || (map[len.ligne][len.col] == '\0'
 				&& len.col != (ft_strlen(map[0]) - 1)))
 			return (1);
 		if (map[len.ligne][len.col] == '\0' || map[len.ligne][len.col] == '\n')
