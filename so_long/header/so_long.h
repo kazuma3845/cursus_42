@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/17 15:27:38 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:25:06 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,20 @@ typedef struct s_game
 	void	*floor;
 	void	*item;
 	void	*exit;
+	void	*mlxpointer;
+	void	*winpointer;
 	char	**map;
+	int		x;
+	int		y;
 }			t_game;
 
 int			main(int argc, char **argv);
 char		**ft_read(char *file);
 int			error_file(char *file);
-int			error_car(char **map);
-int			error_map(char **map);
-int			error_size(char **map);
-int			error_wall(char **map);
-int			error_line(char **map);
+int			error_car(t_game x);
+int			error_map(t_game x);
+int			error_size(t_game x);
+int			error_wall(t_game x);
+int			error_line(t_game x);
 
 #endif
