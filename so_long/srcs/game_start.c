@@ -6,13 +6,19 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:25:48 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/17 14:41:57 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:40:58 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
 
-void	start_game(char **map)
+void	start_game(t_game info)
 {
 	
 }
+
+// esc	27 = close;
+// w	87 = up;
+// a	65 = left;
+// s	83 = down;
+// d	68 = right;
