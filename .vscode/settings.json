@@ -4,6 +4,7 @@
 		"get_next_line_bonus.h": "c",
 		"unistd.h": "c",
 		"libft.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"string.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:41:37 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/17 16:39:48 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:10:50 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,64 @@
 
 int	main(int argc, char *argv[])
 {
-	t_game info;
+	t_game	info;
 
 	if (argc != 2)
 		return (write(1, "Error\nWrong number of arguments\n", 32));
 	if (error_file(argv[1]) == 1)
 		return (write(1, "Error\nFichier invalide\n", 23));
-	info.map = ft_read(argv[1]);
-	if (error_map(info) == 1)
-		return (write(1, "Error\nMap false\n", 16));
-	start_game(info);
+	ft_read(argv[1], &info);
+	//  if (error_map(&info) == 1)
+	// 	return (write(1, "Error\nMap false\n", 16));
+	// start_game(info);
 	return (0);
 }
 
-char	**ft_read(char *file)
+static int	temp(int ligne, t_game *map, char *line)
 {
-	char	**str;
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	tmp = (char **)malloc(sizeof(char *) * (ligne + 1));
+	tmp[ligne] = NULL;
+	while (i < ligne - 1)
+	{
+		tmp[i] = map->map[i];
+		i++;
+	}
+	tmp[i] = line;
+	if (map->map)
+		free(map->map);
+	map->map = tmp;
+	return (1);
+}
+
+void	ft_read(char *file, t_game *map)
+{
+	char	*line;
 	int		ligne;
 	int		fd;
 
-	ligne = 0;
+	ligne = -1;
 	fd = open(file, O_RDONLY);
-	str = (char **)malloc(sizeof(char *) * 11);/////////////////////////////////////////////////////////////////////
-	while ((str[ligne] = get_next_line(fd)) != NULL)
+	if (fd < 0)
+		return ;
+	while (1)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		if (line == NULL)
+			break ;
 		ligne++;
+		temp(ligne, map, line);
+	}
+	map->ligne = ligne;
+	ligne = 0;
+	while (map->map[0][ligne] != '\n')
+		ligne++;
+	map->col = ligne;
 	close(fd);
-	return (str);
 }
 
 int	error_file(char *file)
