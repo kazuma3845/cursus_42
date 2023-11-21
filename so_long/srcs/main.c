@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:41:37 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/20 17:10:50 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:54:24 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int argc, char *argv[])
 	if (error_file(argv[1]) == 1)
 		return (write(1, "Error\nFichier invalide\n", 23));
 	ft_read(argv[1], &info);
-	//  if (error_map(&info) == 1)
-	// 	return (write(1, "Error\nMap false\n", 16));
-	// start_game(info);
+	if (error_map(&info) == 1)
+		return (write(1, "Error\nMap false\n", 16));
+	start_game(info);
 	return (0);
 }
 
@@ -53,24 +53,23 @@ void	ft_read(char *file, t_game *map)
 	int		ligne;
 	int		fd;
 
-	ligne = -1;
+	ligne = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return ;
 	while (1)
 	{
 		line = get_next_line(fd);
-		printf("%s", line);
 		if (line == NULL)
 			break ;
 		ligne++;
 		temp(ligne, map, line);
 	}
-	map->ligne = ligne;
+	map->y_max = ligne;
 	ligne = 0;
 	while (map->map[0][ligne] != '\n')
 		ligne++;
-	map->col = ligne;
+	map->x_max = ligne;
 	close(fd);
 }
 

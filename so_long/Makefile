@@ -20,3 +20,9 @@ fclean: clean
 		rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
+debug:
+	make -C $(MINILIBX)
+	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME) -g3 -fsanitize=address
