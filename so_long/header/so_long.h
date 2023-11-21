@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 15:01:15 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:43:20 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minilibx/mlx.h"
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <stdarg.h>
@@ -22,8 +23,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-
-
 
 typedef struct s_game
 {
@@ -47,19 +46,18 @@ typedef struct s_game
 	int		nbr_item;
 }			t_game;
 
-int			main(int argc, char **argv);
-void		ft_read(char *file, t_game *map);
-int			error_file(char *file);
-int			error_car(t_game *x);
-int			error_map(t_game *x);
-int			error_size(t_game *x);
-int			error_wall(t_game *x);
-int			error_line(t_game *x);
-void		start_game(t_game info);
-void		add_image_window(t_game *info);
-void		add_image_window2(t_game *info, int ligne, int col);
-void		image(t_game *info);
-int			controle(int commande, t_game *map);
-void		fonc_exit(t_game *map);
+int	main(int argc, char *argv[]);
+void	ft_read(char *file, t_game *map);
+int	error_file(char *file);
+int	error_map(t_game *x);
+void	start_game(t_game info);
+void	add_image_window(t_game *info);
+void	image(t_game *info);
+int	controle(int commande, t_game *map);
+void	fonc_exit(t_game *map);
+int	left(t_game *map, int commande);
+int	right(t_game *map, int commande);
+int	up(t_game *map, int commande);
+int	down(t_game *map, int commande);
 
 #endif

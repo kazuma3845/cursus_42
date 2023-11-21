@@ -6,12 +6,13 @@ CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
 SOURCE := srcs/*.c
 GETNEXTLINE := gnl/*c
+PRINTF := ft_printf/*c
 LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
 MINILIBX := minilibx/
 
 all:
 	make -C $(MINILIBX)
-	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
+	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBRARY) -o $(NAME)
 
 clean:
 
@@ -25,4 +26,4 @@ re: fclean all
 
 debug:
 	make -C $(MINILIBX)
-	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME) -g3 -fsanitize=address
+	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBRARY) -o $(NAME) -g3 -fsanitize=address
