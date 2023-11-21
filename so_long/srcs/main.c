@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:41:37 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 14:54:24 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:49:19 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ static int	temp(int ligne, t_game *map, char *line)
 		i++;
 	}
 	tmp[i] = line;
-	if (map->map)
-		free(map->map);
 	map->map = tmp;
+	map->map_check = tmp;
 	return (1);
 }
 

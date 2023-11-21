@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 15:43:20 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:37:44 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SO_LONG_H
 
 # include "../minilibx/mlx.h"
-# include "get_next_line.h"
 # include "ft_printf.h"
+# include "get_next_line.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <stdarg.h>
@@ -35,6 +35,7 @@ typedef struct s_game
 	void	*winpointer;
 
 	char	**map;
+	char	**map_check;
 
 	int		p;
 	int		c;
@@ -43,21 +44,24 @@ typedef struct s_game
 	int		y;
 	int		y_max;
 	int		x_max;
+	int		y_p;
+	int		x_p;
 	int		nbr_item;
 }			t_game;
 
-int	main(int argc, char *argv[]);
-void	ft_read(char *file, t_game *map);
-int	error_file(char *file);
-int	error_map(t_game *x);
-void	start_game(t_game info);
-void	add_image_window(t_game *info);
-void	image(t_game *info);
-int	controle(int commande, t_game *map);
-void	fonc_exit(t_game *map);
-int	left(t_game *map, int commande);
-int	right(t_game *map, int commande);
-int	up(t_game *map, int commande);
-int	down(t_game *map, int commande);
+int			main(int argc, char *argv[]);
+void		ft_read(char *file, t_game *map);
+int			error_file(char *file);
+int			error_map(t_game *x);
+int			error_chemin(t_game *map);
+void		start_game(t_game info);
+void		add_image_window(t_game *info);
+void		image(t_game *info);
+int			controle(int commande, t_game *map);
+void		fonc_exit(t_game *map);
+int			left(t_game *map, int commande);
+int			right(t_game *map, int commande);
+int			up(t_game *map, int commande);
+int			down(t_game *map, int commande);
 
 #endif
