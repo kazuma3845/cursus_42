@@ -113,18 +113,6 @@ int	error_chemin(t_game *map)
 
 	line = 1;
 	col = 1;
-	map->y_p = 1;
-	map->x_p = 1;
-	while (map->map[map->y_p][map->x_p] != 'P')
-	{
-		if (map->x_p == map->x_max)
-		{
-			map->y_p++;
-			map->x_p = 1;
-		}
-		map->x_p++;
-	}
-	line = 1;
 	while (line < map->y_max - 1)
 	{
 		col = 1;
@@ -143,7 +131,7 @@ int	error_chemin(t_game *map)
 						col++;
 						if (map->map_check[line + 1][col] == '1'
 							&& map->map_check[line][col + 1] == '1'
-							&& map->map_check[line - 1][col] == '1')
+							&& map->map_check[line - 1][col] == '1' && map->map_check[line][col] != 'P')
 						{
 							map->map_check[line][col] = '1';
 							col--;
@@ -155,7 +143,7 @@ int	error_chemin(t_game *map)
 						line++;
 						if (map->map_check[line][col - 1] == '1'
 							&& map->map_check[line + 1][col] == '1'
-							&& map->map_check[line][col + 1] == '1')
+							&& map->map_check[line][col + 1] == '1' && map->map_check[line][col] != 'P')
 						{
 							map->map_check[line][col] = '1';
 							line--;
@@ -167,7 +155,7 @@ int	error_chemin(t_game *map)
 						col--;
 						if (map->map_check[line - 1][col] == '1'
 							&& map->map_check[line][col - 1] == '1'
-							&& map->map_check[line + 1][col] == '1')
+							&& map->map_check[line + 1][col] == '1' && map->map_check[line][col] != 'P')
 						{
 							map->map_check[line][col] = '1';
 							col++;
@@ -179,19 +167,18 @@ int	error_chemin(t_game *map)
 						line--;
 						if (map->map_check[line - 1][col] == '1'
 							&& map->map_check[line][col - 1] == '1'
-							&& map->map_check[line][col + 1] == '1')
+							&& map->map_check[line][col + 1] == '1' && map->map_check[line][col] != 'P')
 						{
 							map->map_check[line][col] = '1';
 							line++;
 						}
 					}
-					if (map->map_check[line - 1][col] == '1'
+					else if (map->map_check[line - 1][col] == '1'
 						&& map->map_check[line][col - 1] == '1'
 						&& map->map_check[line][col + 1] == '1'
 						&& map->map_check[line + 1][col] == '1')
 						return (1);
 				}
-				map->c++;
 				col = map->x + 1;
 				line = map->y;
 				map->map_check = map->map;
