@@ -116,7 +116,7 @@ int	error_chemin(t_game *map)
 	while (line < map->y_max - 1)
 	{
 		col = 1;
-		while (col < map->x_max - 1)
+		while (col < map->x_max)
 		{
 			if (map->map_check[line][col] == 'C' || map->map_check[line][col] == 'E')
 			{
