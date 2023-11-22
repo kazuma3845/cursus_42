@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:10:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 15:09:16 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:22:10 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,103 +113,6 @@ int	error_map(t_game *x)
 		|| error_signe(x))
 		return (1);
 	if (error_chemin(x) == 1)
-		return (1);
-	return (0);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t				i;
-	unsigned char		*a;
-	const unsigned char	*b;
-
-	i = 0;
-	a = dst;
-	b = src;
-	if (dst == NULL && src == NULL)
-		return (0);
-	while (i != n)
-	{
-		a[i] = b[i];
-		i++;
-	}
-	return (a);
-}
-
-int	find_p(t_game *map, int line, int col)
-{
-	if (map->map_check[line][col] == 'P')
-	{
-		map->c++;
-		return (1);
-	}
-	if (map->map_check[line][col] != '0' && map->map_check[line][col] != 'C')
-		return (0);
-	map->map_check[line][col] = '1';
-	if (col + 1 < map->x_max && find_p(map, line, col + 1))
-		return (1);
-	if (col - 1 >= 0 && find_p(map, line, col - 1))
-		return (1);
-	if (line + 1 < (map->y_max - 1) && find_p(map, line + 1, col))
-		return (1);
-	if (line - 1 >= 0 && find_p(map, line - 1, col))
-		return (1);
-	return (0);
-}
-
-int	error_chemin(t_game *map)
-{
-	int		col;
-	int		line;
-	char	**map_backup;
-	int		i;
-
-	line = 1;
-	map_backup = malloc(map->y_max * sizeof(char *));
-	i = 0;
-	while (i < map->y_max)
-	{
-		map_backup[i] = malloc(sizeof(char) * map->x_max + 1);
-		i++;
-	}
-	while (line < map->y_max - 1)
-	{
-		col = 1;
-		while (col < map->x_max)
-		{
-			if (map->map_check[line][col] == 'C'
-				|| map->map_check[line][col] == 'E')
-			{
-				i = 0;
-				while (i < map->y_max)
-				{
-					ft_memcpy(map_backup[i], map->map_check[i], map->x_max);
-					i++;
-				}
-				map->x = col;
-				map->y = line;
-				find_p(map, line, col);
-				col = map->x;
-				line = map->y;
-				i = 0;
-				while (i < map->y_max)
-				{
-					ft_memcpy(map->map_check[i], map_backup[i], map->x_max);
-					i++;
-				}
-			}
-			col++;
-		}
-		line++;
-	}
-	i = 0;
-	while (i < map->y_max)
-	{
-		free(map_backup[i]);
-		i++;
-	}
-	free(map_backup);
-	if (map->c != map->nbr_item)
 		return (1);
 	return (0);
 }
