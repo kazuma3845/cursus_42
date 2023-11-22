@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 15:46:18 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:01:03 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			error_file(char *file);
 int			error_map(t_game *x);
 int			error_chemin(t_game *map);
 void		start_game(t_game info);
-void	add_image_window(t_game *info, int nbr);
+void		add_image_window(t_game *info, int nbr);
 void		image(t_game *info);
 int			controle(int commande, t_game *map);
 void		fonc_exit(t_game *map);
@@ -62,6 +62,6 @@ int			left(t_game *map, int commande);
 int			right(t_game *map, int commande);
 int			up(t_game *map, int commande);
 int			down(t_game *map, int commande);
-char	*ft_itoa(int n);
+char		*ft_itoa(int n);
 
 #endif

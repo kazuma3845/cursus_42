@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:47:21 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 15:47:11 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:00:21 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	controle(int commande, t_game *map)
 
 	if (commande == 53)
 		fonc_exit(map);
-	nbr++;
-	ft_printf("Mouvement: %i\n", nbr);
 	if (commande == 13)
 		up(map, 13);
 	if (commande == 1)
@@ -59,6 +57,11 @@ int	controle(int commande, t_game *map)
 		left(map, 0);
 	if (commande == 2)
 		right(map, 2);
+	if (commande == 13 || commande == 1 || commande == 0 || commande == 2)
+	{
+		nbr++;
+		ft_printf("Mouvement: %i\n", nbr);
+	}
 	add_image_window(map, nbr);
 	if (map->nbr_item == 0)
 		item_png(map);
