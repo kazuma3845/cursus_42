@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 17:37:44 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:48:20 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ typedef struct s_game
 	int		y;
 	int		y_max;
 	int		x_max;
-	int		y_p;
-	int		x_p;
 	int		nbr_item;
 }			t_game;
 

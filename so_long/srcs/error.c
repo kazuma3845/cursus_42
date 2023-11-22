@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:10:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 18:25:42 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:00:56 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,103 +89,101 @@ int	error_map(t_game *x)
 {
 	if (error_car(x) == 1 || error_wall(x) == 1 || error_size(x) == 1)
 		return (1);
-	// if (error_chemin(x) == 1)
-	// 	return (1);
+	if (error_chemin(x) == 1)
+		return (1);
 	return (0);
 }
 
-void find_e(t_game *map, int line, int col)
+void	find_p(t_game *map, int line, int col)
 {
-	if (map->map_check[line][col + 1] == 'E')
-		map->map_check[line][col + 1] = '1';
-	if (map->map_check[line][col - 1] == 'E')
-		map->map_check[line][col - 1] = '1';
-	if (map->map_check[line + 1][col] == 'E')
-		map->map_check[line + 1][col] = '1';
-	if (map->map_check[line - 1][col] == 'E')
-		map->map_check[line - 1][col] = '1';
+	if (map->map_check[line][col] == 'P')
+	{
+		map->c++;
+		return ;
+	}
+	map->map_check[line][col] = '1';
+	if (col + 1 < map->x_max && (map->map_check[line][col + 1] == '0'
+			|| map->map_check[line][col + 1] == 'C' || map->map_check[line][col
+			+ 1] == 'P'))
+		find_p(map, line, col + 1);
+	if (col - 1 >= 0 && (map->map_check[line][col - 1] == '0'
+			|| map->map_check[line][col - 1] == 'C' || map->map_check[line][col
+			- 1] == 'P'))
+		find_p(map, line, col - 1);
+	if (line + 1 < map->y_max && (map->map_check[line + 1][col] == '0'
+			|| map->map_check[line + 1][col] == 'C' || map->map_check[line
+			+ 1][col] == 'P'))
+		find_p(map, line + 1, col);
+	if (line - 1 >= 0 && (map->map_check[line - 1][col] == '0'
+			|| map->map_check[line - 1][col] == 'C' || map->map_check[line
+			- 1][col] == 'P'))
+		find_p(map, line - 1, col);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t				i;
+	unsigned char		*a;
+	const unsigned char	*b;
+
+	i = 0;
+	a = dst;
+	b = src;
+	if (dst == NULL && src == NULL)
+		return (0);
+	while (i != n)
+	{
+		a[i] = b[i];
+		i++;
+	}
+	return (a);
 }
 
 int	error_chemin(t_game *map)
 {
-	int	col;
-	int	line;
+	int		col;
+	int		line;
+	char	**map_backup;
+	int		i;
 
 	line = 1;
 	col = 1;
+	map_backup = malloc(map->y_max * sizeof(char *));
+	i = 0;
+	while (i < map->y_max)
+	{
+		map_backup[i] = malloc(map->x_max * sizeof(char));
+		ft_memcpy(map_backup[i], map->map_check[i], map->x_max);
+		i++;
+	}
 	while (line < map->y_max - 1)
 	{
 		col = 1;
 		while (col < map->x_max)
 		{
-			if (map->map_check[line][col] == 'C' || map->map_check[line][col] == 'E')
+			if (map->map_check[line][col] == 'C'
+				|| map->map_check[line][col] == 'E')
 			{
-				map->y = line;
-				map->x = col;
-				while (map->map_check[line][col] != 'P')
+				find_p(map, line, col);
+				i = 0;
+				while (i < map->y_max)
 				{
-					find_e(map, line, col);
-					if (map->map_check[line][col + 1] == '0'
-						|| map->map_check[line][col + 1] == 'C'|| map->map_check[line][col + 1] == 'P')
-					{
-						col++;
-						if (map->map_check[line + 1][col] == '1'
-							&& map->map_check[line][col + 1] == '1'
-							&& map->map_check[line - 1][col] == '1' && map->map_check[line][col] != 'P')
-						{
-							map->map_check[line][col] = '1';
-							col--;
-						}
-					}
-					else if (map->map_check[line + 1][col] == '0'
-						|| map->map_check[line + 1][col] == 'C'|| map->map_check[line + 1][col] == 'P')
-					{
-						line++;
-						if (map->map_check[line][col - 1] == '1'
-							&& map->map_check[line + 1][col] == '1'
-							&& map->map_check[line][col + 1] == '1' && map->map_check[line][col] != 'P')
-						{
-							map->map_check[line][col] = '1';
-							line--;
-						}
-					}
-					else if (map->map_check[line][col - 1] == '0'
-						|| map->map_check[line][col - 1] == 'C'|| map->map_check[line][col - 1] == 'P')
-					{
-						col--;
-						if (map->map_check[line - 1][col] == '1'
-							&& map->map_check[line][col - 1] == '1'
-							&& map->map_check[line + 1][col] == '1' && map->map_check[line][col] != 'P')
-						{
-							map->map_check[line][col] = '1';
-							col++;
-						}
-					}
-					else if (map->map_check[line - 1][col] == '0'
-						|| map->map_check[line - 1][col] == 'C'|| map->map_check[line - 1][col] == 'P')
-					{
-						line--;
-						if (map->map_check[line - 1][col] == '1'
-							&& map->map_check[line][col - 1] == '1'
-							&& map->map_check[line][col + 1] == '1' && map->map_check[line][col] != 'P')
-						{
-							map->map_check[line][col] = '1';
-							line++;
-						}
-					}
-					else if (map->map_check[line - 1][col] == '1'
-						&& map->map_check[line][col - 1] == '1'
-						&& map->map_check[line][col + 1] == '1'
-						&& map->map_check[line + 1][col] == '1')
-						return (1);
+					ft_memcpy(map->map_check[i], map_backup[i], map->x_max);
+					i++;
 				}
-				col = map->x + 1;
-				line = map->y;
-				map->map_check = map->map;
 			}
 			col++;
 		}
 		line++;
 	}
+	i = 0;
+	while (i < map->y_max)
+	{
+		free(map_backup[i]);
+		i++;
+	}
+	free(map_backup);
+	if (map->c != map->nbr_item + 1)
+		return (1);
 	return (0);
 }
