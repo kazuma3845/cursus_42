@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 11:48:20 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:23:11 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_game
 	void	*floor;
 	void	*item;
 	void	*exit;
+	void	*mob;
 	void	*mlxpointer;
 	void	*winpointer;
 

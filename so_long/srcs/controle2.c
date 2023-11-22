@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:03:34 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 15:05:59 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:20:06 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	down(t_game *map, int commande)
 		if (map->map[map->y + 1][map->x] == '1' || map->map[map->y
 			+ 1][map->x] == 'E')
 			return (0);
-		if (map->map[map->y + 1][map->x] == 'I')
+		if (map->map[map->y + 1][map->x] == 'I' || map->map[map->y + 1][map->x] == 'M')
 			fonc_exit(map);
 		map->map[map->y++][map->x] = '0';
 		map->map[map->y][map->x] = 'P';
@@ -44,7 +44,7 @@ int	up(t_game *map, int commande)
 		if (map->map[map->y - 1][map->x] == '1' || map->map[map->y
 			- 1][map->x] == 'E')
 			return (0);
-		if (map->map[map->y - 1][map->x] == 'I')
+		if (map->map[map->y - 1][map->x] == 'I' || map->map[map->y - 1][map->x] == 'M')
 			fonc_exit(map);
 		map->map[map->y--][map->x] = '0';
 		map->map[map->y][map->x] = 'P';
@@ -64,7 +64,7 @@ int	right(t_game *map, int commande)
 		if (map->map[map->y][map->x + 1] == '1' || map->map[map->y][map->x
 			+ 1] == 'E')
 			return (0);
-		if (map->map[map->y][map->x + 1] == 'I')
+		if (map->map[map->y][map->x + 1] == 'I' || map->map[map->y][map->x + 1] == 'M')
 			fonc_exit(map);
 		map->map[map->y][map->x++] = '0';
 		map->map[map->y][map->x] = 'P';
@@ -84,7 +84,7 @@ int	left(t_game *map, int commande)
 		if (map->map[map->y][map->x - 1] == '1' || map->map[map->y][map->x
 			- 1] == 'E')
 			return (0);
-		if (map->map[map->y][map->x - 1] == 'I')
+		if (map->map[map->y][map->x - 1] == 'I' || map->map[map->y][map->x - 1] == 'M')
 			fonc_exit(map);
 		map->map[map->y][map->x--] = '0';
 		map->map[map->y][map->x] = 'P';

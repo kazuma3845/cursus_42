@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:10:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 12:00:56 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:09:16 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	error_car(t_game *x)
 	x->p = 0;
 	x->nbr_item = 0;
 	x->e = 0;
-	while (x->map[x->y] != NULL)
+	while (x->y != x->y_max - 1)
 	{
 		if (x->map[x->y][x->x] == 'P')
 			x->p++;
@@ -27,7 +27,7 @@ int	error_car(t_game *x)
 			x->nbr_item++;
 		if (x->map[x->y][x->x] == 'E')
 			x->e++;
-		if (x->map[x->y][x->x] == '\0')
+		if (x->map[x->y][x->x] == '\n')
 		{
 			x->y++;
 			x->x = 0;
@@ -85,39 +85,36 @@ int	error_size(t_game *x)
 	return (0);
 }
 
+int	error_signe(t_game *map)
+{
+	int	line;
+	int	col;
+
+	line = 0;
+	while (line != map->y_max - 1)
+	{
+		col = 0;
+		while (map->map[line][col] != '\n')
+		{
+			if (map->map[line][col] != '1' && map->map[line][col] != '0'
+				&& map->map[line][col] != 'C' && map->map[line][col] != 'E'
+				&& map->map[line][col] != 'P' && map->map[line][col] != 'M')
+				return (1);
+			col++;
+		}
+		line++;
+	}
+	return (0);
+}
+
 int	error_map(t_game *x)
 {
-	if (error_car(x) == 1 || error_wall(x) == 1 || error_size(x) == 1)
+	if (error_car(x) == 1 || error_wall(x) == 1 || error_size(x) == 1
+		|| error_signe(x))
 		return (1);
 	if (error_chemin(x) == 1)
 		return (1);
 	return (0);
-}
-
-void	find_p(t_game *map, int line, int col)
-{
-	if (map->map_check[line][col] == 'P')
-	{
-		map->c++;
-		return ;
-	}
-	map->map_check[line][col] = '1';
-	if (col + 1 < map->x_max && (map->map_check[line][col + 1] == '0'
-			|| map->map_check[line][col + 1] == 'C' || map->map_check[line][col
-			+ 1] == 'P'))
-		find_p(map, line, col + 1);
-	if (col - 1 >= 0 && (map->map_check[line][col - 1] == '0'
-			|| map->map_check[line][col - 1] == 'C' || map->map_check[line][col
-			- 1] == 'P'))
-		find_p(map, line, col - 1);
-	if (line + 1 < map->y_max && (map->map_check[line + 1][col] == '0'
-			|| map->map_check[line + 1][col] == 'C' || map->map_check[line
-			+ 1][col] == 'P'))
-		find_p(map, line + 1, col);
-	if (line - 1 >= 0 && (map->map_check[line - 1][col] == '0'
-			|| map->map_check[line - 1][col] == 'C' || map->map_check[line
-			- 1][col] == 'P'))
-		find_p(map, line - 1, col);
 }
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
@@ -139,6 +136,27 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (a);
 }
 
+int	find_p(t_game *map, int line, int col)
+{
+	if (map->map_check[line][col] == 'P')
+	{
+		map->c++;
+		return (1);
+	}
+	if (map->map_check[line][col] != '0' && map->map_check[line][col] != 'C')
+		return (0);
+	map->map_check[line][col] = '1';
+	if (col + 1 < map->x_max && find_p(map, line, col + 1))
+		return (1);
+	if (col - 1 >= 0 && find_p(map, line, col - 1))
+		return (1);
+	if (line + 1 < (map->y_max - 1) && find_p(map, line + 1, col))
+		return (1);
+	if (line - 1 >= 0 && find_p(map, line - 1, col))
+		return (1);
+	return (0);
+}
+
 int	error_chemin(t_game *map)
 {
 	int		col;
@@ -147,13 +165,11 @@ int	error_chemin(t_game *map)
 	int		i;
 
 	line = 1;
-	col = 1;
 	map_backup = malloc(map->y_max * sizeof(char *));
 	i = 0;
 	while (i < map->y_max)
 	{
-		map_backup[i] = malloc(map->x_max * sizeof(char));
-		ft_memcpy(map_backup[i], map->map_check[i], map->x_max);
+		map_backup[i] = malloc(sizeof(char) * map->x_max + 1);
 		i++;
 	}
 	while (line < map->y_max - 1)
@@ -164,7 +180,17 @@ int	error_chemin(t_game *map)
 			if (map->map_check[line][col] == 'C'
 				|| map->map_check[line][col] == 'E')
 			{
+				i = 0;
+				while (i < map->y_max)
+				{
+					ft_memcpy(map_backup[i], map->map_check[i], map->x_max);
+					i++;
+				}
+				map->x = col;
+				map->y = line;
 				find_p(map, line, col);
+				col = map->x;
+				line = map->y;
 				i = 0;
 				while (i < map->y_max)
 				{
@@ -183,7 +209,7 @@ int	error_chemin(t_game *map)
 		i++;
 	}
 	free(map_backup);
-	if (map->c != map->nbr_item + 1)
+	if (map->c != map->nbr_item)
 		return (1);
 	return (0);
 }
