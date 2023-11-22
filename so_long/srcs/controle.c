@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:47:21 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 15:49:41 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:47:11 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,52 @@ int	controle(int commande, t_game *map)
 		left(map, 0);
 	if (commande == 2)
 		right(map, 2);
-	add_image_window(map);
+	add_image_window(map, nbr);
 	if (map->nbr_item == 0)
 		item_png(map);
 	return (1);
+}
+
+char	*ft_itoa2(char *str, int long n, int long i)
+{
+	int long	j;
+
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = n * -1;
+	}
+	if (n > 9)
+	{
+		j = n % 10;
+		ft_itoa2(str, n / 10, i - 1);
+		n = j;
+	}
+	str[i] = n + 48;
+	return (str);
+}
+
+char	*ft_itoa(int n)
+{
+	char		*str;
+	int long	i;
+	int long	j;
+
+	i = 0;
+	j = n;
+	while (j != 0)
+	{
+		j = j / 10;
+		i++;
+	}
+	if (n < 0)
+		i++;
+	if (n == 0)
+		i = 1;
+	str = malloc(sizeof(char) * (i + 1));
+	if (str == NULL)
+		return (0);
+	str = ft_itoa2(str, n, i - 1);
+	str[i] = '\0';
+	return (str);
 }
