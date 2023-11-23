@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:21:27 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 15:49:03 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:55:05 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 int	find_p(t_game *map, int line, int col)
 {
-	if (map->map_check[line][col] == 'P')
+	if (map->map[line][col] == 'P')
 	{
 		map->c++;
 		return (1);
 	}
-	if (map->map_check[line][col] != '0' && map->map_check[line][col] != 'C')
+	if (map->map[line][col] != '0' && map->map[line][col] != 'C')
 		return (0);
-	map->map_check[line][col] = '1';
+	map->map[line][col] = '1';
 	if (col + 1 < map->x_max && find_p(map, line, col + 1))
 		return (1);
 	if (col - 1 >= 0 && find_p(map, line, col - 1))
@@ -59,14 +59,14 @@ void	backtracking2(t_game *map, char **map_backup, int line, int col)
 	i = 0;
 	while (i < map->y_max)
 	{
-		ft_memcpy(map_backup[i], map->map_check[i], map->x_max);
+		ft_memcpy(map_backup[i], map->map[i], map->x_max);
 		i++;
 	}
 	find_p(map, line, col);
 	i = 0;
 	while (i < map->y_max)
 	{
-		ft_memcpy(map->map_check[i], map_backup[i], map->x_max);
+		ft_memcpy(map->map[i], map_backup[i], map->x_max);
 		i++;
 	}
 }
@@ -80,8 +80,8 @@ void	backtracking(t_game *map, char **map_backup, int line)
 		col = 1;
 		while (col < map->x_max)
 		{
-			if (map->map_check[line][col] == 'C'
-				|| map->map_check[line][col] == 'E')
+			if (map->map[line][col] == 'C'
+				|| map->map[line][col] == 'E')
 				backtracking2(map, map_backup, line, col);
 			col++;
 		}

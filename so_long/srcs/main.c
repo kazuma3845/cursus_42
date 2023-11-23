@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:41:37 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 13:46:08 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:53:26 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,21 @@ int	main(int argc, char *argv[])
 	if (error_map(&info) == 1)
 		return (write(1, "Error\nMap false\n", 16));
 	start_game(info);
+	free_map(&info);
 	return (0);
+}
+
+void	free_map(t_game *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->y_max)
+	{
+		free(map->map[i]);
+		i++;
+	}
+	free(map->map);
 }
 
 static int	temp(int ligne, t_game *map, char *line)
@@ -41,8 +55,9 @@ static int	temp(int ligne, t_game *map, char *line)
 		i++;
 	}
 	tmp[i] = line;
+	if (map->map)
+		free(map->map);
 	map->map = tmp;
-	map->map_check = tmp;
 	return (1);
 }
 
@@ -65,10 +80,7 @@ void	ft_read(char *file, t_game *map)
 		temp(ligne, map, line);
 	}
 	map->y_max = ligne;
-	ligne = 0;
-	while (map->map[0][ligne] != '\n')
-		ligne++;
-	map->x_max = ligne;
+	map->x_max = (ft_strlen(map->map[0]) - 1);
 	close(fd);
 }
 

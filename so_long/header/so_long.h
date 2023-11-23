@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:46:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 17:01:03 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:53:39 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_game
 	void	*winpointer;
 
 	char	**map;
-	char	**map_check;
 
 	int		p;
 	int		c;
@@ -63,5 +62,6 @@ int			right(t_game *map, int commande);
 int			up(t_game *map, int commande);
 int			down(t_game *map, int commande);
 char		*ft_itoa(int n);
+void		free_map(t_game *map);
 
 #endif

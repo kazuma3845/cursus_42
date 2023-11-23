@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:47:21 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/22 17:00:21 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:47:45 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	fonc_exit(t_game *map)
 	if (map->winpointer)
 		mlx_destroy_window(map->mlxpointer, map->winpointer);
 	free(map->mlxpointer);
-	while (line < map->y_max - 1)
+	while (line < map->y_max)
 		free(map->map[line++]);
 	free(map->map);
 	exit(0);
