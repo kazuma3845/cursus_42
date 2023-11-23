@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:21:27 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 10:55:05 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:12:04 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	backtracking2(t_game *map, char **map_backup, int line, int col)
 		ft_memcpy(map_backup[i], map->map[i], map->x_max);
 		i++;
 	}
+	if (map->map[line][col] == 'E')
+		map->map[line][col] = 'C';
 	find_p(map, line, col);
 	i = 0;
 	while (i < map->y_max)
@@ -80,8 +82,7 @@ void	backtracking(t_game *map, char **map_backup, int line)
 		col = 1;
 		while (col < map->x_max)
 		{
-			if (map->map[line][col] == 'C'
-				|| map->map[line][col] == 'E')
+			if (map->map[line][col] == 'C' || map->map[line][col] == 'E')
 				backtracking2(map, map_backup, line, col);
 			col++;
 		}
@@ -111,7 +112,7 @@ int	error_chemin(t_game *map)
 		i++;
 	}
 	free(map_backup);
-	if (map->c != map->nbr_item)
+	if (map->c != map->nbr_item + 1)
 		return (1);
 	return (0);
 }
