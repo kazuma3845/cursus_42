@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:07:58 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 18:21:52 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:24:27 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ int	error_arg(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_list	*a;
+	t_list	*b;
 	int		i;
 
 	i = 1;
+	b = NULL;
 	if (argc < 2)
 		return (0);
 	if (error_arg(argc, argv) == 1)
@@ -75,6 +77,8 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&a, ft_lstnew(argv[i]));
 		i++;
 	}
+	// algo(&a, &b);
 	ft_lstprint(&a);
+	ft_lstprint(&b);
 	return (0);
 }
