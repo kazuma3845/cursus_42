@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 13:50:26 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:01:21 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*fill_line_buffer(int fd, char *left)
 		else if (rnum == 0)
 			break ;
 		buffer[rnum] = '\0';
-		left = ft_strjoin2(left, buffer);
+		left = ft_strjoin(left, buffer);
 	}
 	free(buffer);
 	return (left);

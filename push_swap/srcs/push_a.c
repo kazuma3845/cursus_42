@@ -6,13 +6,13 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:58:05 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 14:35:12 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:46:40 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	push_a(t_stack_a a, t_stack_b b)
-{
+// void	push_a(t_stack_a a, t_stack_b b)
+// {
 
-}
+// }

@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:56 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 13:49:45 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:01:34 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin2(char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);

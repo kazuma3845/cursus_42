@@ -7,10 +7,9 @@ CFLAGS := -Wall -Wextra -Werror -Iheaders/
 SOURCE := srcs/*.c
 GETNEXTLINE := gnl/*c
 PRINTF := ft_printf/*c
-LIBFT := libft/*c
 
 all:
-	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) -o $(NAME)
 
 clean:
 
@@ -22,4 +21,4 @@ re: fclean all
 .PHONY: all clean fclean re
 
 debug:
-	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBFT) -o $(NAME) -g3 -fsanitize=address
+	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) -o $(NAME) -g3 -fsanitize=address

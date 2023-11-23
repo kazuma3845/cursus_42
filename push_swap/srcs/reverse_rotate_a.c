@@ -6,13 +6,13 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:59:30 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 14:35:04 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:46:32 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	reverse_rotate_a(t_stack_a a, t_stack_b b)
-{
+// void	reverse_rotate_a(t_stack_a a, t_stack_b b)
+// {
 
-}
+// }
