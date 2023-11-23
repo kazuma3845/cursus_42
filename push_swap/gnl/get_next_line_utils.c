@@ -6,11 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:49 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/16 13:08:43 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:51:49 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/push_swap.h"
 
 char	*ft_strjoin2(char *s1, char *s2)
 {

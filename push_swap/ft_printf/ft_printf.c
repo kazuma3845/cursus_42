@@ -6,11 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:01:23 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/10 13:49:29 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:50:34 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/push_swap.h"
 
 void	ft_real(char *buffer, t_num *c)
 {
@@ -98,10 +98,10 @@ int	ft_printf(const char *str, ...)
 	va_list	arg;
 	int		replace;
 	char	*new;
-	char	*string;
 	t_num	c;
 
 	c.c = 0;
+	replace = 0;
 	va_start(arg, str);
 	new = (char *)str;
 	while (*new != '\0')

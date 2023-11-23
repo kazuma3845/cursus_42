@@ -6,27 +6,27 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:34:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/10 13:52:58 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:50:26 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/push_swap.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*left[OPEN_MAX];
+	static char	*left;
 	char		*str;
 
 	if (BUFFER_SIZE < 0 || read(fd, 0, 0) < 0 || fd < 0)
 	{
-		free(left[fd]);
-		left[fd] = NULL;
+		free(left);
+		left = NULL;
 		return (NULL);
 	}
-	str = fill_line_buffer(fd, left[fd]);
+	str = fill_line_buffer(fd, left);
 	if (str == NULL)
 		return (NULL);
-	left[fd] = line_left(str);
+	left = line_left(str);
 	str = line_str(str);
 	return (str);
 }
@@ -75,7 +75,7 @@ char	*line_left(char *str)
 
 char	*line_str(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (str[i] != '\n' && str[i])

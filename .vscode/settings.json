@@ -6,6 +6,8 @@
 		"libft.h": "c",
 		"so_long.h": "c",
 		"string.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"push_swap.h": "c",
+		"algorithm": "c"
 	}
 }

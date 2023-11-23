@@ -6,20 +6,13 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:23 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 14:42:16 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:49:27 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <fcntl.h>
-# include <limits.h>
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
 typedef struct s_list
 {
 	void			*content;

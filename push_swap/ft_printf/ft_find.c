@@ -6,16 +6,14 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:11:28 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/10 13:49:25 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:50:31 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/push_swap.h"
 
 int	ft_finds(const char *ltr)
 {
-	int	s;
-
 	while (*ltr != '%' && *ltr)
 		ltr++;
 	ltr++;
@@ -26,8 +24,6 @@ int	ft_finds(const char *ltr)
 
 int	ft_findp(const char *ltr)
 {
-	int	s;
-
 	while (*ltr != '%' && *ltr)
 		ltr++;
 	ltr++;
@@ -38,8 +34,6 @@ int	ft_findp(const char *ltr)
 
 int	ft_findpourcent(const char *ltr)
 {
-	int	s;
-
 	while (*ltr != '%' && *ltr)
 		ltr++;
 	ltr++;

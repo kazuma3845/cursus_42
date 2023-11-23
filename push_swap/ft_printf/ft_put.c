@@ -6,11 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:10:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/10 13:49:33 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:50:36 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/push_swap.h"
 
 void	ft_putchar(char c, t_num *r)
 {
