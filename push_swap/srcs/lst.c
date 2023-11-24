@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:41:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 17:43:06 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:00:15 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,6 @@ int	ft_lstsize(t_list *lst)
 	return (i);
 }
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*tab;
-	t_list	*n;
-
-	if (lst == NULL || f == NULL)
-		return (0);
-	n = NULL;
-	while (lst != NULL)
-	{
-		tab = ft_lstnew(f(lst->content));
-		if (tab == NULL)
-		{
-			ft_lstclear(&tab, (*del));
-			return (0);
-		}
-		ft_lstadd_back(&n, tab);
-		lst = lst->next;
-	}
-	return (n);
-}
-
 t_list	*ft_lstlast(t_list *lst)
 {
 	t_list	*tab;
@@ -71,37 +49,6 @@ t_list	*ft_lstlast(t_list *lst)
 	while (tab->next != NULL)
 		tab = tab->next;
 	return (tab);
-}
-
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	while (lst != NULL)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
-}
-
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (lst == NULL)
-		return ;
-	del(lst->content);
-	free(lst);
-}
-
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*tab;
-
-	if (lst == NULL)
-		return ;
-	while (*lst != NULL)
-	{
-		tab = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tab;
-	}
 }
 
 void	ft_lstadd_front(t_list **lst, t_list *new)

@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:07:58 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 19:30:10 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:40:47 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstprint(t_list **head)
 {
-	t_list *current;
+	t_list	*current;
 
 	current = *head;
 	while (current)
@@ -22,7 +22,7 @@ void	ft_lstprint(t_list **head)
 		ft_printf("%s\n", current->content);
 		current = current->next;
 	}
-	ft_printf("\n%d\n", ft_lstsize(*head));
+	ft_printf("\n%d\n\n", ft_lstsize(*head));
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 		ft_lstadd_back(&a, ft_lstnew(argv[i]));
 		i++;
 	}
-	// algo(&a, &b);
+	algo(&a, &b);
 	ft_lstprint(&a);
 	ft_lstprint(&b);
 	return (0);

@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a.c                                           :+:      :+:    :+:   */
+/*   lst2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 13:58:05 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 19:28:11 by tomuller         ###   ########.fr       */
+/*   Created: 2023/11/24 11:57:24 by tomuller          #+#    #+#             */
+/*   Updated: 2023/11/24 12:19:59 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	push_a(t_list **a, t_list **b)
+void	ft_remove_null_nodes(t_list **head)
 {
-	if (*a)
+	if (!head || !*head)
+		return ;
+
+	t_list *current = *head, *prev = NULL;
+
+	while (current)
 	{
-		ft_lstadd_front(b, ft_lstnew((*a)->content));
-		*a = (*a)->next;
+		if (current->content == 0)
+		{
+			if (prev)
+				prev->next = current->next;
+			else
+				*head = current->next;
+
+			t_list *temp = current;
+			current = current->next;
+			free(temp);
+		}
+		else
+		{
+			prev = current;
+			current = current->next;
+		}
 	}
 }

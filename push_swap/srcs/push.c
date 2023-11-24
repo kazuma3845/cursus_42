@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate_b.c                                 :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 13:59:49 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 18:34:09 by tomuller         ###   ########.fr       */
+/*   Created: 2023/11/23 13:58:05 by tomuller          #+#    #+#             */
+/*   Updated: 2023/11/24 12:07:12 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-// void	reverse_rotate_b(t_list *a, t_list *b)
-// {
+void	push_a(t_list **a, t_list **b)
+{
+	if (*a)
+	{
+		ft_lstadd_front(b, ft_lstnew((*a)->content));
+		*a = (*a)->next;
+	}
+	write(1, "pa\n", 3);
+}
 
-// }
+void	push_b(t_list **a, t_list **b)
+{
+	if (*b)
+	{
+		ft_lstadd_front(a, ft_lstnew((*b)->content));
+		*b = (*b)->next;
+	}
+	write(1, "pb\n", 3);
+}
