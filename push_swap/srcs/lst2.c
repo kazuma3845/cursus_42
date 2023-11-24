@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:57:24 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:19:59 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:43:48 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,17 @@ void	ft_remove_null_nodes(t_list **head)
 			current = current->next;
 		}
 	}
+}
+
+void	ft_lstprint(t_list **head)
+{
+	t_list	*current;
+
+	current = *head;
+	while (current)
+	{
+		ft_printf("%s\n", current->content);
+		current = current->next;
+	}
+	ft_printf("\n%d\n\n", ft_lstsize(*head));
 }

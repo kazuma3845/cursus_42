@@ -6,27 +6,13 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:07:58 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:40:47 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:43:46 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	ft_lstprint(t_list **head)
-{
-	t_list	*current;
-
-	current = *head;
-	while (current)
-	{
-		ft_printf("%s\n", current->content);
-		current = current->next;
-	}
-	ft_printf("\n%d\n\n", ft_lstsize(*head));
-}
-
 int	ft_strcmp(char *s1, char *s2)
-
 {
 	size_t	i;
 

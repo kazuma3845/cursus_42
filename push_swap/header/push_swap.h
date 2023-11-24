@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:39:51 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:56:16 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_remove_null_nodes(t_list **head);
+void				ft_lstprint(t_list **head);
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstnew(void *content);
 void				swap_a(t_list **a, int i);
