@@ -14,21 +14,35 @@
 
 void	algo(t_list **a, t_list **b)
 {
-	int	nbr_node;
-	int i;
-	t_list *current;
- 
-	i = 0;
-	current = *a;
-	nbr_node = ft_lstsize(*a);
-	while (i != nbr_node / 2)
-	{
-		if (current->content < current->next->content)
-		{
-			push_a(a, b);
-			i++;
-		}
-		else
-			swap_a(a, 0);
-	}
+	iInt len
+Int count
+Int len_total
+
+While (len_total > 5)
+{
+      Len_total = x
+      While (len < len_total /2)
+      {
+            Count = fonction
+            If (count <= len_total /2)
+                  Pa
+                  Len++
+           Else
+                  Ra
+      }
 }
+
+If a = 3 
+If a = 4
+If a = 5
+
+Count
+
+Check = a.next
+While (check != null)
+{
+      If (a > check)
+            Count++
+      Check = check.next
+}
+Return count}
