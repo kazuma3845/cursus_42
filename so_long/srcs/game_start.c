@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:25:48 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 11:51:50 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:38:56 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	start_game(t_game info)
 			(info.y_max * 50), "so_long");
 	image(&info);
 	add_image_window(&info, 0);
-	mlx_key_hook(info.winpointer, controle, &info);
+	mlx_hook(info.winpointer, 2, 0, controle, &info);
 	mlx_hook(info.winpointer, 17, 0, (void *)exit, 0);
 	mlx_loop(info.mlxpointer);
 }

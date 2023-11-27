@@ -6,37 +6,46 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:57:24 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:43:48 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:49:40 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	ft_remove_null_nodes(t_list **head)
+void	ft_remove_nodes(t_list **a)
 {
-	if (!head || !*head)
+	t_list	*temp;
+
+	if (*a == NULL)
 		return ;
+	temp = *a;
+	*a = temp->next;
+	free(temp);
+}
 
-	t_list *current = *head, *prev = NULL;
+void	ft_remove_nodes_last(t_list **a)
+{
+	t_list	*current;
+	t_list	*previous;
 
-	while (current)
+	if (*a == NULL)
+		return ;
+	current = *a;
+	previous = NULL;
+	while (current->next != NULL)
 	{
-		if (current->content == 0)
-		{
-			if (prev)
-				prev->next = current->next;
-			else
-				*head = current->next;
-
-			t_list *temp = current;
-			current = current->next;
-			free(temp);
-		}
-		else
-		{
-			prev = current;
-			current = current->next;
-		}
+		previous = current;
+		current = current->next;
+	}
+	if (previous == NULL)
+	{
+		free(current);
+		*a = NULL;
+	}
+	else
+	{
+		free(previous->next);
+		previous->next = NULL;
 	}
 }
 
@@ -47,8 +56,8 @@ void	ft_lstprint(t_list **head)
 	current = *head;
 	while (current)
 	{
-		ft_printf("%s\n", current->content);
+		ft_printf("\n%d", current->content);
 		current = current->next;
 	}
-	ft_printf("\n%d\n\n", ft_lstsize(*head));
+	ft_printf("\n\n%d\n\n", ft_lstsize(*head));
 }

@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:09 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:06:58 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:11:09 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap_a(t_list **a, int i)
 {
 	t_list	*first;
 	t_list	*second;
-	void	*temp;
+	long	temp;
 
 	if (*a && (*a)->next)
 	{
@@ -34,7 +34,7 @@ void	swap_b(t_list **b, int i)
 {
 	t_list	*first;
 	t_list	*second;
-	void	*temp;
+	long	temp;
 
 	if (*b && (*b)->next)
 	{

@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:41:37 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 11:53:26 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:23:14 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	main(int argc, char *argv[])
 		return (write(1, "Error\nFichier invalide\n", 23));
 	ft_read(argv[1], &info);
 	if (error_map(&info) == 1)
-		return (write(1, "Error\nMap false\n", 16));
-	start_game(info);
+		write(1, "Error\nMap false\n", 16);
+	else
+		start_game(info);
 	free_map(&info);
 	return (0);
 }

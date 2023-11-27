@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:59:30 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:17:42 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:19:09 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	reverse_rotate_a(t_list **a, int i)
 
 	last = ft_lstlast(*a);
 	ft_lstadd_front(a, ft_lstnew(last->content));
-	last->content = NULL;
-	ft_remove_null_nodes(a);
+	ft_remove_nodes_last(a);
 	if (i == 0)
 		write(1, "rra\n", 4);
 }
@@ -30,8 +29,7 @@ void	reverse_rotate_b(t_list **b, int i)
 
 	last = ft_lstlast(*b);
 	ft_lstadd_front(b, ft_lstnew(last->content));
-	last->content = NULL;
-	ft_remove_null_nodes(b);
+	ft_remove_nodes_last(b);
 	if (i == 0)
 		write(1, "rrb\n", 4);
 }

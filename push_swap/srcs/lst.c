@@ -6,17 +6,17 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:41:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/24 12:00:15 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:52:48 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(long content)
 {
 	t_list	*tab;
 
-	tab = malloc(sizeof(t_list));
+	tab = (t_list*)malloc(sizeof(t_list));
 	if (tab == NULL)
 		return (0);
 	tab->content = content;

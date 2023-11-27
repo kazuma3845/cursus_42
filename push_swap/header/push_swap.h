@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/27 10:31:48 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:17:29 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 typedef struct s_list
 {
 	struct s_list	*previous;
-	int				*content;
+	long			content;
 	struct s_list	*next;
 }					t_list;
 
@@ -34,10 +34,11 @@ int					main(int argc, char **argv);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
-void				ft_remove_null_nodes(t_list **head);
+void				ft_remove_nodes(t_list **a);
+void				ft_remove_nodes_last(t_list **a);
 void				ft_lstprint(t_list **head);
 int					ft_lstsize(t_list *lst);
-t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew(long content);
 void				swap_a(t_list **a, int i);
 void				swap_b(t_list **b, int i);
 void				ss(t_list **a, t_list **b);
@@ -50,5 +51,8 @@ void				reverse_rotate_a(t_list **a, int i);
 void				reverse_rotate_b(t_list **b, int i);
 void				rrr(t_list **a, t_list **b);
 void				algo(t_list **a, t_list **b);
+void				if_is_3(t_list **a);
+void				if_is_4(t_list **a);
+void				if_is_5(t_list **a);
 
 #endif
