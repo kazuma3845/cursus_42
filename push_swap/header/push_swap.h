@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/27 17:17:29 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:09:06 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void				reverse_rotate_a(t_list **a, int i);
 void				reverse_rotate_b(t_list **b, int i);
 void				rrr(t_list **a, t_list **b);
 void				algo(t_list **a, t_list **b);
-void				if_is_3(t_list **a);
-void				if_is_4(t_list **a);
-void				if_is_5(t_list **a);
+void				if_is_3(t_list **a, t_list **b);
+void				test(t_list **a, t_list **b);
 
 #endif

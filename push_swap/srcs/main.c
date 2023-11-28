@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:07:58 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/27 17:18:13 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:12:56 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,17 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		return (0);
-	if (error_arg(argc, argv) == 1)
-		return (write(1, "Error\n", 6));
+	// if (error_arg(argc, argv) == 1)
+	// 	return (write(1, "Error\n", 6));
 	while (i != argc)
 	{
 		ft_lstadd_back(&a, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
 	algo(&a, &b);
-	if (ft_lstsize(&a) == 3)
-		if_is_3(a);
-	if (ft_lstsize(&a) == 4)
-		if_is_4(a);
-	if (ft_lstsize(&a) == 5)
-		if_is_5(a);
-	ft_lstprint(&a);
-	ft_lstprint(&b);
+	if_is_3(&a, &b);
+	test(&a, &b);
+	// ft_lstprint(&a);
+	// ft_lstprint(&b);
 	return (0);
 }
