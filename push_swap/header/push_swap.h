@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/28 14:09:06 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:51:29 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 typedef struct s_list
 {
-	struct s_list	*previous;
 	long			content;
 	struct s_list	*next;
 }					t_list;
@@ -51,7 +50,14 @@ void				reverse_rotate_a(t_list **a, int i);
 void				reverse_rotate_b(t_list **b, int i);
 void				rrr(t_list **a, t_list **b);
 void				algo(t_list **a, t_list **b);
-void				if_is_3(t_list **a, t_list **b);
 void				test(t_list **a, t_list **b);
+char				**ft_split(char const *s, char c);
+int					ft_isalnum(int c);
+int					ft_strcmp(char *s1, char *s2);
+long				ft_atoi(char *str);
+void				free_liste(t_list **a);
+void				if_is_3(t_list **a);
+int					ft_count(t_list **a, t_list *check);
+int					error(t_list **a);
 
 #endif

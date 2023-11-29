@@ -6,94 +6,106 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:07:58 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/28 17:12:56 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:18:21 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	contains_letter(const char *str)
 {
-	size_t	i;
-
-	i = 0;
-	while ((s1[i] != '\0' || s2[i] != '\0'))
+	while (*str)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		if (ft_isalnum(*str) || *str == '-' || *str == '+' || *str == ' ')
+			str++;
+		else
+			return (1);
 	}
 	return (0);
 }
 
-int	error_arg(int argc, char **argv)
+int	check_arguments(int argc, char **argv)
 {
 	int	i;
-	int	j;
 
 	i = 1;
-	while (i != argc)
+	while (i < argc)
 	{
-		j = i + 1;
-		while (j != argc)
-		{
-			if (strcmp(argv[i], argv[j]) == 0)
-				return (1);
-			j++;
-		}
+		if (contains_letter(argv[i]))
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-long	ft_atoi(char *str)
-
+int	init_list(int argc, char **argv, t_list **a)
 {
-	int i;
-	int j;
-	long retourn;
+	int		i;
+	int		j;
+	char	**str;
 
 	i = 0;
-	j = 1;
-	retourn = 0;
-	while ((str[i] == 32 || (str[i] >= 9 && str[i] <= 13)) && str[i])
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	j = 0;
+	if (argc == 2)
 	{
-		if (str[i] == '-')
-			j *= -1;
-		i++;
+		if (ft_strlen(argv[1]) > 2)
+		{
+			str = ft_split(argv[1], ' ');
+			while (str[j])
+				j++;
+			while (i != j)
+			{
+				ft_lstadd_back(a, ft_lstnew(ft_atoi(str[i])));
+				free(str[i++]);
+			}
+			free(str);
+		}
 	}
-	while ((str[i] >= 48 && str[i] <= 57) && str[i]) 
+	else
+		while (++i < argc)
+			ft_lstadd_back(a, ft_lstnew(ft_atoi(argv[i])));
+	return (0);
+}
+
+int	check(t_list **a)
+{
+	t_list	*check;
+
+	check = *a;
+	while (check && check->next)
 	{
-		retourn *= 10;
-		retourn += str[i] - '0';
-		i++;
+		if (check->content > check->next->content)
+			return (0);
+		check = check->next;
 	}
-	return (retourn * j);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
-	int		i;
 
-	i = 1;
 	b = NULL;
+	a = NULL;
 	if (argc < 2)
 		return (0);
-	// if (error_arg(argc, argv) == 1)
-	// 	return (write(1, "Error\n", 6));
-	while (i != argc)
+	if (init_list(argc, argv, &a) == 1 || check_arguments(argc, argv) == 1)
 	{
-		ft_lstadd_back(&a, ft_lstnew(ft_atoi(argv[i])));
-		i++;
+		free_liste(&a);
+		return (ft_printf("Error\n"));
 	}
-	algo(&a, &b);
-	if_is_3(&a, &b);
-	test(&a, &b);
-	// ft_lstprint(&a);
-	// ft_lstprint(&b);
+	if (check(&a) != 1 || ft_lstsize(a) == 1)
+	{
+		if (error(&a) == 1)
+		{
+			free_liste(&a);
+			return (ft_printf("Error\n"));
+		}
+		algo(&a, &b);
+		if_is_3(&a);
+		test(&a, &b);
+	}
+	free_liste(&a);
 	return (0);
 }
