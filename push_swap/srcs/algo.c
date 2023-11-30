@@ -6,102 +6,128 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:38:59 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/30 12:04:22 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:25:50 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	algo(t_list **a, t_list **b)
+int	val_min(t_list **b)
 {
-	int	len;
-	int	count;
-	int	len_total;
+	t_list	*check;
+	int		min;
 
-	len_total = ft_lstsize(*a);
-	while (len_total > 3)
+	check = *b;
+	min = check->content;
+	while (check)
 	{
-		len = 0;
-		while (len < len_total / 2)
-		{
-			count = ft_count(a, *a);
-			if (count + len < len_total / 2)
-			{
-				push_a(a, b);
-				len++;
-			}
-			else
-				rotate_a(a, 0);
-		}
-		len_total = ft_lstsize(*a);
+		if (check->content < min)
+			min = check->content;
+		check = check->next;
 	}
+	return (min);
 }
 
-int	nbr_max(t_list **b)
+int	val_max(t_list **b)
 {
 	t_list	*check;
 	int		max;
-	int		nbr;
-	int		i;
 
-	max = 0;
-	i = 0;
-	nbr = (*b)->content;
 	check = *b;
-	check = check->next;
+	max = check->content;
 	while (check)
 	{
-		i++;
-		if (check->content > nbr)
-		{
-			nbr = check->content;
-			max = i;
-		}
+		if (check->content > max)
+			max = check->content;
 		check = check->next;
 	}
 	return (max);
 }
 
-int	reach(t_list **b)
+int	checker(t_list **a, t_list **b)
 {
-	int	max;
+	t_list	*check_prev;
+	t_list	*check_next;
 
-	max = nbr_max(b);
-	if (max == 1)
-		return (1);
-	return (0);
+	check_next = (*b);
+	check_prev = ft_lstlast(*b);
+	if (((*a)->content > check_next->content
+			&& (*a)->content < check_prev->content)
+		|| ((*a)->content > val_max(b) && val_max(b) == check_next->content)
+		|| ((*a)->content < val_min(b) && val_min(b) == check_prev->content))
+		return (0);
+	return (1);
 }
 
-void	test2(t_list **b)
+void	if_is_3_inv(t_list **a)
 {
-	if (reach(b) == 1)
-		swap_b(b, 0);
-	else
-		rotate_b(b, 0);
-}
+	int		count;
+	t_list	*check;
 
-void	test(t_list **a, t_list **b)
-{
-	int	len_max;
-	int	i;
-	int	max;
-
-	while (*b)
+	check = (*a)->next;
+	count = ft_count(a, *a);
+	if (count == 2)
 	{
-		i = -1;
-		len_max = ft_lstsize(*b);
-		max = nbr_max(b);
-		if (max <= (len_max / 2))
-		{
-			while (max != ++i)
-				test2(b);
-		}
+		rotate_a(a, 0);
+		if ((*a)->content < (*a)->next->content)
+			swap_a(a, 0);
+	}
+	else if (count == 1)
+	{
+		if ((*a)->content < (*a)->next->content)
+			swap_a(a, 0);
 		else
+			reverse_rotate_a(a, 0);
+	}
+	else if (count == 0)
+	{
+		if (check->content < check->next->content)
 		{
-			max = len_max - max;
-			while (max != ++i)
+			rotate_a(a, 0);
+			swap_a(a, 0);
+			reverse_rotate_a(a, 0);
+		}
+	}
+}
+
+void	algo(t_list **a, t_list **b)
+{
+	int	len_total;
+	t_list *check;
+
+	len_total = ft_lstsize(*a);
+	if (len_total > 3)
+	{
+		push_a(a, b);
+		push_a(a, b);
+		push_a(a, b);
+		len_total -= 2;
+	}
+	if_is_3_inv(b);
+	while (--len_total > 3)
+	{
+		while (checker(a, b) == 1)
+		{
+			// if (????? < (ft_lstsize(*b) / 2))///////////////////////////////////////////////////////
+			// 	rotate_b(b, 0);
+			// else
 				reverse_rotate_b(b, 0);
 		}
-		push_b(a, b);
+		push_a(a, b);
 	}
+	if_is_3(a);
+	while ((*b)->content != val_max(b))
+		rotate_b(b, 0);
+	while (*b)
+	{
+		check = ft_lstlast(*a);
+		if (((*b)->content > check->content || (*b)->content < val_min(a)))
+			push_b(a, b);
+		else if (ft_lstsize(*b) > 0)
+			reverse_rotate_a(a, 0);
+	}
+	while ((*a)->content != val_min(a))
+		reverse_rotate_a(a, 0);
+	// ft_lstprint(a);
+	// ft_lstprint(b);
 }

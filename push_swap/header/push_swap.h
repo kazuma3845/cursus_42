@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/29 17:37:49 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:23:29 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 typedef struct s_list
 {
-	int				nbr_next;
 	long			content;
 	struct s_list	*next;
 }					t_list;

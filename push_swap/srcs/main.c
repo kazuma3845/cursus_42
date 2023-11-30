@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:07:58 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/30 11:54:08 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:46:04 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ int	main(int argc, char **argv)
 			return (ft_printf("Error\n"));
 		}
 		algo(&a, &b);
-		if_is_3(&a);
-		test(&a, &b);
 	}
-	// ft_lstprint(&a);
 	free_liste(&a);
 	return (0);
 }
