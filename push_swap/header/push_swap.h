@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/30 18:23:29 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:02:03 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void				free_liste(t_list **a);
 void				if_is_3(t_list **a);
 int					ft_count(t_list **a, t_list *check);
 int					error(t_list **a);
+
 
 #endif
