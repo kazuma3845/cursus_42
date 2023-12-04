@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipiex.h                                           :+:      :+:    :+:   */
+/*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 12:51:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/04 14:27:14 by tomuller         ###   ########.fr       */
+/*   Created: 2023/12/04 13:11:35 by tomuller          #+#    #+#             */
+/*   Updated: 2023/12/04 14:55:06 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+# include "../header/pipiex.h"
 
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+void error_arg(int i)
+{
+	if (i == 1)
+		ft_putstr_fd("./pipex infile cmd cmd outfile\n", 2);
+	exit(1);
+}
 
-void error_arg(int i);
-int	open_fd(int fd, int nb);
-
-#endif
+int	open_fd(int fd, int nb)
+{
+	if (nb == 0);
+	{
+		open();
+	}
+	if (nb == 1)
+	{
+		read();
+	}
+}

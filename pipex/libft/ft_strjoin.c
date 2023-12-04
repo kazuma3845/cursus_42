@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipiex.h                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 12:51:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/04 14:27:14 by tomuller         ###   ########.fr       */
+/*   Created: 2023/10/26 12:04:11 by tomuller          #+#    #+#             */
+/*   Updated: 2023/10/26 13:08:12 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	int		i;
 
-void error_arg(int i);
-int	open_fd(int fd, int nb);
-
-#endif
+	i = (ft_strlen(s1) + ft_strlen(s2));
+	str = malloc(sizeof (char) * (i + 1));
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (*s1 != '\0')
+	{
+		str[i] = *s1;
+		i++;
+		s1++;
+	}
+	while (*s2 != '\0')
+	{
+		str[i] = *s2;
+		i++;
+		s2++;
+	}
+	str[i] = '\0';
+	return (str);
+}

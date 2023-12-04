@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipiex.h                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 12:51:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/04 14:27:14 by tomuller         ###   ########.fr       */
+/*   Created: 2023/09/04 13:56:51 by tomuller          #+#    #+#             */
+/*   Updated: 2023/10/26 10:38:06 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 
-void error_arg(int i);
-int	open_fd(int fd, int nb);
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
+/*
+int main()
+{
+	char a[] = "Hello";
+	char b[] = "Hellp";
+	int c = 5;
+
+	printf("%d", ft_strncmp(a, b, c));
+	return (0);
+}*/

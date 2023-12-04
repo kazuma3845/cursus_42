@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipiex.h                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 12:51:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/04 14:27:14 by tomuller         ###   ########.fr       */
+/*   Created: 2023/10/23 15:48:29 by tomuller          #+#    #+#             */
+/*   Updated: 2023/10/26 10:33:07 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t			i;
+	char			j;
+	unsigned char	*d;
+	unsigned char	*s;
 
-void error_arg(int i);
-int	open_fd(int fd, int nb);
-
-#endif
+	i = 0;
+	j = 1;
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	if (dst == NULL && src == NULL)
+		return (0);
+	if (dst > src)
+	{
+		j = -1;
+		d += len - 1;
+		s += len - 1;
+	}
+	while (i < len)
+	{
+		*d = *s;
+		d += j;
+		s += j;
+		i++;
+	}
+	return (dst);
+}

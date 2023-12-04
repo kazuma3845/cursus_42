@@ -17,6 +17,8 @@
 		"stdarg.h": "c",
 		"ft_printf.h": "c",
 		"limits": "c",
-		"ratio": "c"
+		"ratio": "c",
+		"fcntl.h": "c",
+		"pipiex.h": "c"
 	}
 }

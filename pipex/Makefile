@@ -4,21 +4,23 @@ CC := gcc
 
 CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
-SOURCE := srcs/*.c
-GETNEXTLINE := gnl/*c
-PRINTF := ft_printf/*c
+SOURCE := srcs/*.c libft/libft.a
 
 all:
-	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) -o $(NAME)
+	make all -C libft
+	$(CC) $(CFLAGS) $(SOURCE) -o $(NAME)
 
-clean:
+fclean : clean
+	rm -rf $(NAME)
+	make fclean -C libft
 
-fclean: clean
-		rm -rf $(NAME)
+clean :
+	rm -rf $(NAME)
+	make clean -C libft
 
 re: fclean all
 
 .PHONY: all clean fclean re
 
 debug:
-	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) -o $(NAME) -g3 -fsanitize=address
+	$(CC) $(CFLAGS) $(SOURCE) -o $(NAME) -g3 -fsanitize=address

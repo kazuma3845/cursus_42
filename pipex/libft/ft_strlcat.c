@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipiex.h                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 12:51:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/04 14:27:14 by tomuller         ###   ########.fr       */
+/*   Created: 2023/10/24 10:26:59 by tomuller          #+#    #+#             */
+/*   Updated: 2023/10/25 13:45:55 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	s;
+	size_t	d;
+	size_t	di;
+	size_t	si;
 
-void error_arg(int i);
-int	open_fd(int fd, int nb);
-
-#endif
+	si = ft_strlen(src);
+	if (!dst && dstsize == 0)
+		return (si);
+	d = ft_strlen(dst);
+	di = d;
+	if (dstsize <= di)
+		return (dstsize + si);
+	s = 0;
+	while (src[s] && d + 1 < dstsize)
+	{
+		dst[d] = src[s];
+		s++;
+		d++;
+	}
+	dst[d] = 0;
+	return (di + si);
+}
