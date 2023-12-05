@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipiex.h                                           :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 12:51:36 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/04 14:27:14 by tomuller         ###   ########.fr       */
+/*   Created: 2023/12/05 13:45:08 by tomuller          #+#    #+#             */
+/*   Updated: 2023/12/05 13:45:09 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include <string.h>
 # include <unistd.h>
 
-void error_arg(int i);
-int	open_fd(int fd, int nb);
+void	error_arg(int i);
+int		open_fd(char *fd, int nb);
+void	free_tab(char **tab);
+char	*get_path(char *cmd, char **env);
 
 #endif

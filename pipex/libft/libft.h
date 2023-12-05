@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:23 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/23 14:42:16 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:43:07 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+
 typedef struct s_list
 {
 	void			*content;

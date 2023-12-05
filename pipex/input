@@ -1,4 +1,27 @@
-a1
-a1
-a2
-test
+
+Minishell à l'école 42 : Une Plongée dans le Monde de la Programmation Système
+
+Au sein de l'école 42, Minishell représente une épreuve significative destinée à immerger les étudiants dans les nuances de la programmation système en langage C. C'est un projet qui vise à fournir une compréhension approfondie du fonctionnement d'un interpréteur de commandes basique, souvent appelé shell.
+
+Objectif du Projet :
+Le projet Minishell met l'accent sur la création d'un shell simplifié, un environnement où les utilisateurs peuvent entrer des commandes pour interagir avec le système d'exploitation. À travers Minishell, les étudiants explorent les rudiments de la gestion des processus, la manipulation de fichiers, la redirection d'entrée/sortie, la gestion des signaux, et bien d'autres aspects essentiels des systèmes d'exploitation.
+
+Les Principales Fonctionnalités :
+
+Exécution de Commandes : Minishell permet l'exécution de commandes système et d'applications.
+
+Gestion des Processus : Il explore la création, la terminaison et la gestion des processus, notamment à travers l'utilisation de la fonction fork().
+
+Redirection d'Entrée/Sortie : Les étudiants apprennent à gérer la redirection de flux standard (stdin, stdout) pour permettre une interaction flexible avec les fichiers.
+
+Manipulation de Chaînes de Caractères : La gestion des commandes, des arguments et des chemins nécessite une manipulation habile des chaînes de caractères en langage C.
+
+Gestion des Signaux : Les étudiants explorent la manière dont les signaux, tels que SIGINT (généralement envoyé par Ctrl+C), sont gérés dans un environnement de shell.
+
+Défis et Apprentissages :
+Le projet Minishell représente un défi significatif pour les étudiants, les poussant à comprendre en profondeur la communication entre processus, les appels système et les mécanismes fondamentaux des systèmes d'exploitation. Il incite également à la réflexion sur la conception modulaire et l'efficacité de l'implémentation.
+
+Impact sur la Formation :
+En relevant ce défi, les étudiants de l'école 42 développent des compétences cruciales en programmation système, acquièrent une compréhension solide des concepts clés de l'informatique, et perfectionnent leur capacité à résoudre des problèmes complexes.
+
+Minishell, bien que modestement nommé, représente une exploration approfondie du monde des shells et de la programmation système, fournissant une base solide pour des aventures informatiques plus avancées.
