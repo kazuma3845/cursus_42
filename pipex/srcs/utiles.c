@@ -6,11 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:35 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/05 13:42:12 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:48:28 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/pipiex.h"
+#include "../header/pipex.h"
 
 void	error_arg(int i)
 {

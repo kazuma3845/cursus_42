@@ -6,11 +6,11 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:45:29 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/05 13:42:07 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:46:45 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/pipiex.h"
+#include "../header/pipex.h"
 
 void	exce(char *argv, char **env)
 {

@@ -19,6 +19,7 @@
 		"limits": "c",
 		"ratio": "c",
 		"fcntl.h": "c",
-		"pipiex.h": "c"
+		"pipiex.h": "c",
+		"pipex.h": "c"
 	}
 }
