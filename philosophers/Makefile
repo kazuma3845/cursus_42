@@ -13,7 +13,6 @@ fclean : clean
 	rm -rf $(NAME)
 
 clean :
-	rm -rf $(NAME)
 
 re: fclean all
 

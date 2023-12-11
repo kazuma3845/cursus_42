@@ -20,6 +20,11 @@
 		"ratio": "c",
 		"fcntl.h": "c",
 		"pipiex.h": "c",
-		"pipex.h": "c"
+		"pipex.h": "c",
+		"philo.h": "c",
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c"
 	}
 }
