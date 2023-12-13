@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/13 16:01:10 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/13 19:26:19 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,25 @@ void	beggin(t_programme *prog)
 		pthread_join(prog->lst->th[i], NULL);
 }
 
+void init_mutex(t_programme *prog)
+{
+	
+}
+
+void free_all(t_programme *prog)
+{
+	
+}
+
 int	main(int argc, char **argv)
 {
-	pthread_mutex_t	mutex;
 	t_programme prog;
 
 	if (argc < 5 || argc > 6)
 		return (0);
 	ft_init(argc, argv, prog.lst);
-	pthread_mutex_init(&mutex, NULL);
 	beggin(&prog);
-	pthread_mutex_destroy(&mutex);
+	intit_mutex(&prog);
+	free_all(&prog);
 	return (0);
 }
