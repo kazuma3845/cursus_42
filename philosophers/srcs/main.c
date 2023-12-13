@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/12 14:15:37 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:33:41 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*algo(void *arg)
 	int	timer;
 	pthread_mutex_t	mutex;
 
-	timer = 0;
+	timer = 1;
 	pthread_mutex_lock(&mutex);
 	printf("%d %d has taken a fork\n", timer, (int)arg);
 	printf("%d %d has taken a fork\n", timer, (int)arg);
