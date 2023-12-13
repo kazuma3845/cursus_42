@@ -7,6 +7,7 @@
             "args": [
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
+                "-pthred",
                 "-g",
                 "*c",
                 "-o",
