@@ -3,72 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/13 19:26:19 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/14 13:36:21 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-void ft_init(int argc, char **argv, t_philo *lst)
+int	mutex(t_general *prog)
 {
-	lst->nbr_philo = ft_atoi(argv[1]);
-	lst->time_death = ft_atoi(argv[2]);
-	lst->time_eat = ft_atoi(argv[3]);
-	lst->time_sleep = ft_atoi(argv[4]);
-	lst->starting_time = get_time();
-	lst->count_death = 0;
-	lst->fourchette = 2;
-	if (argc == 6)
-		lst->eat_max = ft_atoi(argv[5]);
+	int	i;
+
+	i = -1;
+	prog->fork_mutex = malloc(sizeof(pthread_mutex_t)
+			* prog->number_of_philosophers);
+	if (prog->fork_mutex == NULL)
+		return (0);
+	while (++i != prog->number_of_philosophers)
+		pthread_mutex_init(&prog->fork_mutex[i], NULL);
+	pthread_mutex_init(&prog->mutex, NULL);
+	return (1);
+}
+
+int	init_philo(t_general *prog)
+{
+	int	i;
+
+	i = 0;
+	prog->philosophers = malloc(sizeof(t_philo) * prog->number_of_philosophers);
+	while (i < prog->number_of_philosophers)
+	{
+		prog->philosophers[i].id = i + 1;
+		prog->philosophers[i].time_to_die = prog->time_to_die;
+		prog->philosophers[i].time_to_eat = prog->time_to_eat;
+		prog->philosophers[i].time_to_sleep = prog->time_to_sleep;
+		prog->philosophers[i].left_fork = &prog->fork_mutex[i];
+		prog->philosophers[i].right_fork = &prog->fork_mutex[(i + 1)
+			% prog->number_of_philosophers];
+		prog->philosophers[i].general = prog;
+		prog->philosophers[i].last_meal = 0;
+		prog->philosophers[i].is_eating = 0;
+		prog->philosophers[i].number_of_meals = 0;
+		i++;
+	}
+	return (1);
+}
+
+int	ft_init(char **argv, t_general *prog)
+{
+	prog->number_of_philosophers = ft_atoi(argv[1]);
+	prog->time_to_die = ft_atoi(argv[2]);
+	prog->time_to_eat = ft_atoi(argv[3]);
+	prog->time_to_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		prog->number_of_meals = ft_atoi(argv[5]);
 	else
-		lst->eat_max = -1;
-}
-
-void *routine(void *arg)
-{
-	t_philo *lst;
-
-	lst = (t_philo *)arg;
-	printf("test %d\n", lst->eat_max);
-	return (0);
-}
-
-void	beggin(t_programme *prog)
-{
-	int i;
-
-	i = -1;
-	prog->lst->th = malloc(prog->lst->nbr_philo * sizeof(pthread_t));
-	while (++i < prog->lst->nbr_philo)
-		pthread_create(&prog->lst->th[i], NULL, &routine, (void *)&prog->lst[i]);
-	i = -1;
-	while (++i < prog->lst->nbr_philo)
-		pthread_join(prog->lst->th[i], NULL);
-}
-
-void init_mutex(t_programme *prog)
-{
-	
-}
-
-void free_all(t_programme *prog)
-{
-	
+		prog->number_of_meals = -1;
+	prog->philosopher_dead = 0;
+	if (mutex(prog) == 0)
+		return (0);
+	if (init_philo(prog) == 0)
+		return (0);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	t_programme prog;
+	t_general	prog;
 
-	if (argc < 5 || argc > 6)
+	if (check_arg(argc, argv) == 0)
 		return (0);
-	ft_init(argc, argv, prog.lst);
-	beggin(&prog);
-	intit_mutex(&prog);
-	free_all(&prog);
+	if (ft_init(argv, &prog) == 1)
+	{
+		beggin(&prog);
+		// beggin_algo(&prog);
+		// joint_mutex();
+		free_all(&prog);
+	}
 	return (0);
 }

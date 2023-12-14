@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/13 15:23:03 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/14 13:34:15 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,20 @@ int	get_time(void)
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+void free_all(t_general *prog)
+{
+	free(prog->philosophers);
+	free(prog->fork_mutex);
+}
+
+void	print_msg(char str, t_philo *philosophers)
+{
+	if (!philo_dead(philosophers))
+	{
+		pthread_mutex_lock(&philosophers->general->mutex);
+		printf("%d %d %s\n", get_time() - philosophers->general->starting_time, philosophers->id, str);
+		pthread_mutex_unlock(&philosophers->general->mutex);
+	}
 }
