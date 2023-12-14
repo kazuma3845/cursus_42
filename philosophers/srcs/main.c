@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/14 13:36:21 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:35:48 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ int	ft_init(char **argv, t_general *prog)
 	return (1);
 }
 
+void joint_thread(t_general *prog)
+{
+	int i;
+
+	i = -1;
+	while (++i != prog->number_of_philosophers)
+		pthread_join(prog->philosophers[i].thread_id, NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_general	prog;
@@ -78,8 +87,8 @@ int	main(int argc, char **argv)
 	if (ft_init(argv, &prog) == 1)
 	{
 		beggin(&prog);
-		// beggin_algo(&prog);
-		// joint_mutex();
+		algo(&prog);
+		joint_thread(&prog);
 		free_all(&prog);
 	}
 	return (0);

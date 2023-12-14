@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/14 13:34:15 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:10:47 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void free_all(t_general *prog)
 	free(prog->fork_mutex);
 }
 
-void	print_msg(char str, t_philo *philosophers)
+void	print_msg(char *str, t_philo *philosophers)
 {
 	if (!philo_dead(philosophers))
 	{
@@ -61,4 +61,13 @@ void	print_msg(char str, t_philo *philosophers)
 		printf("%d %d %s\n", get_time() - philosophers->general->starting_time, philosophers->id, str);
 		pthread_mutex_unlock(&philosophers->general->mutex);
 	}
+}
+
+void	ft_sleep(int time, t_philo *philo)
+{
+	int start;
+
+	start = get_time();
+	while ((get_time() - start) < time && philo_dead(philo) == 0)
+		usleep(50);
 }
