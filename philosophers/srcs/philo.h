@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:11:22 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/14 16:09:54 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/15 16:15:33 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,35 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_philo
 {
 	int					id;
-	int					last_meal;
-	int					is_eating;
-	int					time_to_die;
-	int					time_to_sleep;
-	int					time_to_eat;
-	int					number_of_meals;
-	pthread_t			thread_id;
-	struct s_general	*general;
-	pthread_mutex_t		*left_fork;
-	pthread_mutex_t		*right_fork;
+	int					food_count;
+	bool				is_eating;
+	pthread_t			thread;
+	long int			last_eat;
+	struct s_general	*info;
+	pthread_mutex_t		*fork_right;
+	pthread_mutex_t		fork_left;
 }						t_philo;
 
 typedef struct s_general
 {
-	int					number_of_philosophers;
-	int					time_to_die;
-	int					time_to_sleep;
-	int					time_to_eat;
-	int					number_of_meals;
-	int					starting_time;
-	int					philosopher_dead;
-	pthread_mutex_t		*fork_mutex;
-	pthread_mutex_t		mutex;
-	pthread_mutex_t		*left_fork;
-	pthread_mutex_t		*right_fork;
-	t_philo				*philosophers;
+	int				philo_eat;
+	int				nbr_philo;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				nbr_eat;
+	int				philo_death;
+	long int		time_start;
+	t_philo			*philosophers;
+	pthread_mutex_t	print;
+	pthread_mutex_t	m_stop;
+	pthread_mutex_t	m_eat;
+	pthread_mutex_t	dead;
 }						t_general;
 //	utiles.c
 int						ft_atoi(const char *str);
@@ -62,13 +61,10 @@ void					ft_sleep(int time, t_philo *philo);
 //	error.c
 int						check_arg(int argc, char **argv);
 //	algo.c
-void					beggin(t_general *prog);
-void 					*algo(t_general *prog);
+void					*beggin(void *arg);
 // philo_action.c
 void					philo_eat(t_philo *philo);
-void					philo_sleep(t_philo *philo);
-void					philo_think(t_philo *philo);
-int						philo_dead(t_philo *philo);
-int						philo_fork(t_philo *philo);
+int						philo_dead(t_philo *philo, int death);
+void					philo_fork(t_philo *philo);
 
 #endif

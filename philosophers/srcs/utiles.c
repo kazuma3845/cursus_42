@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/14 17:10:47 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/15 16:20:09 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_atoi(const char *str)
 
 int	get_time(void)
 {
-	static struct timeval	t;
+	struct timeval	t;
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
@@ -49,17 +49,28 @@ int	get_time(void)
 
 void free_all(t_general *prog)
 {
+	int i;
+
+	i = -1;
+	while (++i != prog->nbr_philo)
+	{
+		pthread_mutex_destroy(&prog->philosophers[i].fork_left);
+		pthread_mutex_destroy(prog->philosophers[i].fork_right);
+	}
 	free(prog->philosophers);
-	free(prog->fork_mutex);
+	pthread_mutex_destroy(&prog->print);
+	pthread_mutex_destroy(&prog->dead);
+	pthread_mutex_destroy(&prog->m_eat);
+	pthread_mutex_destroy(&prog->m_stop);
 }
 
 void	print_msg(char *str, t_philo *philosophers)
 {
-	if (!philo_dead(philosophers))
+	if (!philo_dead(philosophers, 0) && get_time() - philosophers->info->time_start > 0)
 	{
-		pthread_mutex_lock(&philosophers->general->mutex);
-		printf("%d %d %s\n", get_time() - philosophers->general->starting_time, philosophers->id, str);
-		pthread_mutex_unlock(&philosophers->general->mutex);
+		pthread_mutex_lock(&philosophers->info->print);
+		printf("%ld %d %s\n", get_time() - philosophers->info->time_start, philosophers->id, str);
+		pthread_mutex_unlock(&philosophers->info->print);
 	}
 }
 
@@ -68,6 +79,6 @@ void	ft_sleep(int time, t_philo *philo)
 	int start;
 
 	start = get_time();
-	while ((get_time() - start) < time && philo_dead(philo) == 0)
-		usleep(50);
+	while ((get_time() - start) < time && philo_dead(philo, 0) == 0)
+		usleep(time / 10);
 }

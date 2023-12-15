@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:34:57 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/14 17:14:56 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/15 16:09:07 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,78 +17,46 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (philo->general->philosopher_dead == 0)
+	ft_sleep(philo->info->time_die + 1, philo);
+	pthread_mutex_lock(&philo->info->m_eat);
+	pthread_mutex_lock(&philo->info->m_stop);
+	if (!philo_dead(philo, 0) && get_time() - philo->last_eat >= (long)philo->info->time_die)
 	{
-		if (philo_dead(philo))
-			return (0);
-		philo_fork(philo);
-		if (philo_dead(philo))
-		{
-			pthread_mutex_unlock(philo->right_fork);
-			pthread_mutex_unlock(philo->left_fork);
-			return (0);
-		}
-		philo_eat(philo);
-		if (philo_dead(philo))
-			return (0);
-		philo_sleep(philo);
-		if (philo_dead(philo))
-			return (0);
-		philo_think(philo);
+		pthread_mutex_unlock(&philo->info->m_eat);
+		pthread_mutex_unlock(&philo->info->m_stop);
+		print_msg("died", philo);
+		philo_dead(philo, 1);
 	}
+	pthread_mutex_unlock(&philo->info->m_eat);
+	pthread_mutex_unlock(&philo->info->m_stop);
 	return (0);
 }
 
-void	beggin(t_general *prog)
+void	*beggin(void *arg)
 {
-	int	i;
+	pthread_t t;
+	t_philo *philo;
 
-	i = -1;
-	prog->starting_time = get_time();
-	while (++i < prog->number_of_philosophers)
-		pthread_create(&prog->philosophers[i].thread_id, NULL, &routine, (void *)&prog->philosophers[i]);
-	i = -1;
-	while (++i < prog->number_of_philosophers)
-		pthread_join(prog->philosophers[i].thread_id, NULL);
-}
-
-int last_food(t_philo *philo)
-{
-	if (get_time() - philo->general->starting_time > philo->time_to_die)
+	philo = (t_philo *)arg;
+	if (philo->id)
+		ft_sleep(philo->info->time_eat, philo);
+	while (!philo_dead(philo, 0))
 	{
-		philo->general->philosopher_dead = 1;
-		printf("%d %d died\n", get_time() - philo->general->starting_time, philo->id);
-		return (0);
-	}
-	else
-		return (1);
-}
-
-int check_if_dead(t_general *prog)
-{
-	int i;
-
-	i = -1;
-	while (++i != prog->number_of_philosophers)
-	{
-		if (last_food(&prog->philosophers[i]) == 0)
-			return (0);
-	}
-	return (1);
-}
-
-void *algo(t_general *prog)
-{
-	while (1)
-	{
-		pthread_mutex_lock(&prog->mutex);
-		if (check_if_dead(prog) == 0)
+		pthread_create(&t, NULL, &routine, arg);
+		philo_fork(philo);
+		philo_eat(philo);
+		pthread_detach(t);
+		if (philo->food_count == philo->info->nbr_eat)
 		{
-			usleep(100);
-			pthread_mutex_unlock(&prog->mutex);
+			pthread_mutex_lock(&philo->info->m_stop);
+			if (++philo->info->philo_eat == philo->info->nbr_philo)
+			{
+				pthread_mutex_unlock(&philo->info->m_stop);
+				philo_dead(philo, 2);
+			}
+			pthread_mutex_unlock(&philo->info->m_stop);
 			return (0);
 		}
-		pthread_mutex_unlock(&prog->mutex);
-		usleep(200);
 	}
+	return (0);
 }
