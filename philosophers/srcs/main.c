@@ -6,31 +6,17 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 16:11:20 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/15 17:24:20 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	mutex(t_general *prog)
-{
-	prog->philosophers = malloc(sizeof(pthread_mutex_t)
-			* prog->nbr_philo);
-	if (prog->philosophers == NULL)
-		return (0);
-	pthread_mutex_init(&prog->m_eat, NULL);
-	pthread_mutex_init(&prog->m_stop, NULL);
-	pthread_mutex_init(&prog->dead, NULL);
-	pthread_mutex_init(&prog->print, NULL);
-	return (1);
-}
 
 int	init_philo(t_general *prog)
 {
 	int	i;
 
 	i = -1;
-	prog->philosophers = malloc(sizeof(t_philo) * prog->nbr_philo);
 	while (++i < prog->nbr_philo)
 	{
 		prog->philosophers[i].id = i + 1;
@@ -57,19 +43,23 @@ int	init_philo(t_general *prog)
 
 int	ft_init(char **argv, t_general *prog)
 {
+	pthread_mutex_init(&prog->m_eat, NULL);
+	pthread_mutex_init(&prog->m_stop, NULL);
+	pthread_mutex_init(&prog->dead, NULL);
+	pthread_mutex_init(&prog->print, NULL);
+	prog->time_start = get_time();
 	prog->nbr_philo = ft_atoi(argv[1]);
 	prog->time_die = ft_atoi(argv[2]);
 	prog->time_eat = ft_atoi(argv[3]);
 	prog->time_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		prog->nbr_eat = ft_atoi(argv[5]);
-	else
-		prog->nbr_eat = -1;
-	if (argv[5] == 0)
+	if (argv[5] && prog->nbr_eat == 0)
 		return (1);
 	prog->philo_death = 0;
-	if (mutex(prog) == 0)
-		return (1);
+	prog->philosophers = malloc(sizeof(t_philo) * prog->nbr_philo);
+	if (prog->philosophers == NULL)
+		return (2);
 	return (0);
 }
 
@@ -84,6 +74,7 @@ int	main(int argc, char **argv)
 		free(prog.philosophers);
 		return (0);
 	}
+	printf("test");
 	init_philo(&prog);
 	return (0);
 }

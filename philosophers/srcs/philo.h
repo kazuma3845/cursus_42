@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:11:22 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 16:15:33 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/15 17:22:37 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ typedef struct s_general
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	dead;
 }						t_general;
+
+//	main.c
+int						main(int argc, char **argv);
+int						init_philo(t_general *prog);
+int						ft_init(char **argv, t_general *prog);
 //	utiles.c
 int						ft_atoi(const char *str);
 int						get_time(void);
@@ -60,8 +65,11 @@ void					print_msg(char *str, t_philo *philosophers);
 void					ft_sleep(int time, t_philo *philo);
 //	error.c
 int						check_arg(int argc, char **argv);
+int						check_char(int argc, char **argv);
+int						ft_isdigit(char *c);
 //	algo.c
 void					*beggin(void *arg);
+void					*routine(void *arg);
 // philo_action.c
 void					philo_eat(t_philo *philo);
 int						philo_dead(t_philo *philo, int death);
