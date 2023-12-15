@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:20:18 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/14 17:04:39 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/14 21:43:23 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int philo_fork(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
+if (philo->id % 2 == 0)
 		pthread_mutex_lock(philo->right_fork);
 	else
 		pthread_mutex_lock(philo->left_fork);

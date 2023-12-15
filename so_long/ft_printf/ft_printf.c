@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:01:23 by tomuller          #+#    #+#             */
-/*   Updated: 2023/11/21 15:49:39 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:15:01 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,7 @@ int	ft_printf(const char *str, ...)
 	new = (char *)str;
 	while (*new != '\0')
 	{
-		if (ft_findpourcent(new) == 1)
-			new = ft_putpourcent(new, &c);
-		else if (ft_finds(new) == 1)
+		if (ft_finds(new) == 1)
 			new = ft_impr(new, replace, va_arg(arg, char *), &c);
 		else if (ft_findp(new) == 1)
 			new = ft_impr(new, replace, va_arg(arg, void *), &c);
