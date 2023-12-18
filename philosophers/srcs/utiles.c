@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 16:20:09 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/18 13:53:46 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	get_time(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-void free_all(t_general *prog)
+void	free_all(t_general *prog)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i != prog->nbr_philo)
@@ -66,17 +66,19 @@ void free_all(t_general *prog)
 
 void	print_msg(char *str, t_philo *philosophers)
 {
-	if (!philo_dead(philosophers, 0) && get_time() - philosophers->info->time_start > 0)
+	if (!philo_dead(philosophers, 0) && get_time()
+		- philosophers->info->time_start > 0)
 	{
 		pthread_mutex_lock(&philosophers->info->print);
-		printf("%ld %d %s\n", get_time() - philosophers->info->time_start, philosophers->id, str);
+		printf("%ld %d %s\n", get_time() - philosophers->info->time_start,
+			philosophers->id, str);
 		pthread_mutex_unlock(&philosophers->info->print);
 	}
 }
 
 void	ft_sleep(int time, t_philo *philo)
 {
-	int start;
+	int	start;
 
 	start = get_time();
 	while ((get_time() - start) < time && philo_dead(philo, 0) == 0)

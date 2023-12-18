@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:11:22 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 17:22:37 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/18 12:46:38 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <pthread.h>
+# include <semaphore.h>
 # include <stdarg.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 typedef struct s_philo
 {
@@ -38,19 +39,19 @@ typedef struct s_philo
 
 typedef struct s_general
 {
-	int				philo_eat;
-	int				nbr_philo;
-	int				time_die;
-	int				time_eat;
-	int				time_sleep;
-	int				nbr_eat;
-	int				philo_death;
-	long int		time_start;
-	t_philo			*philosophers;
-	pthread_mutex_t	print;
-	pthread_mutex_t	m_stop;
-	pthread_mutex_t	m_eat;
-	pthread_mutex_t	dead;
+	int					philo_eat;
+	int					nbr_philo;
+	int					time_die;
+	int					time_eat;
+	int					time_sleep;
+	int					nbr_eat;
+	int					philo_death;
+	long int			time_start;
+	t_philo				*philosophers;
+	pthread_mutex_t		print;
+	pthread_mutex_t		m_stop;
+	pthread_mutex_t		m_eat;
+	pthread_mutex_t		dead;
 }						t_general;
 
 //	main.c

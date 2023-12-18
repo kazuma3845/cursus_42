@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 17:24:20 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/18 14:15:18 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ int	init_philo(t_general *prog)
 		if (i == prog->nbr_philo - 1)
 			prog->philosophers[i].fork_right = &prog->philosophers[0].fork_left;
 		else
-			prog->philosophers[i].fork_right = &prog->philosophers[i + 1].fork_left;
-		if (pthread_create(&prog->philosophers[i].thread, NULL, &beggin, &(prog->philosophers[i])) != 0)
+			prog->philosophers[i].fork_right = &prog->philosophers[i
+				+ 1].fork_left;
+		if (pthread_create(&prog->philosophers[i].thread, NULL, &beggin,
+				&(prog->philosophers[i])) != 0)
 			return (-1);
+		usleep(1000);
 	}
 	i = -1;
 	while (++i < prog->nbr_philo)
-	{
-		if (pthread_join(prog->philosophers[i].thread, NULL) != 0)
-			return (-1);
-	}
+		pthread_join(prog->philosophers[i].thread, NULL);
 	return (0);
 }
 
@@ -54,12 +54,14 @@ int	ft_init(char **argv, t_general *prog)
 	prog->time_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		prog->nbr_eat = ft_atoi(argv[5]);
-	if (argv[5] && prog->nbr_eat == 0)
+	else
+		prog->nbr_eat = -1;
+	if (prog->nbr_eat == 0)
 		return (1);
 	prog->philo_death = 0;
 	prog->philosophers = malloc(sizeof(t_philo) * prog->nbr_philo);
 	if (prog->philosophers == NULL)
-		return (2);
+		return (0);
 	return (0);
 }
 
@@ -74,7 +76,7 @@ int	main(int argc, char **argv)
 		free(prog.philosophers);
 		return (0);
 	}
-	printf("test");
 	init_philo(&prog);
+	free_all(&prog);
 	return (0);
 }

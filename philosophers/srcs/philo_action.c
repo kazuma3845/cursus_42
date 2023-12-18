@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   philo_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:20:18 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 16:15:35 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/18 13:06:01 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void philo_fork(t_philo *philo)
+void	philo_fork(t_philo *philo)
 {
-if (philo->id % 2 == 0)
+	if (philo->id % 2 == 0)
 		pthread_mutex_lock(&philo->fork_left);
 	print_msg("has taken a fork", philo);
 	if (philo->info->nbr_philo == 1)
@@ -26,7 +26,7 @@ if (philo->id % 2 == 0)
 	print_msg("has taken a fork", philo);
 }
 
-void philo_eat(t_philo *philo)
+void	philo_eat(t_philo *philo)
 {
 	print_msg("is eating", philo);
 	pthread_mutex_lock(&philo->info->m_eat);
@@ -41,7 +41,7 @@ void philo_eat(t_philo *philo)
 	print_msg("is thinking", philo);
 }
 
-int philo_dead(t_philo *philo, int death)
+int	philo_dead(t_philo *philo, int death)
 {
 	pthread_mutex_lock(&philo->info->dead);
 	if (death)
