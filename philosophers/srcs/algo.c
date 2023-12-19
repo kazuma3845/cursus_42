@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:34:57 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/18 14:38:56 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:58:37 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*routine(void *arg)
 	pthread_mutex_lock(&philo->info->m_eat);
 	pthread_mutex_lock(&philo->info->m_stop);
 	if (!philo_dead(philo, 0) && get_time()
-		- philo->last_eat >= philo->info->time_die)
+		- philo->last_eat >= philo->info->time_die
+		&& philo->food_count != philo->info->nbr_eat)
 	{
 		print_msg("died", philo);
 		philo_dead(philo, 1);

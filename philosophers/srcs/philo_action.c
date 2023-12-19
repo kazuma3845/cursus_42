@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:20:18 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/18 13:06:01 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:55:51 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	philo_fork(t_philo *philo)
 	print_msg("has taken a fork", philo);
 	if (philo->info->nbr_philo == 1)
 	{
-		ft_sleep(philo->info->time_die * 2, philo);
+		ft_sleep(philo->info->time_die + 1, philo);
 		return ;
 	}
 	pthread_mutex_lock(philo->fork_right);

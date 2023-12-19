@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:11:22 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/18 12:46:38 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:54:27 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_philo
 typedef struct s_general
 {
 	int					philo_eat;
+	int					count_print;
 	int					nbr_philo;
 	int					time_die;
 	int					time_eat;

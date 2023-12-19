@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:14:53 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/15 17:19:21 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/19 14:19:25 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ int	check_arg(int argc, char **argv)
 	if (check_char(argc, argv) == 0)
 	{
 		printf("Wrong type of argument\n");
+		return (0);
+	}
+	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60
+		|| ft_atoi(argv[4]) < 60)
+	{
+		printf("Wrong argument\n");
 		return (0);
 	}
 	return (1);
