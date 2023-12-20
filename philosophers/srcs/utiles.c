@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/19 14:05:20 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:01:05 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_atoi(const char *str)
 	return (retourn * j);
 }
 
-int	get_time(void)
+long long	get_time(void)
 {
 	struct timeval	t;
 
@@ -66,21 +66,23 @@ void	free_all(t_general *prog)
 
 void	print_msg(char *str, t_philo *philosophers)
 {
-	if (!philo_dead(philosophers, 0) && get_time()
-		- philosophers->info->time_start > 0)
+	int i;
+
+	pthread_mutex_lock(&(philosophers->info->print));
+	i = get_time() - philosophers->info->time_start;
+	if (!philosophers->info->philo_death && i >= 0 && i <= INT_MAX && !philo_dead(philosophers, 0))
 	{
-		pthread_mutex_lock(&philosophers->info->print);
-		printf("%ld %d %s\n", get_time() - philosophers->info->time_start,
+		printf("%lld %d %s\n", get_time() - philosophers->info->time_start,
 			philosophers->id, str);
-		pthread_mutex_unlock(&philosophers->info->print);
 	}
+	pthread_mutex_unlock(&(philosophers->info->print));
 }
 
-void	ft_sleep(int time, t_philo *philo)
+void	ft_sleep(int time)
 {
 	int	start;
 
 	start = get_time();
-	while ((get_time() - start) < time && philo_dead(philo, 0) == 0)
+	while ((get_time() - start) < time)
 		usleep(time / 10);
 }

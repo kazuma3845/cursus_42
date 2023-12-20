@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/19 14:54:49 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:20:31 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	init_philo(t_general *prog)
 	int	i;
 
 	i = -1;
+	prog->time_start = get_time();
 	while (++i < prog->nbr_philo)
 	{
 		prog->philosophers[i].id = i + 1;
@@ -33,7 +34,6 @@ int	init_philo(t_general *prog)
 		if (pthread_create(&prog->philosophers[i].thread, NULL, &beggin,
 				&(prog->philosophers[i])) != 0)
 			return (-1);
-		usleep(1000);
 	}
 	i = -1;
 	while (++i < prog->nbr_philo)
@@ -47,7 +47,11 @@ int	ft_init(char **argv, t_general *prog)
 	pthread_mutex_init(&prog->m_stop, NULL);
 	pthread_mutex_init(&prog->dead, NULL);
 	pthread_mutex_init(&prog->print, NULL);
-	prog->time_start = get_time();
+	prog->philo_death = 0;
+	prog->philosophers = malloc(sizeof(t_philo) * prog->nbr_philo);
+	if (prog->philosophers == NULL)
+		return (1);
+	prog->philo_eat = 0;
 	prog->nbr_philo = ft_atoi(argv[1]);
 	prog->time_die = ft_atoi(argv[2]);
 	prog->time_eat = ft_atoi(argv[3]);
@@ -58,10 +62,6 @@ int	ft_init(char **argv, t_general *prog)
 		prog->nbr_eat = -1;
 	if (prog->nbr_eat == 0)
 		return (1);
-	prog->philo_death = 0;
-	prog->philosophers = malloc(sizeof(t_philo) * prog->nbr_philo);
-	if (prog->philosophers == NULL)
-		return (0);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:11:22 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/19 14:54:27 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:15:29 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_philo
 typedef struct s_general
 {
 	int					philo_eat;
-	int					count_print;
 	int					nbr_philo;
 	int					time_die;
 	int					time_eat;
@@ -61,10 +60,10 @@ int						init_philo(t_general *prog);
 int						ft_init(char **argv, t_general *prog);
 //	utiles.c
 int						ft_atoi(const char *str);
-int						get_time(void);
+long long				get_time(void);
 void					free_all(t_general *prog);
 void					print_msg(char *str, t_philo *philosophers);
-void					ft_sleep(int time, t_philo *philo);
+void					ft_sleep(int time);
 //	error.c
 int						check_arg(int argc, char **argv);
 int						check_char(int argc, char **argv);
