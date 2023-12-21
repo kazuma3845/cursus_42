@@ -6,7 +6,10 @@ CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
 SOURCE := srcs/*.c libft/libft.a
 
-all:
+all: $(NAME)
+	
+
+$(NAME) :
 	make all -C libft
 	$(CC) $(CFLAGS) $(SOURCE) -o $(NAME)
 

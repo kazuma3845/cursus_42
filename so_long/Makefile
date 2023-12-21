@@ -10,7 +10,10 @@ PRINTF := ft_printf/*c
 LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
 MINILIBX := minilibx/
 
-all:
+all: $(NAME)
+	
+
+$(NAME) :
 	make -C $(MINILIBX)
 	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(PRINTF) $(LIBRARY) -o $(NAME)
 

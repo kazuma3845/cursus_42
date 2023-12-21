@@ -6,7 +6,10 @@ CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
 SOURCE := srcs/*.c
 
-all:
+all: $(NAME)
+	
+
+$(NAME) :
 	$(CC) $(CFLAGS) $(SOURCE) -o $(NAME)
 
 fclean : clean
