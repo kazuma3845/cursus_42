@@ -7,7 +7,6 @@ CFLAGS := -Wall -Wextra -Werror -Iheaders/
 SOURCE := srcs/*.c
 
 all: $(NAME)
-	
 
 $(NAME) :
 	$(CC) $(CFLAGS) $(SOURCE) -o $(NAME)
