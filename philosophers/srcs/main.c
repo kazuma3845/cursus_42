@@ -3,65 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/21 13:20:36 by tomuller         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:31:24 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_philo(t_general *prog)
+void	init_philo(t_general *prog)
 {
 	int	i;
 
 	i = -1;
-	prog->time_start = get_time();
 	while (++i < prog->nbr_philo)
 	{
-		prog->philosophers[i].id = i + 1;
-		prog->philosophers[i].info = prog;
-		prog->philosophers[i].last_eat = 0;
-		prog->philosophers[i].food_count = 0;
-		prog->philosophers[i].fork_right = NULL;
-		pthread_mutex_init(&(prog->philosophers[i].fork_left), NULL);
-		if (i == prog->nbr_philo - 1)
-			prog->philosophers[i].fork_right = &prog->philosophers[0].fork_left;
-		else
-			prog->philosophers[i].fork_right = &prog->philosophers[i
-				+ 1].fork_left;
-		if (pthread_create(&prog->philosophers[i].thread, NULL, &beggin,
-				&(prog->philosophers[i])) != 0)
-			return (-1);
+		prog->philo[i].id = i + 1;
+		prog->philo[i].info = prog;
+		prog->philo[i].t_lastmeal = 0;
+		prog->philo[i].meals_eaten = 0;
+		prog->philo[i].left_fork = i;
+		prog->philo[i].right_fork = (i + 1) % prog->nbr_philo;
 	}
-	i = -1;
-	while (++i < prog->nbr_philo)
-		pthread_join(prog->philosophers[i].thread, NULL);
-	return (0);
 }
 
 int	ft_init(char **argv, t_general *prog)
 {
-	pthread_mutex_init(&prog->m_eat, NULL);
-	pthread_mutex_init(&prog->m_stop, NULL);
-	pthread_mutex_init(&prog->dead, NULL);
-	pthread_mutex_init(&prog->print, NULL);
+	int i;
+
+	i = -1;
 	prog->philo_death = 0;
-	prog->philosophers = malloc(sizeof(t_philo) * prog->nbr_philo);
-	if (prog->philosophers == NULL)
-		return (1);
-	prog->philo_eat = 0;
+	prog->end_meal = 0;
+	prog->error = 0;
 	prog->nbr_philo = ft_atoi(argv[1]);
 	prog->time_die = ft_atoi(argv[2]);
 	prog->time_eat = ft_atoi(argv[3]);
 	prog->time_sleep = ft_atoi(argv[4]);
 	if (argv[5])
-		prog->nbr_eat = ft_atoi(argv[5]);
+		prog->max_meals = ft_atoi(argv[5]);
 	else
-		prog->nbr_eat = -1;
-	if (prog->nbr_eat == 0)
+		prog->max_meals = 0;
+	prog->philo = malloc(sizeof(t_philo) * prog->nbr_philo);
+	prog->fork = malloc(sizeof(pthread_mutex_t) * prog->nbr_philo);
+	if (prog->philo == NULL || prog->fork == NULL)
 		return (1);
+	pthread_mutex_init(&prog->checker, NULL);
+	pthread_mutex_init(&prog->cout, NULL);
+	while (++i != prog->nbr_philo)
+		pthread_mutex_init(&prog->fork[i], NULL);
+	init_philo(prog);
+	prog->time_start = get_time();
 	return (0);
 }
 
@@ -71,12 +63,8 @@ int	main(int argc, char **argv)
 
 	if (check_arg(argc, argv) == 0)
 		return (0);
-	if (ft_init(argv, &prog) == 1)
-	{
-		free(prog.philosophers);
-		return (0);
-	}
-	init_philo(&prog);
+	if (ft_init(argv, &prog) == 0)
+		start_prog(&prog);
 	free_all(&prog);
 	return (0);
 }

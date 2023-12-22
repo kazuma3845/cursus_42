@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/20 23:01:05 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/22 13:20:33 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,36 +53,40 @@ void	free_all(t_general *prog)
 
 	i = -1;
 	while (++i != prog->nbr_philo)
+		pthread_join(prog->philo[i].thread, NULL);
+	i = -1;
+	while (++i != prog->nbr_philo)
 	{
-		pthread_mutex_destroy(&prog->philosophers[i].fork_left);
-		pthread_mutex_destroy(prog->philosophers[i].fork_right);
+		pthread_mutex_destroy(&prog->fork[i]);
 	}
-	free(prog->philosophers);
-	pthread_mutex_destroy(&prog->print);
-	pthread_mutex_destroy(&prog->dead);
-	pthread_mutex_destroy(&prog->m_eat);
-	pthread_mutex_destroy(&prog->m_stop);
+	pthread_mutex_destroy(&prog->cout);
+	pthread_mutex_destroy(&prog->checker);
+	free(prog->philo);
+	free(prog->fork);
 }
 
 void	print_msg(char *str, t_philo *philosophers)
 {
-	int i;
-
-	pthread_mutex_lock(&(philosophers->info->print));
-	i = get_time() - philosophers->info->time_start;
-	if (!philosophers->info->philo_death && i >= 0 && i <= INT_MAX && !philo_dead(philosophers, 0))
+	if (!philosophers->info->philo_death)
 	{
+		pthread_mutex_lock(&(philosophers->info->cout));
 		printf("%lld %d %s\n", get_time() - philosophers->info->time_start,
 			philosophers->id, str);
+		pthread_mutex_unlock(&(philosophers->info->cout));
 	}
-	pthread_mutex_unlock(&(philosophers->info->print));
 }
 
-void	ft_sleep(int time)
+void	ft_sleep(int time, t_general *prog)
 {
-	int	start;
+	long long	start;
+	long long timer;
 
-	start = get_time();
-	while ((get_time() - start) < time)
-		usleep(time / 10);
+	start = get_time() - prog->time_start;
+	while (1)
+	{
+		timer = get_time() - prog->time_start - start;
+		if (timer >= time)
+			break;
+		usleep(1000);
+	}
 }
