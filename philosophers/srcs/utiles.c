@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:30:10 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/22 13:20:33 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/23 15:10:30 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ void	print_msg(char *str, t_philo *philosophers)
 void	ft_sleep(int time, t_general *prog)
 {
 	long long	start;
-	long long timer;
+	long long	timer;
 
 	start = get_time() - prog->time_start;
 	while (1)
 	{
 		timer = get_time() - prog->time_start - start;
 		if (timer >= time)
-			break;
+			break ;
 		usleep(1000);
 	}
 }

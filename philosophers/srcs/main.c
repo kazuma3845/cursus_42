@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:10:51 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/22 12:31:24 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/23 15:09:25 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_philo(t_general *prog)
 
 int	ft_init(char **argv, t_general *prog)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	prog->philo_death = 0;

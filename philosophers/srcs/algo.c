@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:34:57 by tomuller          #+#    #+#             */
-/*   Updated: 2023/12/22 13:16:35 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2023/12/23 15:09:15 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*one_philo(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	pthread_mutex_lock(&philo->info->fork[philo->left_fork]);
@@ -48,7 +48,7 @@ void	checker(t_general *prog)
 				prog->philo_death = 1;
 		}
 		usleep(5000);
-		if (death_i == prog->nbr_philo -1)
+		if (death_i == prog->nbr_philo - 1)
 			death_i = -1;
 		death_i++;
 	}
@@ -56,14 +56,15 @@ void	checker(t_general *prog)
 
 void	*beggin(void *arg)
 {
-	t_philo		*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		usleep(1500);
 	while (philo->info->philo_death == 0)
 	{
-		if (philo->info->max_meals > 0 && philo->meals_eaten == philo->info->max_meals)
+		if (philo->info->max_meals > 0
+			&& philo->meals_eaten == philo->info->max_meals)
 			break ;
 		philo_eat(philo);
 		philo_sleep(philo);
@@ -72,9 +73,9 @@ void	*beggin(void *arg)
 	return (0);
 }
 
-void start_prog(t_general *prog)
+void	start_prog(t_general *prog)
 {
-	int i;
+	int	i;
 
 	if (prog->nbr_philo == 1)
 		one_philo(prog->philo);
@@ -82,7 +83,8 @@ void start_prog(t_general *prog)
 	{
 		i = -1;
 		while (++i != prog->nbr_philo)
-			pthread_create(&prog->philo[i].thread, NULL, &beggin, (void *)&prog->philo[i]);
+			pthread_create(&prog->philo[i].thread, NULL, &beggin,
+				(void *)&prog->philo[i]);
 		while (prog->philo_death == 0)
 			checker(prog);
 	}
