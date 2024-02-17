@@ -46,7 +46,7 @@ $(BUILDDIR)%.o: srcs/%.c
 
 $(NAME): $(LIBFT) $(OBJS) 
 	@make -C $(MINILIBX)
-	@$(CC) $(CFLAGS) $(LIBRARY) $(OBJS) $(LIBFT) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(LIBRARY) $(OBJS) $(LIBFT) -o $(NAME) -g3 -fsanitize=address
 
 clean:
 	@make -C libft clean

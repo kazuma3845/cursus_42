@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/14 11:07:53 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/17 12:29:22 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,21 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include "mlx.h"
+
+typedef struct s_map
+{
+	char	**map;
+
+	void	*north;
+	void	*south;
+	void	*east;
+	void	*west;
+	void	*floor;
+	void	*top;
+	void	*door;
+	void	*mlxpointer;
+	void	*winpointer;
+}	t_map;
+
 
 #endif
