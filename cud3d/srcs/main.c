@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:58:44 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/17 14:31:34 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/18 11:30:23 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool check_line(char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if (line[i] != ' ' || (line[i] < 9 || line[i] > 13))
+		if (line[i] != ' ' && (line[i] < 9 || line[i] > 13))
 			return (true);
 	}
 	return (false);
@@ -49,13 +49,28 @@ bool check_line(char *line)
 
 void copy_tab(t_map *lst, char *line, char **tab)
 {
-	int i;
+   int i;
 
-	i = -1;
-	while (lst->map[++i])
-		tab[i] = ft_strdup(lst->map[i]);
-	tab[i] = line;
-	tab[++i] = NULL;
+    i = -1;
+    while (lst->map[++i])
+        tab[i] = ft_strdup(lst->map[i]);
+    tab[i] = ft_strdup(line);
+    tab[++i] = NULL;
+	lst->map = tab;
+}
+
+void init_texture(t_map *lst)
+{
+	char **var;
+
+	var = ft_split(lst->map[0], ' ');
+	lst->n_texture = var[1];
+	var = ft_split(lst->map[1], ' ');
+	lst->s_texture = var[1];
+	var = ft_split(lst->map[2], ' ');
+	lst->w_texture = var[1];
+	var = ft_split(lst->map[3], ' ');
+	lst->e_texture = var[1];
 }
 
 void init_tab(t_map *lst, char *argv)
@@ -75,9 +90,11 @@ void init_tab(t_map *lst, char *argv)
 		if (check_line(line))
 		{
 			tab = malloc(sizeof(char *) * (ft_arrlen(lst->map) + 2));
-			copy_tab(lst, line, tab);
+			printf("");
+			copy_tab(lst, line, tab);	
 		}
 	}
+	init_texture(lst);
 }
 
 bool parsing()
@@ -88,12 +105,15 @@ bool parsing()
 int main(int argc, char **argv)
 {
 	t_map map;
+	int i = -1;
 
 	if (argc == 2)
 	{
 	init_tab(&map, argv[1]);
-	if (parsing())
-		printf("------------SUCCES------------");
+	// if (parsing())
+		printf("------------SUCCES------------\n\nnorth : %s\nsouth : %s\neast : %s\nwest : %s\n\n\n", map.n_texture, map.s_texture, map.e_texture, map.w_texture);
+	while (map.map[++i])
+		printf("%s", map.map[i]);
 	// free_tab(map);
 	}
 	return 0;

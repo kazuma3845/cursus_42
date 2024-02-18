@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/17 12:29:22 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/17 15:59:33 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 typedef struct s_map
 {
 	char	**map;
+	char	*n_texture;
+	char	*s_texture;
+	char	*e_texture;
+	char	*w_texture;
 
 	void	*north;
 	void	*south;
