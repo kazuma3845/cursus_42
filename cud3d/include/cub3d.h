@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/17 15:59:33 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/19 15:07:50 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
+# include "mlx.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <pthread.h>
@@ -27,7 +28,6 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
-# include "mlx.h"
 
 typedef struct s_map
 {
@@ -36,6 +36,8 @@ typedef struct s_map
 	char	*s_texture;
 	char	*e_texture;
 	char	*w_texture;
+	char	*f_texture;
+	char	*c_texture;
 
 	void	*north;
 	void	*south;
@@ -46,7 +48,26 @@ typedef struct s_map
 	void	*door;
 	void	*mlxpointer;
 	void	*winpointer;
-}	t_map;
+}			t_map;
 
+// init_map
+void		init_tab(t_map *lst, char *argv);
+void		init_texture(t_map *lst, int i);
+bool		check_line(char *line);
+bool		check_arg(char *argv);
+
+// parsing
+bool		parsing(t_map *lst);
+
+// check
+bool		check_vide(t_map *lst);
+bool		check_wall(t_map *lst);
+bool	check_char(t_map *lst, int i);
+bool		check_texture(t_map *lst);
+
+// clean
+void		free_tab(char **tab);
+void		clean_all(t_map *lst);
+void		free_map(char **tab);
 
 #endif

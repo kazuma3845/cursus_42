@@ -29,7 +29,7 @@ define update_progress
     @i=0; while [[ $$i -lt $(COUNT) ]]; do printf "$(VERT)█$(D)"; ((i = i + 1)); done
     @i=$(COUNT); while [[ $$i -lt $(TOTAL_FILES) ]]; do printf " "; ((i = i + 1)); done
     @percentage=$$(( 100 * $(COUNT) / $(TOTAL_FILES) )); \
-    printf "] %d%%\n" "$$percentage"
+    printf "] %d%%" "$$percentage"
 endef
 
 all: $(NAME)
