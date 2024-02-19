@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/19 15:07:50 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:19:07 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool		parsing(t_map *lst);
 // check
 bool		check_vide(t_map *lst);
 bool		check_wall(t_map *lst);
-bool	check_char(t_map *lst, int i);
+bool		check_char(t_map *lst, int i);
 bool		check_texture(t_map *lst);
 
 // clean
