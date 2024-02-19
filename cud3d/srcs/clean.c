@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:59:12 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/19 13:55:38 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:36:53 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ void	free_tab(char **tab)
 	while (tab[i] != NULL)
 		free(tab[i++]);
 	free(tab);
-}
-
-void	free_map(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
-		free(tab[i++]);
 }
 
 void	clean_all(t_map *lst)

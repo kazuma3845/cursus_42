@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 10:58:44 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/19 16:40:35 by tomuller         ###   ########.fr       */
+/*   Created: 2024/02/19 16:33:27 by tomuller          #+#    #+#             */
+/*   Updated: 2024/02/19 16:45:32 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int controle(int commande, t_map *lst)
 {
-	t_map	map;
-	int		i;
-
-	i = -1;
-	if (argc == 2 && check_arg(argv[1]))
-	{
-		map.map = malloc(sizeof(char *));
-		init_tab(&map, argv[1]);
-		if (parsing(&map))
-		{
-			exec(map);
-			printf("\n------------SUCCES------------\n\n");
-		}
-		clean_all(&map);
-	}
 	return (0);
+}
+
+void exec(t_map lst)
+{
+	lst.mlxpointer = mlx_init();
+	lst.winpointer = mlx_new_window(lst.mlxpointer, (1280),
+			(720), "Cub3D");
+	// image(&lst);
+	// add_image_window(&lst, 0);
+	mlx_hook(lst.winpointer, 2, 0, controle, &lst);
+	mlx_hook(lst.winpointer, 17, 0, (void *)exit, 0);
+	mlx_loop(lst.mlxpointer);	
 }
