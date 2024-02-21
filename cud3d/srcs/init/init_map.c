@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:56:39 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/19 13:55:46 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:48:00 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ void	init_texture(t_map *lst, int i)
 		return ;
 	var = ft_split(lst->map[i], ' ');
 	if (ft_strcmp(var[0], "NO") == 0)
-		lst->n_texture = ft_strdup(var[1]);
+		lst->n_tex = ft_strdup(var[1]);
 	if (ft_strcmp(var[0], "SO") == 0)
-		lst->s_texture = ft_strdup(var[1]);
+		lst->s_tex = ft_strdup(var[1]);
 	if (ft_strcmp(var[0], "WE") == 0)
-		lst->w_texture = ft_strdup(var[1]);
+		lst->w_tex = ft_strdup(var[1]);
 	if (ft_strcmp(var[0], "EA") == 0)
-		lst->e_texture = ft_strdup(var[1]);
+		lst->e_tex = ft_strdup(var[1]);
 	if (ft_strcmp(var[0], "F") == 0)
-		lst->f_texture = ft_strdup(var[1]);
+		lst->f_tex = ft_strdup(var[1]);
 	if (ft_strcmp(var[0], "C") == 0)
-		lst->c_texture = ft_strdup(var[1]);
+		lst->c_tex = ft_strdup(var[1]);
 	free_tab(var);
 	init_texture(lst, i + 1);
 }

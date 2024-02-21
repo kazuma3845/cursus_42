@@ -1,10 +1,20 @@
-NO ../texture/north.xpm
-SO ../texture/south.xpm
-WE ../texture/west.xpm
-EA ../texture/east.xpm
-
 F 220,100,0
+
+
+NO ../texture/north
+
 C 225,30,0
+
+
+
+SO ../texture/south
+
+
+
+WE ../texture/west
+
+
+
 
         1111111111111111111111111
         1000000000110000000000001

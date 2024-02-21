@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/19 16:40:45 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:07:56 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "mlx.h"
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include <pthread.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -28,30 +29,90 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <math.h>
+
+//Macro
+# define K_ESC 53
+# define K_UP 13
+# define K_DOWN 1
+# define K_LEFT 0
+# define K_RIGHT 2
+# define K_L_RIGHT 124
+# define K_L_LEFT 123
+
+# define X_RES 1280
+# define Y_RES 720
+
+# define SPR_NBR 7 // don't forget to update when adding sprites
+
+# define SPR_NORTH 0
+# define SPR_WEST 1
+# define SPR_EAST 2
+# define SPR_SOUTH 3
+# define SPR_MM_BLACK 4
+# define SPR_MM_GREY 5
+# define SPR_MM_PLAYER 6
+
+# define PLR_SPEED 0.1; //absolute player speed
+# define TEX_SIZE 128
+
+typedef struct s_txtr
+{
+	void	*ptr;
+	int		width;
+	int		height;
+}	t_txtr;
+
+typedef struct s_ray
+{
+	double		camera_x;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		delta_x;
+	double		delta_y;
+	double		side_x;
+	double		side_y;
+	double		perp_wall_dist;
+	int			hit;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+} t_ray;
 
 typedef struct s_map
 {
 	char	**map;
-	char	*n_texture;
-	char	*s_texture;
-	char	*e_texture;
-	char	*w_texture;
-	char	*f_texture;
-	char	*c_texture;
+	char	*n_tex;
+	char	*s_tex;
+	char	*e_tex;
+	char	*w_tex;
+	char	*f_tex;
+	char	*c_tex;
 
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
-	void	*floor;
-	void	*top;
-	void	*door;
-	void	*mlxpointer;
-	void	*winpointer;
+	t_txtr	*txtrs[SPR_NBR];
+	t_ray	*ray;
+
+	void	*mlx;
+	void	*win;
+
+	double	px;
+	double	py;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	angle;	
 }			t_map;
 
-//main
-int	main(int argc, char **argv);
+// main
+int			main(int argc, char **argv);
 
 // init_map
 bool		check_line(char *line);
@@ -73,10 +134,27 @@ bool		check_char(t_map *lst, int i);
 bool		check_texture(t_map *lst);
 
 // exec
-void		exec(t_map lst);
+void		exec(t_map *lst);
 
 // clean
 void		free_tab(char **tab);
 void		clean_all(t_map *lst);
+
+//load 
+void		load_all_textures(t_map *data);
+
+//minimap
+void		draw_minimap(t_map *lst);
+
+//raycasting text
+int	handling_hud(int a, int b, char c);
+int	calculate_tex_y(t_ray *ray, int y);
+int	calculate_tex_x(t_map *game, t_ray *ray);
+
+//raycasting utils
+void init_ray(t_map *lst, t_ray *ray, int x);
+
+//raycasting
+void raycasting(t_map *lst);
 
 #endif

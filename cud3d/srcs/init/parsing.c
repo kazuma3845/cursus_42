@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:00:13 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/19 15:07:58 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:26:37 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ bool	map_error(t_map *lst)
 
 bool	parsing(t_map *lst)
 {
-	if (check_texture(lst))
+	if (!check_texture(lst))
 	{
-		printf("Error\nTexture not find\n");
+		printf("Error\nTexture not found\n");
 		return (false);
 	}
 	init_texture(lst, 0);

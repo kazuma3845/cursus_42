@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:41:35 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/19 15:16:00 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:03:39 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool	check_texture(t_map *lst)
-{
-	int		i;
-	char	**str;
-
-	i = 0;
-	while (i < 6)
-	{
-		str = ft_split(lst->map[i], ' ');
-		if (ft_strcmp(str[0], "NO") == 0)
-			i++;
-		else if (ft_strcmp(str[0], "SO") == 0)
-			i++;
-		else if (ft_strcmp(str[0], "WE") == 0)
-			i++;
-		else if (ft_strcmp(str[0], "EA") == 0)
-			i++;
-		else if (ft_strcmp(str[0], "F") == 0)
-			i++;
-		else if (ft_strcmp(str[0], "C") == 0)
-			i++;
-		else
-			return (true);
-		free_tab(str);
-	}
-	return (false);
-}
 
 bool	check_char(t_map *lst, int i)
 {
