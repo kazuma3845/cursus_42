@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:56:39 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/21 10:48:00 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:47:10 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	check_line(char *line)
+bool	check_line(t_map *lst, char *line)
 {
 	int	i;
 
@@ -22,6 +22,8 @@ bool	check_line(char *line)
 		if (line[i] != ' ' && (line[i] < 8 || line[i] > 13))
 			return (true);
 	}
+	if (lst->map_width < i)
+		lst->map_width = i;
 	return (false);
 }
 
@@ -77,18 +79,20 @@ void	init_tab(t_map *lst, char *argv)
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		return ;
+	lst->map_width = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (check_line(line) || ligne > 6)
+		if (check_line(lst, line) || ligne > 6)
 		{
 			ligne++;
 			copy_tab(lst, line, ligne);
 		}
 		free(line);
 	}
+	lst->map_height = ligne - 6;
 	close(fd);
 }
 

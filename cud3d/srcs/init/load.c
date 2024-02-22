@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:32:44 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/21 13:56:36 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:41:24 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void	load_all_textures(t_map *data)
 	load_texture(data, SPR_SOUTH, data->s_tex);
 	load_texture(data, SPR_MM_BLACK, "texture/mm_black.xpm");
 	load_texture(data, SPR_MM_GREY, "texture/mm_grey.xpm");
-	load_texture(data, SPR_MM_PLAYER, "texture/mm_player.xpm");
+	load_texture(data, SPR_MM_RPLAYER, "texture/mm_rplayer.xpm");
+	load_texture(data, SPR_MM_WPLAYER, "texture/mm_wplayer.xpm");
+	init_textures(data);
 }
