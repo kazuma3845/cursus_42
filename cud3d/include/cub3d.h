@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/22 16:38:26 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:17:47 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,6 @@ typedef struct s_ray
 	int			draw_end;
 }				t_ray;
 
-typedef struct s_mlx
-{
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			len;
-	int			endian;
-}				t_mlx;
-
 typedef struct s_text
 {
 	int			bpp;
@@ -116,41 +105,11 @@ typedef struct s_text
 
 typedef struct s_texture
 {
-	void		*n_img;
-	int			n_bpp;
-	char		*n_addr;
-	int			n_len;
-	int			n_endian;
-
-	void		*s_img;
-	int			s_bpp;
-	char		*s_addr;
-	int			s_len;
-	int			s_endian;
-
-	void		*e_img;
-	int			e_bpp;
-	char		*e_addr;
-	int			e_len;
-	int			e_endian;
-
-	void		*w_img;
-	int			w_bpp;
-	char		*w_addr;
-	int			w_len;
-	int			w_endian;
-
-	void		*f_img;
-	int			f_bpp;
-	char		*f_addr;
-	int			f_len;
-	int			f_endian;
-
-	void		*c_img;
-	int			c_bpp;
-	char		*c_addr;
-	int			c_len;
-	int			c_endian;
+	void		*img;
+	int			bpp;
+	char		*addr;
+	int			len;
+	int			endian;
 }				t_texture;
 
 typedef struct s_map
@@ -165,8 +124,15 @@ typedef struct s_map
 
 	t_txtr		*txtrs[SPR_NBR];
 	t_ray		*ray;
-	t_mlx		*mlx;
-	t_texture	*texture;
+	t_texture	*texture[SPR_NBR];
+
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			len;
+	int			endian;
 
 	double		px;
 	double		py;

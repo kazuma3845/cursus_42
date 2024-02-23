@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:32:44 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/22 14:41:24 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:21:54 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	load_texture(t_map *data, int spr_ind, char *spr)
-{
+{	int	size;
+
+	size = TEX_SIZE;
 	data->txtrs[spr_ind]->ptr = mlx_xpm_file_to_image(data->mlx,
-			spr, &data->txtrs[spr_ind]->width, &data->txtrs[spr_ind]->height);
+			spr, &size, &size);
 }
 
 void	load_all_textures(t_map *data)
@@ -28,8 +30,10 @@ void	load_all_textures(t_map *data)
 		data->txtrs[i] = malloc(sizeof(t_txtr));
 		if (!data->txtrs[i])
 			exit(1);
+		data->txtrs[i]->ptr = NULL;
 		i += 1;
 	}
+	
 	load_texture(data, SPR_NORTH, data->n_tex);
 	load_texture(data, SPR_WEST, data->w_tex);
 	load_texture(data, SPR_EAST, data->e_tex);

@@ -3,31 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:03:37 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/22 14:41:24 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:11:40 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_mlx(t_map *game)
+void	init_mlx(t_map *lst)
 {
-	game->mlx = malloc(sizeof(t_mlx));
-	if (!game->mlx)
-		printf("Malloc error");
-	game->mlx->mlx = mlx_init();
-	if (!game->mlx->mlx)
+	lst->mlx = mlx_init();
+	if (!lst->mlx)
 		printf("Erreur d'initialisation MLX");
-	game->mlx->win = mlx_new_window(game->mlx->mlx, X_RES, Y_RES, "Cube");
-	if (!game->mlx->win)
+	lst->win = mlx_new_window(lst->mlx, X_RES, Y_RES, "Cube");
+	if (!lst->win)
 		printf("Erreur de création de la fenêtre");
-	game->mlx->img = mlx_new_image(game->mlx->mlx, X_RES, Y_RES);
-	if (!game->mlx->img)
+	lst->img = mlx_new_image(lst->mlx, X_RES, Y_RES);
+	if (!lst->img)
 		printf("Erreur de création de l'image");
-	game->mlx->addr = mlx_get_data_addr(game->mlx->img, &game->mlx->bpp,
-			&game->mlx->len, &game->mlx->endian);
-	if (!game->mlx->addr)
+	lst->addr = mlx_get_data_addr(lst->img, &lst->bpp,
+			&lst->len, &lst->endian);
+	if (!lst->addr)
 		printf("Erreur de récupération de l'adresse de l'image");
 }

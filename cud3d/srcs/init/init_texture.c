@@ -3,60 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:13:22 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/22 13:30:02 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:22:06 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_nsew(t_map *game)
+void	set_nsew(t_map *game)
 {
-	int	size;
-
-	size = TEX_SIZE;
-	game->texture->n_addr = mlx_get_data_addr(game->txtrs[0],
-			&game->texture->n_bpp, &game->texture->n_len, &game->texture->n_endian);
-	game->texture->s_addr = mlx_get_data_addr(game->txtrs[3],
-			&game->texture->s_bpp, &game->texture->s_len, &game->texture->s_endian);
-	game->texture->e_addr = mlx_get_data_addr(game->txtrs[2],
-			&game->texture->e_bpp, &game->texture->e_len, &game->texture->e_endian);
-	game->texture->w_addr = mlx_get_data_addr(game->txtrs[1],
-			&game->texture->w_bpp, &game->texture->w_len, &game->texture->w_endian);
+	game->texture[0]->addr = mlx_get_data_addr(game->txtrs[0]->ptr,
+			&game->texture[0]->bpp, &game->texture[0]->len, &game->texture[0]->endian);
+	game->texture[3]->addr = mlx_get_data_addr(game->txtrs[3]->ptr,
+			&game->texture[3]->bpp, &game->texture[3]->len, &game->texture[3]->endian);
+	game->texture[2]->addr = mlx_get_data_addr(game->txtrs[2]->ptr,
+			&game->texture[2]->bpp, &game->texture[2]->len, &game->texture[2]->endian);
+	game->texture[1]->addr = mlx_get_data_addr(game->txtrs[1]->ptr,
+			&game->texture[1]->bpp, &game->texture[1]->len, &game->texture[1]->endian);
 }
 
-// static void	set_floor(t_map *game)
-// {
-// 	int	size;
+void init_int(t_map *lst)
+{	
+	lst->texture[0] = malloc(sizeof(t_texture));
+	lst->texture[1] = malloc(sizeof(t_texture));
+	lst->texture[2] = malloc(sizeof(t_texture));
+	lst->texture[3] = malloc(sizeof(t_texture));
+	lst->texture[0]->addr = NULL;
+	lst->texture[0]->len = 0;
+	lst->texture[0]->bpp = 0;
+	lst->texture[0]->endian = 0;
+	lst->texture[1]->addr = NULL;
+	lst->texture[1]->len = 0;
+	lst->texture[1]->bpp = 0;
+	lst->texture[1]->endian = 0;
+	lst->texture[2]->addr = NULL;
+	lst->texture[2]->len = 0;
+	lst->texture[2]->bpp = 0;
+	lst->texture[2]->endian = 0;
+	lst->texture[3]->addr = NULL;
+	lst->texture[3]->len = 0;
+	lst->texture[3]->bpp = 0;
+	lst->texture[3]->endian = 0;
+}
 
-// 	size = TEX_SIZE;
-// 	game->texture->f_img = mlx_xpm_file_to_image(game->mlx->mlx,
-// 			game->f_tex, &size, &size);
-// 	if (!game->texture->f_img)
-// 		printf("Texture error floor");
-// 	game->texture->f_addr = mlx_get_data_addr(game->texture->f_img,
-// 			&game->texture->f_bpp, &game->texture->f_len, &game->texture->f_endian);
-// }
-
-// static void	set_ceil(t_map *game)
-// {
-// 	int	size;
-
-// 	size = TEX_SIZE;
-// 	game->texture->f_img = mlx_xpm_file_to_image(game->mlx->mlx,
-// 			game->c_tex, &size, &size);
-// 	if (!game->texture->f_img)
-// 		printf("Texture error ceil");
-// 	game->texture->f_addr = mlx_get_data_addr(game->texture->f_img,
-// 			&game->texture->f_bpp, &game->texture->f_len, &game->texture->f_endian);
-// }
-
-void	init_textures(t_map *game)
+void	init_textures(t_map *lst)
 {
-	game->texture = malloc(sizeof(t_texture));
-	set_nsew(game);
-	// set_floor(game);
-	// set_ceil(game);
+	init_int(lst);
+	set_nsew(lst);
 }

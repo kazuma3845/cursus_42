@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:32:06 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/22 11:11:41 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:09:04 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_player_ns(t_map *game, int i, int k)
+static void	init_player_ns(t_map *game, int i, int j)
 {
-	if (game->map[i][k] == 'N')
+	if (game->map[i][j] == 'N')
 	{
 		game->dir_x = 0;
 		game->dir_y = -1;
 		game->plane_x = 0.66;
 		game->plane_y = 0;
 	}
-	else if (game->map[i][k] == 'S')
+	else if (game->map[i][j] == 'S')
 	{
 		game->dir_x = 0;
 		game->dir_y = 1;
@@ -30,16 +30,16 @@ static void	init_player_ns(t_map *game, int i, int k)
 	}
 }
 
-static void	init_player_ew(t_map *game, int i, int k)
+static void	init_player_ew(t_map *game, int i, int j)
 {
-	if (game->map[i][k] == 'E')
+	if (game->map[i][j] == 'E')
 	{
 		game->dir_x = 1;
 		game->dir_y = 0;
 		game->plane_x = 0;
 		game->plane_y = 0.66;
 	}
-	else if (game->map[i][k] == 'W')
+	else if (game->map[i][j] == 'W')
 	{
 		game->dir_x = -1;
 		game->dir_y = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utiles.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:02:48 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/22 16:42:07 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:23:12 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ void init_ray(t_map *lst, t_ray *ray, int x)
 	ray->draw_end = 0;
 }
 
-// int	handling_hud(int a, int b, char c)
-// {
-// 	if (c == 'm')
-// 	{
-// 		if (a < b)
-// 			return (b);
-// 		else
-// 			return (a);
-// 	}
-// 	else if (c == 'l')
-// 	{
-// 		if (a < b)
-// 			return (a);
-// 		else
-// 			return (b);
-// 	}
-// 	return (0);
-// }
+int	handling_hud(int a, int b, char c)
+{
+	if (c == 'm')
+	{
+		if (a < b)
+			return (b);
+		else
+			return (a);
+	}
+	else if (c == 'l')
+	{
+		if (a < b)
+			return (a);
+		else
+			return (b);
+	}
+	return (0);
+}

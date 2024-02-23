@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:56:39 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/22 14:47:10 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:21:16 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,42 @@ void	copy_tab(t_map *lst, char *line, int ligne)
 void	init_texture(t_map *lst, int i)
 {
 	char	**var;
-
+	char *tmp;
+	
 	if (i > 6)
 		return ;
 	var = ft_split(lst->map[i], ' ');
 	if (ft_strcmp(var[0], "NO") == 0)
-		lst->n_tex = ft_strdup(var[1]);
+	{
+		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
+		lst->n_tex = ft_strdup(tmp);
+	}
 	if (ft_strcmp(var[0], "SO") == 0)
-		lst->s_tex = ft_strdup(var[1]);
+	{
+		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
+		lst->s_tex = ft_strdup(tmp);
+	}
 	if (ft_strcmp(var[0], "WE") == 0)
-		lst->w_tex = ft_strdup(var[1]);
+	{
+		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
+		lst->w_tex = ft_strdup(tmp);
+	}
 	if (ft_strcmp(var[0], "EA") == 0)
-		lst->e_tex = ft_strdup(var[1]);
+	{
+		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
+		lst->e_tex = ft_strdup(tmp);
+	}
 	if (ft_strcmp(var[0], "F") == 0)
-		lst->f_tex = ft_strdup(var[1]);
+	{
+		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
+		lst->f_tex = ft_strdup(tmp);
+	}
 	if (ft_strcmp(var[0], "C") == 0)
-		lst->c_tex = ft_strdup(var[1]);
+	{
+		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
+		lst->c_tex = ft_strdup(tmp);
+	}
+	// free(tmp);
 	free_tab(var);
 	init_texture(lst, i + 1);
 }

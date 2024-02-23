@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:58:44 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/22 13:25:40 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:49:49 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	init_struct(t_map *map)
 int	main(int argc, char **argv)
 {
 	t_map	map;
-	int		i;
 
 	init_struct(&map);
-	i = -1;
 	if (argc == 2 && check_arg(argv[1]))
 	{
 		map.map = malloc(sizeof(char *));

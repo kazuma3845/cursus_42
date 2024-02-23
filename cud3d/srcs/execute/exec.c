@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:33:27 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/22 15:38:59 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:08:23 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,17 @@ void	do_mouse(t_map *lst)
 	int			y;
 
 	mlx_mouse_hide();
-	mlx_mouse_get_pos(lst->mlx->win, &x, &y);
+	mlx_mouse_get_pos(lst->win, &x, &y);
 	if (x != X_RES / 2)
 	{
 		lst->angle += sign(x - X_RES / 2) * PLR_TURN / 3;
-		mlx_mouse_move(lst->mlx->win, X_RES / 2, Y_RES / 2);
+		mlx_mouse_move(lst->win, X_RES / 2, Y_RES / 2);
 	}
-	mlx_mouse_move(lst->mlx->win, X_RES / 2, Y_RES / 2);
+	mlx_mouse_move(lst->win, X_RES / 2, Y_RES / 2);
 }
 
 int	game(t_map *lst)
 {
-	raycasting(lst);
 	do_mouse(lst);
 	render_frame(lst);
 	return (0);
@@ -70,9 +69,9 @@ void	exec(t_map *lst)
 {
 	init_mlx(lst);
 	load_all_textures(lst);
-	mlx_loop_hook(lst->mlx->mlx, game, lst);
-	mlx_hook(lst->mlx->win, 2, 0, controle, lst);
-	mlx_hook(lst->mlx->win, 17, 0, (void *)exit, 0);
+	mlx_loop_hook(lst->mlx, game, lst);
+	mlx_hook(lst->win, 2, 0, controle, lst);
+	mlx_hook(lst->win, 17, 0, (void *)exit, 0);
 	draw_minimap(lst);
-	mlx_loop(lst->mlx->mlx);
+	mlx_loop(lst->mlx);
 }
