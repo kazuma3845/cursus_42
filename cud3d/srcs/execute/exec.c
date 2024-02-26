@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:33:27 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/23 12:08:23 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 09:46:18 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	do_mouse(t_map *lst)
 
 int	game(t_map *lst)
 {
+	
 	do_mouse(lst);
 	render_frame(lst);
 	return (0);

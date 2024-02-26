@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:33:14 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/23 12:04:35 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 09:50:40 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	draw_background(t_map *lst, int y_start, char *txt_col)
 	int		col;
 
 	col = get_color(txt_col);
-	img.img = mlx_new_image(lst->mlx, X_RES, Y_RES / 2);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+	lst->img = mlx_new_image(lst->mlx, X_RES, Y_RES / 2);
+	img.addr = mlx_get_data_addr(lst->img, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
 	y = -1;
 	while (++y < Y_RES / 2)
@@ -39,7 +39,13 @@ void	draw_background(t_map *lst, int y_start, char *txt_col)
 		while (++x < X_RES)
 			pixel_draw(&img, x, y, col);
 	}
-	mlx_put_image_to_window(lst->mlx, lst->win, img.img, 0, y_start);
+	// while (++y < Y_RES)
+	// {
+	// 	x = -1;
+	// 	while (++x < X_RES)
+	// 		pixel_draw(&img, x, y, col);
+	// }
+	// mlx_put_image_to_window(lst->mlx, lst->win, img.img, 0, y_start);
 }
 
 void	draw_mmplayer(t_map *lst)
@@ -89,5 +95,6 @@ void	render_frame(t_map *lst)
 	// draw_background(lst, Y_RES / 2, lst->f_tex);
 	// draw_background(lst, 0, lst->c_tex);
 	raycasting(lst);
+	mlx_put_image_to_window(lst->mlx, lst->win, lst->img, 0, 0);
 	draw_minimap(lst);
 }

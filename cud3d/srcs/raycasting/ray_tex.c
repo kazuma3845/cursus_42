@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:38:37 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/23 12:04:45 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/25 14:56:30 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,4 @@ void	add_texture(t_map *lst, t_ray *ray, int x)
 		put_pixel(lst, x, y, color);
 		y++;
 	}
-	mlx_put_image_to_window(lst->mlx, lst->win, lst->img, 0, 0);
 }

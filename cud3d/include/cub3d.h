@@ -6,7 +6,7 @@
 /*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/23 10:17:47 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/25 14:58:53 by kazuma3845       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_map
 
 	void		*mlx;
 	void		*win;
+
 	void		*img;
 	char		*addr;
 	int			bpp;
