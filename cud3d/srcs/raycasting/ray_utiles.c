@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utiles.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:02:48 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/23 11:23:12 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 13:04:07 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void init_ray(t_map *lst, t_ray *ray, int x)
 	ray->line_height = 0;
 	ray->draw_start = 0;
 	ray->draw_end = 0;
+	ray->door = 0;
 }
 
 int	handling_hud(int a, int b, char c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:56:39 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/23 11:21:16 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 14:32:50 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,42 +49,22 @@ void	copy_tab(t_map *lst, char *line, int ligne)
 void	init_texture(t_map *lst, int i)
 {
 	char	**var;
-	char *tmp;
-	
+
 	if (i > 6)
 		return ;
 	var = ft_split(lst->map[i], ' ');
 	if (ft_strcmp(var[0], "NO") == 0)
-	{
-		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
-		lst->n_tex = ft_strdup(tmp);
-	}
+		lst->n_tex = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
 	if (ft_strcmp(var[0], "SO") == 0)
-	{
-		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
-		lst->s_tex = ft_strdup(tmp);
-	}
+		lst->s_tex = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
 	if (ft_strcmp(var[0], "WE") == 0)
-	{
-		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
-		lst->w_tex = ft_strdup(tmp);
-	}
+		lst->w_tex = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
 	if (ft_strcmp(var[0], "EA") == 0)
-	{
-		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
-		lst->e_tex = ft_strdup(tmp);
-	}
+		lst->e_tex = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
 	if (ft_strcmp(var[0], "F") == 0)
-	{
-		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
-		lst->f_tex = ft_strdup(tmp);
-	}
+		lst->f_tex = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
 	if (ft_strcmp(var[0], "C") == 0)
-	{
-		tmp = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
-		lst->c_tex = ft_strdup(tmp);
-	}
-	// free(tmp);
+		lst->c_tex = ft_substr(var[1], 0, ft_strlen(var[1]) - 1);
 	free_tab(var);
 	init_texture(lst, i + 1);
 }
@@ -118,8 +98,15 @@ void	init_tab(t_map *lst, char *argv)
 
 bool	check_arg(char *argv)
 {
-	if (ft_strnstr(argv, ".cub", ft_strlen(argv)))
+	char	**split;
+
+	split = ft_split(argv, '.');
+	if (!split[2] && ft_strncmp(split[1], "cub", 4) == 0)
+	{
+		free_tab(split);
 		return (true);
+	}
 	printf("Error\nWrong file extension\n");
+	free_tab(split);
 	return (false);
 }

@@ -6,11 +6,27 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:37:35 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/22 13:43:14 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:25:29 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
 
 double	torad(double ang)
 {

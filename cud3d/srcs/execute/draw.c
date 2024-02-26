@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:33:14 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/26 09:50:40 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 12:58:44 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ void	pixel_draw(t_image *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_background(t_map *lst, int y_start, char *txt_col)
+void	draw_background(t_map *lst, char *ceil_txt, char *floor_txt)
 // can make the image into a struct, so it doesn't need to be created each frame
 {
 	int		x;
 	int		y;
 	t_image	img;
 	int		col;
+	int		ceil;
 
-	col = get_color(txt_col);
-	lst->img = mlx_new_image(lst->mlx, X_RES, Y_RES / 2);
+	col = get_color(floor_txt);
+	ceil = get_color(ceil_txt);
+	img.img = mlx_new_image(lst->mlx, X_RES, Y_RES / 2);
 	img.addr = mlx_get_data_addr(lst->img, &img.bits_per_pixel,
 			&img.line_length, &img.endian);
 	y = -1;
@@ -39,62 +41,72 @@ void	draw_background(t_map *lst, int y_start, char *txt_col)
 		while (++x < X_RES)
 			pixel_draw(&img, x, y, col);
 	}
-	// while (++y < Y_RES)
-	// {
-	// 	x = -1;
-	// 	while (++x < X_RES)
-	// 		pixel_draw(&img, x, y, col);
-	// }
-	// mlx_put_image_to_window(lst->mlx, lst->win, img.img, 0, y_start);
+	while (++y < Y_RES)
+	{
+		x = -1;
+		while (++x < X_RES)
+			pixel_draw(&img, x, y, ceil);
+	}
 }
 
-void	draw_mmplayer(t_map *lst)
+void	draw_mmplayer(t_map *lst, int sx, int sy)
 {
 	double	x;
 	double	y;
 
-	x = lst->px * 10;
-	y = lst->py * 10;
-	mlx_put_image_to_window(lst->mlx, lst->win,
-		lst->txtrs[SPR_MM_WPLAYER]->ptr, x - cos(torad(lst->angle)) * 2,
-		y - sin(torad(lst->angle)) * 2);
-	mlx_put_image_to_window(lst->mlx, lst->win,
-		lst->txtrs[SPR_MM_WPLAYER]->ptr, x - cos(torad(lst->angle)) * 4,
-		y - sin(torad(lst->angle)) * 4);
-	mlx_put_image_to_window(lst->mlx, lst->win,
-		lst->txtrs[SPR_MM_WPLAYER]->ptr, x + cos(torad(lst->angle)) * 2,
-		y + sin(torad(lst->angle)) * 2);
-	mlx_put_image_to_window(lst->mlx, lst->win,
-		lst->txtrs[SPR_MM_RPLAYER]->ptr, x, y);
+	x = (lst->px - sx) * 10;
+	y = (lst->py - sy) * 10;
+	mlx_put_image_to_window(lst->mlx, lst->win, lst->txtrs[SPR_MM_WPLAYER]->ptr,
+		x - cos(torad(lst->angle)) * 2, y - sin(torad(lst->angle)) * 2);
+	mlx_put_image_to_window(lst->mlx, lst->win, lst->txtrs[SPR_MM_WPLAYER]->ptr,
+		x + cos(torad(lst->angle)) * 4, y + sin(torad(lst->angle)) * 4);
+	mlx_put_image_to_window(lst->mlx, lst->win, lst->txtrs[SPR_MM_WPLAYER]->ptr,
+		x + cos(torad(lst->angle)) * 2, y + sin(torad(lst->angle)) * 2);
+	mlx_put_image_to_window(lst->mlx, lst->win, lst->txtrs[SPR_MM_RPLAYER]->ptr,
+		x, y);
+}
+
+void	set_start_mm(t_map *lst, int *x, int *y)
+{
+	if ((int)lst->py < MM_HEIGHT / 2 || lst->map_height <= MM_HEIGHT)
+		*y = 0;
+	else if ((int)lst->py > lst->map_height - MM_HEIGHT / 2)
+		*y = lst->map_height - MM_HEIGHT;
+	else
+		*y = (int)lst->py - MM_HEIGHT / 2;
+	if ((int)lst->px < MM_WIDTH / 2 || lst->map_width <= MM_WIDTH)
+		*x = 0;
+	else if ((int)lst->px > lst->map_width - MM_WIDTH / 2)
+		*x = lst->map_width - MM_WIDTH;
+	else
+		*x = (int)lst->px - MM_WIDTH / 2;
 }
 
 void	draw_minimap(t_map *lst)
 {
 	int	i;
 	int	j;
+	int	sx;
+	int	sy;
 
+	set_start_mm(lst, &sx, &sy);
 	i = -1;
-	while (lst->map[++i])
+	while (lst->map[sy + ++i] && i < MM_HEIGHT)
 	{
 		j = -1;
-		while (lst->map[i][++j])
+		while (lst->map[sy + i][sx + ++j] && j < MM_WIDTH)
 		{
-			if (lst->map[i][j] == '0')
+			if (lst->map[sy + i][sx + j] == '0'
+				|| lst->map[sy + i][sx + j] == 'p')
 				mlx_put_image_to_window(lst->mlx, lst->win,
 					lst->txtrs[SPR_MM_GREY]->ptr, j * 10, i * 10);
-			if (lst->map[i][j] == '1')
+			if (lst->map[sy + i][sx + j] == '1')
 				mlx_put_image_to_window(lst->mlx, lst->win,
 					lst->txtrs[SPR_MM_BLACK]->ptr, j * 10, i * 10);
+			if (lst->map[sy + i][sx + j] == 'P')
+				mlx_put_image_to_window(lst->mlx, lst->win,
+					lst->txtrs[SPR_MM_DOOR]->ptr, j * 10, i * 10);
 		}
-		draw_mmplayer(lst);
+		draw_mmplayer(lst, sx, sy);
 	}
-}
-
-void	render_frame(t_map *lst)
-{
-	// draw_background(lst, Y_RES / 2, lst->f_tex);
-	// draw_background(lst, 0, lst->c_tex);
-	raycasting(lst);
-	mlx_put_image_to_window(lst->mlx, lst->win, lst->img, 0, 0);
-	draw_minimap(lst);
 }

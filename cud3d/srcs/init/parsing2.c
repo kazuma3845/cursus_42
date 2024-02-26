@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 10:59:12 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/26 11:06:35 by nreichel         ###   ########.fr       */
+/*   Created: 2024/02/26 12:30:45 by nreichel          #+#    #+#             */
+/*   Updated: 2024/02/26 12:31:07 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_tab(char **tab)
+bool	try_open(char *path)
 {
-	int	i;
+	int	fd;
 
-	i = -1;
-	while (tab[++i] != NULL)
-		free(tab[i]);
-	free(tab);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (false);
+	close(fd);
+	return (true);
 }
 
-void	clean_all(t_map *lst)
+bool	texture_valide(t_map *lst)
 {
-	free_tab(lst->map);
-	free(lst->n_tex);
-	free(lst->s_tex);
-	free(lst->e_tex);
-	free(lst->w_tex);
-	free(lst->f_tex);
-	free(lst->c_tex);
+	return (try_open(lst->n_tex) && try_open(lst->s_tex)
+		&& try_open(lst->e_tex) && try_open(lst->w_tex));
 }

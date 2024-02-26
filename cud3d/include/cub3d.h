@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:57:49 by kazuma3845        #+#    #+#             */
-/*   Updated: 2024/02/25 14:58:53 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 13:22:05 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define X_RES 1280
 # define Y_RES 720
 
-# define SPR_NBR 8 // don't forget to update when adding sprites
+# define SPR_NBR 10// don't forget to update when adding sprites
 
 # define SPR_NORTH 0
 # define SPR_WEST 1
@@ -52,10 +52,15 @@
 # define SPR_MM_GREY 5
 # define SPR_MM_RPLAYER 6
 # define SPR_MM_WPLAYER 7
+# define SPR_MM_DOOR 8
+# define SPR_DOOR 9
 
 # define PLR_SPEED 0.5 // absolute player speed
 # define PLR_TURN 10   // How fast the player turns
+# define DOOR_DIST 3 // how close the doors open
 # define TEX_SIZE 128
+# define MM_HEIGHT 15
+# define MM_WIDTH 24
 
 typedef struct s_txtr
 {
@@ -94,6 +99,7 @@ typedef struct s_ray
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
+	int			door;
 }				t_ray;
 
 typedef struct s_text
@@ -161,6 +167,9 @@ bool			parsing(t_map *lst);
 bool			map_error(t_map *lst);
 void			change_map(t_map *lst);
 
+//parsing2
+bool			texture_valide(t_map *lst);
+
 // check
 bool			check_vide(t_map *lst);
 bool			touch_zero(t_map *lst, int line, int col);
@@ -180,7 +189,7 @@ void			load_all_textures(t_map *data);
 
 // draw
 void			draw_minimap(t_map *lst);
-void			draw_background(t_map *lst, int y, char *txt_col);
+void			draw_background(t_map *lst, char *ceil_txt, char *floor_txt);
 void			render_frame(t_map *lst);
 
 // raycasting text
@@ -205,5 +214,16 @@ void			init_textures(t_map *game);
 double			torad(double ang);
 int				sign(int a);
 int				get_color(char *col);
+// utils
+double			torad(double ang);
+int				sign(int a);
+int				get_color(char *col);
+int				max(int a, int b);
+int				min(int a, int b);
+
+// input
+void			do_mouse(t_map *lst);
+int				controle(int key, t_map *lst);
+void			move_camera(t_map *lst);
 
 #endif

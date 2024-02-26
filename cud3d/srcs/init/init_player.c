@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:32:06 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/23 12:09:04 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 11:36:19 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	create_player(t_map *data)
 			{
 				init_player_ns(data, i, j);
 				init_player_ew(data, i, j);
-				data->px = j;
-				data->py = i;
+				data->px = j + 0.5;
+				data->py = i + 0.5;
 				data->angle = (data->map[i][j] == 'N') * 90
 					+ (data->map[i][j] == 'W') * 180
 					+ (data->map[i][j] == 'S') * 270;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:53:52 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/23 12:04:09 by kazuma3845       ###   ########.fr       */
+/*   Updated: 2024/02/26 13:04:00 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ void	dda(t_map *lst, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (lst->map[ray->map_y][ray->map_x] == '1')
+		if (lst->map[ray->map_y][ray->map_x] == 'P')
+		{
+			ray->door = 1;
+			ray->hit = 1;
+		}
+		else if (lst->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
@@ -77,8 +82,8 @@ void	raycasting(t_map *lst)
 	int		x;
 	t_ray	ray;
 
-	x = 29;
-	while (++x < X_RES - 30)
+	x = -1;
+	while (++x < X_RES)
 	{
 		init_ray(lst, &ray, x);
 		step(lst, &ray);
