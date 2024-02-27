@@ -6,33 +6,33 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:13:22 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/26 13:29:14 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:21:22 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_nsew(t_map *game)
+void	set_nsew(t_map *g)
 {
-	game->texture[SPR_NORTH]->addr = mlx_get_data_addr(game->txtrs[SPR_NORTH]->ptr,
-			&game->texture[SPR_NORTH]->bpp, &game->texture[SPR_NORTH]->len,
-			&game->texture[SPR_NORTH]->endian);
-	game->texture[SPR_WEST]->addr = mlx_get_data_addr(game->txtrs[SPR_WEST]->ptr,
-			&game->texture[SPR_WEST]->bpp, &game->texture[SPR_WEST]->len,
-			&game->texture[SPR_WEST]->endian);
-	game->texture[SPR_EAST]->addr = mlx_get_data_addr(game->txtrs[SPR_EAST]->ptr,
-			&game->texture[SPR_EAST]->bpp, &game->texture[SPR_EAST]->len,
-			&game->texture[SPR_EAST]->endian);
-	game->texture[SPR_SOUTH]->addr = mlx_get_data_addr(game->txtrs[SPR_SOUTH]->ptr,
-			&game->texture[SPR_SOUTH]->bpp, &game->texture[SPR_SOUTH]->len,
-			&game->texture[SPR_SOUTH]->endian);
-	game->texture[SPR_DOOR]->addr = mlx_get_data_addr(game->txtrs[SPR_DOOR]->ptr,
-			&game->texture[SPR_DOOR]->bpp, &game->texture[SPR_DOOR]->len,
-			&game->texture[SPR_DOOR]->endian);
+	g->texture[SPR_NORTH]->addr = mlx_get_data_addr(g->txtrs[SPR_NORTH]->ptr,
+			&g->texture[SPR_NORTH]->bpp, &g->texture[SPR_NORTH]->len,
+			&g->texture[SPR_NORTH]->endian);
+	g->texture[SPR_WEST]->addr = mlx_get_data_addr(g->txtrs[SPR_WEST]->ptr,
+			&g->texture[SPR_WEST]->bpp, &g->texture[SPR_WEST]->len,
+			&g->texture[SPR_WEST]->endian);
+	g->texture[SPR_EAST]->addr = mlx_get_data_addr(g->txtrs[SPR_EAST]->ptr,
+			&g->texture[SPR_EAST]->bpp, &g->texture[SPR_EAST]->len,
+			&g->texture[SPR_EAST]->endian);
+	g->texture[SPR_SOUTH]->addr = mlx_get_data_addr(g->txtrs[SPR_SOUTH]->ptr,
+			&g->texture[SPR_SOUTH]->bpp, &g->texture[SPR_SOUTH]->len,
+			&g->texture[SPR_SOUTH]->endian);
+	g->texture[SPR_DOOR]->addr = mlx_get_data_addr(g->txtrs[SPR_DOOR]->ptr,
+			&g->texture[SPR_DOOR]->bpp, &g->texture[SPR_DOOR]->len,
+			&g->texture[SPR_DOOR]->endian);
 }
 
 void	init_int(t_map *lst)
-{	
+{
 	lst->texture[SPR_NORTH] = malloc(sizeof(t_texture));
 	lst->texture[SPR_SOUTH] = malloc(sizeof(t_texture));
 	lst->texture[SPR_EAST] = malloc(sizeof(t_texture));

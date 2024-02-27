@@ -6,7 +6,7 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:33:27 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/26 13:33:20 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:05:47 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,22 @@ void	render_frame(t_map *lst)
 	draw_minimap(lst);
 }
 
+void	sprite_anim(t_map *lst)
+{
+	lst->time += 1;
+	lst->time %= INT_MAX;
+	mlx_destroy_image(lst->mlx, lst->txtrs[SPR_DOOR]->ptr);
+	if (lst->time % (DOOR_SPD * 2) > DOOR_SPD)
+		load_texture(lst, SPR_DOOR, "texture/door_on.xpm");
+	else
+		load_texture(lst, SPR_DOOR, "texture/door_off.xpm");
+}
+
 int	game(t_map *lst)
 {
 	do_mouse(lst);
 	move_camera(lst);
+	sprite_anim(lst);
 	render_frame(lst);
 	return (0);
 }

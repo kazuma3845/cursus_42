@@ -6,7 +6,7 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:33:14 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/26 12:58:44 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:17:50 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	draw_background(t_map *lst, char *ceil_txt, char *floor_txt)
 	int		x;
 	int		y;
 	t_image	img;
-	int		col;
+	int		flr;
 	int		ceil;
 
-	col = get_color(floor_txt);
+	flr = get_color(floor_txt);
 	ceil = get_color(ceil_txt);
 	img.img = mlx_new_image(lst->mlx, X_RES, Y_RES / 2);
 	img.addr = mlx_get_data_addr(lst->img, &img.bits_per_pixel,
@@ -39,13 +39,13 @@ void	draw_background(t_map *lst, char *ceil_txt, char *floor_txt)
 	{
 		x = -1;
 		while (++x < X_RES)
-			pixel_draw(&img, x, y, col);
+			pixel_draw(&img, x, y, ceil);
 	}
 	while (++y < Y_RES)
 	{
 		x = -1;
 		while (++x < X_RES)
-			pixel_draw(&img, x, y, ceil);
+			pixel_draw(&img, x, y, flr);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:56:39 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/26 14:32:50 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:30:29 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ void	init_tab(t_map *lst, char *argv)
 	ligne = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-		return ;
-	lst->map_width = 0;
+	{
+		printf("Error\nFile not found\n");
+		exit(1);
+	}
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -96,12 +98,17 @@ void	init_tab(t_map *lst, char *argv)
 	close(fd);
 }
 
-bool	check_arg(char *argv)
+bool	check_arg(char *argv, int argc)
 {
 	char	**split;
 
+	if (argc != 2)
+	{
+		printf("Error\nWrong number of arg\n");
+		return (false);
+	}
 	split = ft_split(argv, '.');
-	if (!split[2] && ft_strncmp(split[1], "cub", 4) == 0)
+	if (split[1] && !split[2] && ft_strncmp(split[1], "cub", 4) == 0)
 	{
 		free_tab(split);
 		return (true);

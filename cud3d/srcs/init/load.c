@@ -6,7 +6,7 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:32:44 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/26 12:45:16 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:06:23 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	load_all_textures(t_map *data)
 	load_texture(data, SPR_MM_RPLAYER, "texture/mm_rplayer.xpm");
 	load_texture(data, SPR_MM_WPLAYER, "texture/mm_wplayer.xpm");
 	load_texture(data, SPR_MM_DOOR, "texture/mm_door.xpm");
-	load_texture(data, SPR_DOOR, "texture/door.xpm");
+	load_texture(data, SPR_DOOR, "texture/door_on.xpm");
 	init_textures(data);
 }

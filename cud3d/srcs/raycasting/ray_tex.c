@@ -6,25 +6,27 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:38:37 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/26 13:30:25 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:30:30 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	put_pixel(t_map *lst, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = lst->addr + (y * lst->len + x * (lst->bpp / 8));
-	*(unsigned int *)dst = color;
-}
 
 static void	set_textures(t_text *texture, char *addr, int len, int bpp)
 {
 	texture->addr = addr;
 	texture->len = len;
 	texture->bpp = bpp;
+}
+
+void	get_texture2(t_text *text, t_map *lst, t_ray *ray)
+{
+	if (ray->dir_y > 0)
+		set_textures(text, lst->texture[SPR_SOUTH]->addr,
+			lst->texture[SPR_SOUTH]->len, lst->texture[SPR_SOUTH]->bpp);
+	else
+		set_textures(text, lst->texture[SPR_NORTH]->addr,
+			lst->texture[SPR_NORTH]->len, lst->texture[SPR_NORTH]->bpp);
 }
 
 int	get_texture(t_map *lst, t_ray *ray, int tex_x, int tex_y)
@@ -34,58 +36,26 @@ int	get_texture(t_map *lst, t_ray *ray, int tex_x, int tex_y)
 
 	if (ray->door == 1)
 	{
-		set_textures(&text, lst->texture[SPR_DOOR]->addr, lst->texture[SPR_DOOR]->len,
-			lst->texture[SPR_DOOR]->bpp);
+		set_textures(&text, lst->texture[SPR_DOOR]->addr,
+			lst->texture[SPR_DOOR]->len, lst->texture[SPR_DOOR]->bpp);
 	}
 	else if (ray->side == 1)
 	{
-		if (ray->dir_y > 0)
-			set_textures(&text, lst->texture[SPR_SOUTH]->addr, lst->texture[SPR_SOUTH]->len,
-				lst->texture[SPR_SOUTH]->bpp);
-		else
-			set_textures(&text, lst->texture[SPR_NORTH]->addr, lst->texture[SPR_NORTH]->len,
-				lst->texture[SPR_NORTH]->bpp);
+		get_texture2(&text, lst, ray);
 	}
 	else
 	{
 		if (ray->dir_x > 0)
-			set_textures(&text, lst->texture[SPR_EAST]->addr, lst->texture[SPR_EAST]->len,
-				lst->texture[SPR_EAST]->bpp);
+			set_textures(&text, lst->texture[SPR_EAST]->addr,
+				lst->texture[SPR_EAST]->len, lst->texture[SPR_EAST]->bpp);
 		else
-			set_textures(&text, lst->texture[SPR_WEST]->addr, lst->texture[SPR_WEST]->len,
-				lst->texture[SPR_WEST]->bpp);
+			set_textures(&text, lst->texture[SPR_WEST]->addr,
+				lst->texture[SPR_WEST]->len, lst->texture[SPR_WEST]->bpp);
 	}
 	tex_x = fmax(0, fmin(tex_x, TEX_SIZE - 1));
 	tex_y = fmax(0, fmin(tex_y, TEX_SIZE - 1));
 	index = tex_y * text.len + tex_x * (text.bpp / 8);
 	return (*(int *)(text.addr + index));
-}
-
-int	calcul_x(t_map *lst, t_ray *ray)
-{
-	double	wall_x;
-	int		tex_x;
-
-	if (ray->side == 0)
-		wall_x = lst->py + ray->perp_wall_dist * ray->dir_y;
-	else
-		wall_x = lst->px + ray->perp_wall_dist * ray->dir_x;
-	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * (double)TEX_SIZE);
-	if ((ray->side == 0 && ray->dir_x > 0) || (ray->side == 1
-			&& ray->dir_y < 0))
-		tex_x = TEX_SIZE - tex_x - 1;
-	return (tex_x);
-}
-
-int	calcul_y(t_ray *ray, int y)
-{
-	int	tex_y;
-	int	d;
-
-	d = y * 256 - Y_RES * 128 + ray->line_height * 128;
-	tex_y = ((d * TEX_SIZE) / ray->line_height) / 256;
-	return (tex_y);
 }
 
 void	add_texture(t_map *lst, t_ray *ray, int x)

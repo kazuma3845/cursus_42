@@ -6,7 +6,7 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:32:06 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/26 11:36:19 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/27 08:37:42 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	create_player(t_map *data)
 				init_player_ew(data, i, j);
 				data->px = j + 0.5;
 				data->py = i + 0.5;
-				data->angle = (data->map[i][j] == 'N') * 90
+				data->angle = (data->map[i][j] == 'N') * 270
 					+ (data->map[i][j] == 'W') * 180
-					+ (data->map[i][j] == 'S') * 270;
+					+ (data->map[i][j] == 'S') * 90;
 				data->map[i][j] = '0';
 			}
 		}

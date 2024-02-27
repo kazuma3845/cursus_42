@@ -6,7 +6,7 @@
 /*   By: tomuller <tomuller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:53:52 by tomuller          #+#    #+#             */
-/*   Updated: 2024/02/26 13:04:00 by tomuller         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:23:28 by tomuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ void	dda(t_map *lst, t_ray *ray)
 		else if (lst->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->side_x - ray->delta_x);
-	else
-		ray->perp_wall_dist = (ray->side_y - ray->delta_y);
 }
 
 void	calcul_height(t_ray *ray)
@@ -88,6 +84,10 @@ void	raycasting(t_map *lst)
 		init_ray(lst, &ray, x);
 		step(lst, &ray);
 		dda(lst, &ray);
+		if (ray.side == 0)
+			ray.perp_wall_dist = (ray.side_x - ray.delta_x);
+		else
+			ray.perp_wall_dist = (ray.side_y - ray.delta_y);
 		calcul_height(&ray);
 		add_texture(lst, &ray, x);
 	}

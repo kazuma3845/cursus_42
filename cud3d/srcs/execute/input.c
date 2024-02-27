@@ -6,7 +6,7 @@
 /*   By: nreichel <nreichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:07:00 by nreichel          #+#    #+#             */
-/*   Updated: 2024/02/26 13:40:25 by nreichel         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:24:16 by nreichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	controle(int key, t_map *lst)
 		lst->angle += PLR_TURN;
 	if (key == K_L_LEFT)
 		lst->angle -= PLR_TURN;
+	if (key == K_MOUSE)
+		lst->mouse_mode = !lst->mouse_mode;
 	return (0);
 }
 
@@ -84,12 +86,17 @@ void	do_mouse(t_map *lst)
 	int			x;
 	int			y;
 
-	mlx_mouse_hide();
-	mlx_mouse_get_pos(lst->win, &x, &y);
-	if (x != X_RES / 2)
+	if (lst->mouse_mode)
 	{
-		lst->angle += (x - X_RES / 2) / 10;
+		mlx_mouse_hide();
+		mlx_mouse_get_pos(lst->win, &x, &y);
+		if (x != X_RES / 2)
+		{
+			lst->angle += (x - X_RES / 2) / 10;
+			mlx_mouse_move(lst->win, X_RES / 2, Y_RES / 2);
+		}
 		mlx_mouse_move(lst->win, X_RES / 2, Y_RES / 2);
 	}
-	mlx_mouse_move(lst->win, X_RES / 2, Y_RES / 2);
+	else
+		mlx_mouse_show();
 }
