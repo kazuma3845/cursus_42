@@ -1,20 +1,30 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include "utiles.hpp"
+# include <string>
+# include <iostream>
+# include <iomanip>
+using namespace std;
 
 class Contact {
 
 public :
-	Contact(void);
-	// first(void);
-	// last(char);
-	// nick(char);
-	// phone_num(char);
-	// secret(char);
+	string	first;
+	string	last;
+	string	nick;
+	string	abr_first;
+	string	abr_last;
+	string	abr_nick;
+	string	phone_num;
+	string	secret;
+};
 
-	~Contact(void);
-	
+class PhoneBook {
+
+public :
+	int num;
+	Contact Cons[8];
+
 };
 
 #endif

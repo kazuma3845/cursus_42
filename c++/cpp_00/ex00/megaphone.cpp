@@ -16,7 +16,11 @@ int main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		while (argv[++i])
+		{
+			if (i > 1)
+			std::cout << " ";
 			ft_print(argv[i]);
+		}
 	}
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
