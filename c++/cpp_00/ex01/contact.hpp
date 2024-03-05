@@ -4,19 +4,18 @@
 # include <string>
 # include <iostream>
 # include <iomanip>
-using namespace std;
 
 class Contact {
 
 public :
-	string	first;
-	string	last;
-	string	nick;
-	string	abr_first;
-	string	abr_last;
-	string	abr_nick;
-	string	phone_num;
-	string	secret;
+	std::string	first;
+	std::string	last;
+	std::string	nick;
+	std::string	abr_first;
+	std::string	abr_last;
+	std::string	abr_nick;
+	std::string	phone_num;
+	std::string	secret;
 };
 
 class PhoneBook {

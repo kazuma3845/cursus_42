@@ -2,24 +2,24 @@
 
 void ft_add(int i, PhoneBook *contact)
 {
-	string buffer;
+	std::string buffer;
 
 	i =  (i % 8);
 	contact->num = i + 1;
-	cout << "first name : ";
-	cin >> buffer;
+	std::cout << "first name : ";
+	std::cin >> buffer;
 	contact->Cons[i].first = buffer;
-	cout << "last name : ";
-	cin >> buffer;
+	std::cout << "last name : ";
+	std::cin >> buffer;
 	contact->Cons[i].last = buffer;
-	cout << "nickname : ";
-	cin >> buffer;
+	std::cout << "nickname : ";
+	std::cin >> buffer;
 	contact->Cons[i].nick = buffer;
-	cout << "phone number : ";
-	cin >> buffer;
+	std::cout << "phone number : ";
+	std::cin >> buffer;
 	contact->Cons[i].phone_num = buffer;
-	cout << "darkest secret : ";
-	cin >> buffer;
+	std::cout << "darkest secret : ";
+	std::cin >> buffer;
 	contact->Cons[i].secret = buffer;
 }
 
@@ -45,44 +45,44 @@ void change(PhoneBook *contact, int i)
 void ft_search(PhoneBook *contact)
 {
 	int i = -1;
-	string buffer;
+	std::string buffer;
 
 	while (++i < 8)
 		change(contact, i);
-	cout << "|     Index|first name| last name|  nickname|" << endl;
-	cout << "|         1|" << contact->Cons[0].abr_first << "|" << contact->Cons[0].abr_last << "|" << contact->Cons[0].abr_nick << "|" << endl;
-	cout << "|         2|" << contact->Cons[1].abr_first << "|" << contact->Cons[1].abr_last << "|" << contact->Cons[1].abr_nick << "|" << endl;
-	cout << "|         3|" << contact->Cons[2].abr_first << "|" << contact->Cons[2].abr_last << "|" << contact->Cons[2].abr_nick << "|" << endl;
-	cout << "|         4|" << contact->Cons[3].abr_first << "|" << contact->Cons[3].abr_last << "|" << contact->Cons[3].abr_nick << "|" << endl;
-	cout << "|         5|" << contact->Cons[4].abr_first << "|" << contact->Cons[4].abr_last << "|" << contact->Cons[4].abr_nick << "|" << endl;
-	cout << "|         6|" << contact->Cons[5].abr_first << "|" << contact->Cons[5].abr_last << "|" << contact->Cons[5].abr_nick << "|" << endl;
-	cout << "|         7|" << contact->Cons[6].abr_first << "|" << contact->Cons[6].abr_last << "|" << contact->Cons[6].abr_nick << "|" << endl;
-	cout << "|         8|" << contact->Cons[7].abr_first << "|" << contact->Cons[7].abr_last << "|" << contact->Cons[7].abr_nick << "|" << endl;
-	cout << "Choose index : ";
-	cin >> buffer;
+	std::cout << "|     Index|first name| last name|  nickname|" << std::endl;
+	std::cout << "|         1|" << contact->Cons[0].abr_first << "|" << contact->Cons[0].abr_last << "|" << contact->Cons[0].abr_nick << "|" << std::endl;
+	std::cout << "|         2|" << contact->Cons[1].abr_first << "|" << contact->Cons[1].abr_last << "|" << contact->Cons[1].abr_nick << "|" << std::endl;
+	std::cout << "|         3|" << contact->Cons[2].abr_first << "|" << contact->Cons[2].abr_last << "|" << contact->Cons[2].abr_nick << "|" << std::endl;
+	std::cout << "|         4|" << contact->Cons[3].abr_first << "|" << contact->Cons[3].abr_last << "|" << contact->Cons[3].abr_nick << "|" << std::endl;
+	std::cout << "|         5|" << contact->Cons[4].abr_first << "|" << contact->Cons[4].abr_last << "|" << contact->Cons[4].abr_nick << "|" << std::endl;
+	std::cout << "|         6|" << contact->Cons[5].abr_first << "|" << contact->Cons[5].abr_last << "|" << contact->Cons[5].abr_nick << "|" << std::endl;
+	std::cout << "|         7|" << contact->Cons[6].abr_first << "|" << contact->Cons[6].abr_last << "|" << contact->Cons[6].abr_nick << "|" << std::endl;
+	std::cout << "|         8|" << contact->Cons[7].abr_first << "|" << contact->Cons[7].abr_last << "|" << contact->Cons[7].abr_nick << "|" << std::endl;
+	std::cout << "Choose index : ";
+	std::cin >> buffer;
 	if (buffer.compare("1") != 0 && buffer.compare("2") != 0 && buffer.compare("3") != 0 && buffer.compare("4") != 0 && buffer.compare("5") != 0 && buffer.compare("6") != 0 && buffer.compare("7") != 0 && buffer.compare("8") != 0)
 	{
-		cout << "Index don't exist" << endl;
+		std::cout << "Index don't exist" << std::endl;
 		return ;
 	}
-	i = stoi(buffer) - 1;
-	cout << "First name : " << contact->Cons[i].first << endl;
-	cout << "Last name : "<< contact->Cons[i].last << endl;
-	cout << "Nickname : "<< contact->Cons[i].nick << endl;
-	cout << "Phone number : "<< contact->Cons[i].phone_num << endl;
-	cout << "Darkest secret : "<< contact->Cons[i].secret << endl;
+	i = std::stoi(buffer) - 1;
+	std::cout << "First name : " << contact->Cons[i].first << std::endl;
+	std::cout << "Last name : "<< contact->Cons[i].last << std::endl;
+	std::cout << "Nickname : "<< contact->Cons[i].nick << std::endl;
+	std::cout << "Phone number : "<< contact->Cons[i].phone_num << std::endl;
+	std::cout << "Darkest secret : "<< contact->Cons[i].secret << std::endl;
 }
 
 int main()
 {
-	string input;
+	std::string input;
 	PhoneBook contact;
 	int i = -1;
 
-	cout << "Write ADD, SEARCH or EXIT : ";
+	std::cout << "Write ADD, SEARCH or EXIT : ";
 	while (1)
 	{
-		getline(cin, input);
+		getline(std::cin, input);
 		if (input == "EXIT")
 			break ;
 		else if (input == "ADD")
@@ -93,7 +93,7 @@ int main()
 		else if (input == "SEARCH")
 			ft_search(&contact);
 		else
-			cout << "Write ADD, SEARCH or EXIT : ";
+			std::cout << "Write ADD, SEARCH or EXIT : ";
 	}
 	return 0;
 }
