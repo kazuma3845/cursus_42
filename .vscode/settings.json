@@ -75,6 +75,10 @@
 		"type_traits": "cpp",
 		"typeinfo": "cpp",
 		"utility": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"__verbose_abort": "cpp",
+		"charconv": "cpp",
+		"clocale": "cpp",
+		"variant": "cpp"
 	}
 }
