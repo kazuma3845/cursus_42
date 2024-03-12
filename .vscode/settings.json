@@ -81,6 +81,7 @@
 		"clocale": "cpp",
 		"variant": "cpp",
 		"execution": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"__availability": "cpp"
 	}
 }
