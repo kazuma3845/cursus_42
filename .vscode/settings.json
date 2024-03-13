@@ -82,6 +82,8 @@
 		"variant": "cpp",
 		"execution": "cpp",
 		"fstream": "cpp",
-		"__availability": "cpp"
+		"__availability": "cpp",
+		"deque": "cpp",
+		"stack": "cpp"
 	}
 }

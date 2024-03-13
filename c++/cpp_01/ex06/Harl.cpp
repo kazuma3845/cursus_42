@@ -21,7 +21,11 @@ void Harl::complain( std::string level )
 	for (int i = 0; i < 4; i++)
 	{
 		if (tab[i].compare(level) == 0)
-			return ((this->*Foncptr[i])());
+		{
+			while (i < 4)
+				(this->*Foncptr[i++])();
+			return ;
+		}
 	}
 	std::cout << "Bad level of Harl" << std::endl;
 	return ;

@@ -4,17 +4,27 @@
 void prog(char **argv)
 {
 	std::string myText;
+	std::ifstream MyReadFile(argv[1]);
+	if (!MyReadFile.is_open())
+	{
+		std::cerr << "Failed to open the file.\n";
+		return ;
+	}
 	std::string file = argv[1];
 	int i = file.find_last_of(".");
 	std::string filename = file.substr(0, i) + ".replace";
 	std::ofstream outfile (filename);
-	std::ifstream MyReadFile(argv[1]);
 	while (std::getline (MyReadFile, myText))
 	{
-		if (myText.compare(argv[2]) == 0)
-			outfile << argv[3] << std::endl;
-		else
-  			outfile << myText << std::endl;
+		while (1)
+		{
+			size_t pos = myText.find(argv[2]);
+			if (pos != std::string::npos)
+    			myText = myText.substr(0, pos) + argv[3] + myText.substr(pos + strlen(argv[2]));
+			else
+				break ;
+		}
+		outfile << myText << std::endl;
 	}
 	MyReadFile.close();
 	outfile.close();
