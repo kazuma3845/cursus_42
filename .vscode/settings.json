@@ -84,6 +84,7 @@
 		"fstream": "cpp",
 		"__availability": "cpp",
 		"deque": "cpp",
-		"stack": "cpp"
+		"stack": "cpp",
+		"filesystem": "cpp"
 	}
 }
