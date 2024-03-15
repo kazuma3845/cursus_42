@@ -14,13 +14,13 @@ Fixed::Fixed(const int i)
 	this->_i = r;
 }
 
-Fixed::Fixed(const float i) : _i(i)
+Fixed::Fixed(const float i)
 {
 	// std::cout << "Float constructor called" << std::endl;
 	float r = i;
 	for (int j = this->_v; j > 0; j--)
 		r *=2;
-	this->_i = r;
+	this->_i = roundf(r);
 }
 
 Fixed::Fixed(const Fixed &f) : _i(f._i)
