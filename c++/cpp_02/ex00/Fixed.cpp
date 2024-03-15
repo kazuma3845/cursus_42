@@ -13,7 +13,7 @@ Fixed::Fixed(const Fixed &f) : _i(f._i)
 Fixed& Fixed::operator=(const Fixed &f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_i = f.getRawBits();
+	this->setRawBits(f.getRawBits());
 	return (*this);
 }
 

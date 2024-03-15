@@ -12,10 +12,10 @@ class Fixed
 		Fixed( const Fixed &f );
 		Fixed &operator=(const Fixed &f);
 	
-		Fixed &operator+(const Fixed &f) const;
-		Fixed &operator-(const Fixed &f) const;
-		Fixed &operator*(const Fixed &f) const;
-		Fixed &operator/(const Fixed &f) const;
+		Fixed operator+(const Fixed &f) const;
+		Fixed operator-(const Fixed &f) const;
+		Fixed operator*(const Fixed &f) const;
+		Fixed operator/(const Fixed &f) const;
 	
 		bool operator>(const Fixed &f) const;
 		bool operator<(const Fixed &f) const;
