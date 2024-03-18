@@ -14,6 +14,8 @@ Animal::Animal(const Animal& f)
 
 Animal &Animal::operator=(const Animal& f)
 {
+	if ((this->type == "Cat" || this->type == "Dog") && (f.type == "Cat" || f.type == "Dog"))
+        *get_brain() = *f.get_brain();
 	this->type = f.type;
 	return *this;
 }
@@ -30,7 +32,7 @@ void Animal::makeSound() const
 
 std::string Animal::getType() const
 {
-	return(type);
+	return(this->type);
 }
 
 Brain *Animal::get_brain() const

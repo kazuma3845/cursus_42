@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kazuma3845 <kazuma3845@student.42.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 17:20:18 by prossi            #+#    #+#             */
-/*   Updated: 2024/03/17 13:53:11 by kazuma3845       ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
@@ -22,9 +10,9 @@ int	main( void )
 	Brain *dog_brain;
 
 	Dog a;
-	std::cout << "----------------" << std::endl;
+	std::cout << std::endl;
 	Dog b(a);
-	std::cout << "----------------" << std::endl;
+	std::cout << std::endl;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -46,26 +34,30 @@ int	main( void )
 	cat_brain->ideas[2] = dog_brain->ideas[2] = "I swear, it's not me for the slippers !";
 	cat_brain->ideas[3] = dog_brain->ideas[3] = "OH, Master is putting his shoes on, maybe an outing ??";
 	cat_brain->ideas[4] = dog_brain->ideas[4] = "...";
-	std::cout << "-----------------------------------" << std::endl;
-	std::cout << "|" << tab[0]->get_brain()->ideas[0] << "|" << std::endl;
+	std::cout << std::endl;
+	std::cout << tab[0]->get_brain()->ideas[0] << std::endl;
 	*(tab[1]) = *(tab[0]);
-	std::cout << "|" << tab[1]->get_brain()->ideas[1] << "|" << std::endl;
-	std::cout << "-----------------------------------" << std::endl;
-	std::cout << "|" << tab[2]->get_brain()->ideas[2] << "|" << std::endl;
+	std::cout << tab[1]->get_brain()->ideas[1] << std::endl;
+	std::cout << std::endl;
+	std::cout << tab[2]->get_brain()->ideas[2] << std::endl;
 	*(tab[3]) = *(tab[2]);
-	std::cout << "|" << tab[3]->get_brain()->ideas[3] << "|" << std::endl;
-	std::cout << "-----------------------------------" << std::endl;
+	std::cout << tab[3]->get_brain()->ideas[3] << std::endl;
+	std::cout << std::endl;
 
 	delete tab[0];
 	delete tab[1];
 	delete tab[2];
 	delete tab[3];
 
-	std::cout << "===================================" << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
+	std::cout << std::endl;
 	delete j;
 	delete i;
+	std::cout << std::endl;
+	std::cout << std::endl;
 
 	return (0);
 }

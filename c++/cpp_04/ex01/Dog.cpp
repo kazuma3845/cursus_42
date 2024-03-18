@@ -9,13 +9,15 @@ Dog::Dog(void)
 
 Dog::Dog(const Dog& f)
 {
-	this->type = f.type;
+	this->brain = new Brain();
+	*this = f;
 	std::cout << "Dog Copie Constructor called" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog& f)
 {
 	this->type = f.type;
+	*(this->brain) = *(f.brain);
 	return *this;
 }
 

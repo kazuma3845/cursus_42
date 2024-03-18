@@ -10,9 +10,9 @@ class Animal
 		Animal(void);
 		Animal(const Animal& f);
 		Animal &operator=(const Animal& f);
-		virtual ~Animal(void) = 0;
+		virtual ~Animal(void);
 		virtual void makeSound() const = 0;
-		std::string getType() const;
+		virtual std::string getType() const;
 		virtual Brain *get_brain() const;
 
 	protected:

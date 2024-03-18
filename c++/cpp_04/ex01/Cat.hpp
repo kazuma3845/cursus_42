@@ -10,8 +10,8 @@ class Cat : public Animal
 		Cat(void);
 		Cat(const Cat& f);
 		Cat &operator=(const Cat& f);
-		virtual ~Cat(void);
-		virtual void makeSound() const;
+		~Cat(void);
+		void makeSound() const;
 		Brain *get_brain() const;
 	private:
 		Brain *brain;

@@ -12,7 +12,7 @@ class Animal
 		Animal &operator=(const Animal& f);
 		virtual ~Animal(void);
 		virtual void makeSound() const;
-		std::string getType() const;
+		virtual std::string getType() const;
 		virtual Brain *get_brain() const;
 
 	protected:

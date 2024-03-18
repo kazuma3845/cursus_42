@@ -9,13 +9,15 @@ Cat::Cat(void)
 
 Cat::Cat(const Cat& f)
 {
-	this->type = f.type;
+	this->brain = new Brain();
+	*this = f;
 	std::cout << "Cat Copie Constructor called" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat& f)
 {
 	this->type = f.type;
+	*(this->brain) = *(f.brain);
 	return *this;
 }
 
