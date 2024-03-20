@@ -83,3 +83,13 @@ void Bureaucrat::DecrementGrade()
 	if (this->_grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 }
+
+void Bureaucrat::signForm(Form &f)
+{
+	if (f.getSign())
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
+	else
+	{
+		throw Form::GradeTooLowException();
+	}
+}

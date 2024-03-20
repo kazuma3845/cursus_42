@@ -9,11 +9,11 @@ int main()
 	}
 	catch(Bureaucrat::GradeTooHighException &e)
 	{
-		std::cerr << "Grade too high" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	catch(Bureaucrat::GradeTooLowException &e)
 	{
-		std::cerr << "Grade too Low" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	std::cout << std::endl;
 	try
@@ -23,11 +23,11 @@ int main()
 	}
 	catch(Bureaucrat::GradeTooHighException &e)
 	{
-		std::cerr << "Grade too high" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	catch(Bureaucrat::GradeTooLowException &e)
 	{
-		std::cerr << "Grade too Low" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	std::cout << std::endl;
 	try
@@ -37,11 +37,11 @@ int main()
 	}
 	catch(Bureaucrat::GradeTooHighException &e)
 	{
-		std::cerr << "Grade too high" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	catch(Bureaucrat::GradeTooLowException &e)
 	{
-		std::cerr << "Grade too Low" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	std::cout << std::endl;
 	try
@@ -51,11 +51,11 @@ int main()
 	}
 	catch(Bureaucrat::GradeTooHighException &e)
 	{
-		std::cerr << "Grade too high" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	catch(Bureaucrat::GradeTooLowException &e)
 	{
-		std::cerr << "Grade too Low" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	std::cout << std::endl;
 	try
@@ -65,11 +65,72 @@ int main()
 	}
 	catch(Bureaucrat::GradeTooHighException &e)
 	{
-		std::cerr << "Grade too high" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	catch(Bureaucrat::GradeTooLowException &e)
 	{
-		std::cerr << "Grade too Low" << std::endl;
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+	try
+	{
+		Bureaucrat f = Bureaucrat("Increm", 5);
+		f.IncrementGrade();
+		std::cout << f << std::endl;
+	}
+	catch(Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch(Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+	try
+	{
+		Bureaucrat g = Bureaucrat("Incremfalse", 1);
+		g.IncrementGrade();
+		std::cout << g << std::endl;
+	}
+	catch(Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch(Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	try
+	{
+		Bureaucrat h = Bureaucrat("Decrem", 140);
+		h.DecrementGrade();
+		std::cout << h << std::endl;
+	}
+	catch(Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch(Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+	try
+	{
+		Bureaucrat i = Bureaucrat("Decremfalse", 150);
+		i.DecrementGrade();
+		std::cout << i << std::endl;
+	}
+	catch(Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch(Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
 	return 0;
 }
