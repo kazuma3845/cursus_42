@@ -3,21 +3,38 @@
 
 int main()
 {
-	try
 	{
 		Bureaucrat a = Bureaucrat("John", 50);
-		Form form = Form("Contract", 40, 1);
-		form.beSigned(a);
-		a.signForm(form);
 		std::cout << a << std::endl;
+		Form b = Form("Certificat of death", 49, 10);
+		std::cout << b;
+		b.beSigned(a);
+		b.signForm(a);
+		b.execForm(a);
 	}
-	catch(Bureaucrat::GradeTooHighException &e)
+
+
+	std::cout << std::endl;
 	{
-		std::cerr << e.what() << std::endl;
+		Bureaucrat a = Bureaucrat("John", 1);
+		std::cout << a << std::endl;
+		Form b = Form("Certificat of death", 10, 1);
+		std::cout << b;
+		b.beSigned(a);
+		b.signForm(a);
+		b.execForm(a);
 	}
-	catch(Bureaucrat::GradeTooLowException &e)
+
+
+	std::cout << std::endl;
 	{
-		std::cerr << e.what() << std::endl;
+		Bureaucrat a = Bureaucrat("John", 1);
+		std::cout << a << std::endl;
+		Form b = Form("Certificat of death", 0, 0);
+		std::cout << b;
+		b.beSigned(a);
+		b.signForm(a);
+		b.execForm(a);
 	}
 	return 0;
 }
