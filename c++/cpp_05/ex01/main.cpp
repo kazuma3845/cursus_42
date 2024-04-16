@@ -10,7 +10,6 @@ int main()
 		std::cout << b;
 		b.beSigned(a);
 		b.signForm(a);
-		b.execForm(a);
 	}
 
 
@@ -22,7 +21,6 @@ int main()
 		std::cout << b;
 		b.beSigned(a);
 		b.signForm(a);
-		b.execForm(a);
 	}
 
 
@@ -34,7 +32,6 @@ int main()
 		std::cout << b;
 		b.beSigned(a);
 		b.signForm(a);
-		b.execForm(a);
 	}
 	return 0;
 }

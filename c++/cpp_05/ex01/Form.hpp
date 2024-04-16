@@ -31,7 +31,6 @@ class Form
 
 		void beSigned(const Bureaucrat &f);
 		void signForm(const Bureaucrat &f);
-		void execForm(const Bureaucrat &f);
 
 	private:
 		const std::string _name;

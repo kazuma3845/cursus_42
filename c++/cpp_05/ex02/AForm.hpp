@@ -31,7 +31,9 @@ class AForm
 
 		void beSigned(const Bureaucrat &f);
 		void signForm(const Bureaucrat &f);
-		void execForm(const Bureaucrat &f);
+
+		void execute(Bureaucrat const & executor) const;
+		virtual void action() const = 0;
 
 	private:
 		const std::string _name;

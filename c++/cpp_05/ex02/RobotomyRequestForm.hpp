@@ -8,11 +8,14 @@ class RobotomyRequestForm : public AForm
 {
 	public:
 		RobotomyRequestForm();
+		RobotomyRequestForm(std::string target);
 		RobotomyRequestForm(const RobotomyRequestForm& f);
 		RobotomyRequestForm &operator=(const RobotomyRequestForm& f);
 		~RobotomyRequestForm();
-	private:
 
+		void action() const;
+	private:
+		std::string _target;
 	
 };
 

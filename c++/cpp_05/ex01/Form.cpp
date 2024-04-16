@@ -75,13 +75,3 @@ std::ostream &operator<<(std::ostream &os, const Form &f)
 	os << f.getName() << " Form Creat, Grade for signed : " << f.getGradeToSigned() << ", Grade to exec : " << f.getGradeToExec() << std::endl;
 	return os;
 }
-
-void Form::execForm(const Bureaucrat &f)
-{
-	if (f.getGrade() <= this->getGradeToExec() && this->_to_signed)
-		std::cout << f.getName() << " execute " << this->getName() << std::endl;
-	else if (this->getGradeToExec() <= 0)
-		std::cout << f.getName() << " couldn't execute " << this->getName() << " because grade too High" << std::endl;
-	else
-		std::cout << f.getName() << " couldn't execute " << this->getName() << " because grade too Low" << std::endl;
-}
