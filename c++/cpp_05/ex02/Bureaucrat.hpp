@@ -1,7 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+class Bureaucrat;
+
 # include <iostream>
+#include "AForm.hpp"
 
 class Bureaucrat
 {
@@ -29,6 +32,8 @@ class Bureaucrat
 			public:
 				const char *what() const throw();
 		};
+
+		void executeForm(AForm const &form);
 
 	private:
 		int _grade;

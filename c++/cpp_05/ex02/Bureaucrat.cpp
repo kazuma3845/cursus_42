@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void) :  _grade(150), _name(0)
 {
@@ -82,4 +83,9 @@ void Bureaucrat::DecrementGrade()
 		throw Bureaucrat::GradeTooLowException();
 	if (this->_grade < 1)
 		throw Bureaucrat::GradeTooHighException();
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	std::cout << this->_name << " executed " << form.getName() << std::endl;
 }
