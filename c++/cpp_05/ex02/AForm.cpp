@@ -76,7 +76,17 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
 	return os;
 }
 
-void AForm::execute(Bureaucrat const & executor) const
+void AForm::execute(Bureaucrat const &executor) const
 {
-
+	try
+	{
+		if (executor.getGrade() > this->getGradeToExec()) {
+			throw GradeTooLowException();
+		}
+		std::cout << executor.getName() << " executes " << this->getName() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Execution failed: " << e.what() << std::endl;
+	}
 }

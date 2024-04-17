@@ -32,7 +32,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 void RobotomyRequestForm::action() const
 {
 	srand((long)this);
-	if (rand() == 1)
+	if (rand() & 1)
 	{	std::cout << "Bzzzzz" << std::endl << "Bzzzzz" << std::endl <<"Bzzzzz" << std::endl;
 		std::cout << this->_target << " has been robotomized" << std::endl;
 	}
