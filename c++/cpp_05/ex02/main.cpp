@@ -4,24 +4,55 @@
 #include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 
-int main()
+int main(void) 
 {
-	// {ShrubberyCreationForm a = ShrubberyCreationForm("test");
-	// a.action();}
-	std::cout << std::endl;
-	std::cout << std::endl;
-	{RobotomyRequestForm b = RobotomyRequestForm("Robot");
-	b.action();}
-	{RobotomyRequestForm d = RobotomyRequestForm("Robot");
-	d.action();}
-	{RobotomyRequestForm e = RobotomyRequestForm("Robot");
-	e.action();}
-	{RobotomyRequestForm f = RobotomyRequestForm("Robot");
-	f.action();}
-	std::cout << std::endl;
-	std::cout << std::endl;
-	{PresidentialPardonForm c = PresidentialPardonForm("Pres");
-	c.action();}
-	std::cout << std::endl;
-	return 0;
+{    try 
+	{
+        AForm *SCF = new ShrubberyCreationForm("home");
+        Bureaucrat b1("Bob", 136);
+        Bureaucrat b2("Jhon", 145);
+        b2.signForm(*SCF);
+        b1.executeForm(*SCF);
+
+        b2.executeForm(*SCF);
+        delete SCF;
+    }
+    
+	catch (std::exception & e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }}
+	std::cout << std::endl << std::endl;
+    {try 
+	{
+        AForm *SCF = new RobotomyRequestForm("home");
+        Bureaucrat b1("Bob2", 44);
+        Bureaucrat b2("Jhon2", 72);
+        b2.signForm(*SCF);
+        b1.executeForm(*SCF);
+
+        b2.executeForm(*SCF);
+        delete SCF;
+    }
+    
+	catch (std::exception & e) 
+	{
+        std::cout << "Exception: " << e.what() << std::endl;
+    }}
+	std::cout << std::endl << std::endl;
+   { try 
+	{
+        AForm *SCF = new PresidentialPardonForm("home");
+        Bureaucrat b1("Bob2", 5);
+        Bureaucrat b2("Jhon2", 24);
+        b2.signForm(*SCF);
+        b1.executeForm(*SCF);
+
+        b2.executeForm(*SCF);
+        delete SCF;
+    }
+    
+	catch (std::exception & e) 
+	{
+        std::cout << "Exception: " << e.what() << std::endl;
+    }}
 }

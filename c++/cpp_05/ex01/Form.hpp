@@ -1,6 +1,8 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 
+class Form;
+
 #include <iostream>
 #include "Bureaucrat.hpp"
 
@@ -16,6 +18,7 @@ class Form
 		std::string getName() const;
 		int getGradeToSigned() const;
 		int getGradeToExec() const;
+		bool getSigned() const;
 
 		class GradeTooLowException : public std::exception
 		{
@@ -30,7 +33,6 @@ class Form
 		};
 
 		void beSigned(const Bureaucrat &f);
-		void signForm(const Bureaucrat &f);
 
 	private:
 		const std::string _name;

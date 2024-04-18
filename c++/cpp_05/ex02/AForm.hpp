@@ -32,7 +32,8 @@ class AForm
 		};
 
 		void beSigned(const Bureaucrat &f);
-		void signForm(const Bureaucrat &f);
+
+		bool getSigned() const;
 
 		void execute(Bureaucrat const & executor) const;
 		virtual void action() const = 0;

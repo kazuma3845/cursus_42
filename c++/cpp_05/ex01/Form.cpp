@@ -60,18 +60,14 @@ void Form::beSigned(const Bureaucrat &f)
 	else
 		std::cout << "Grade too Low" << std::endl;
 }
-void Form::signForm(const Bureaucrat &f)
-{
-	if (this->_to_signed)
-		std::cout << f.getName() << " signed " << this->getName() << std::endl;
-	else if (this->getGradeToSigned() <= 0)
-		std::cout << f.getName() << " couldn't sign " << this->getName() << " because grade too High" << std::endl;
-	else
-		std::cout << f.getName() << " couldn't sign " << this->getName() << " because grade too Low" << std::endl;
-}
 
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {
 	os << f.getName() << " Form Creat, Grade for signed : " << f.getGradeToSigned() << ", Grade to exec : " << f.getGradeToExec() << std::endl;
 	return os;
+}
+
+bool Form::getSigned() const
+{
+	return this->_to_signed;
 }

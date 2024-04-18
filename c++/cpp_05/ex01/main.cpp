@@ -3,35 +3,44 @@
 
 int main()
 {
-	{
-		Bureaucrat a = Bureaucrat("John", 50);
-		std::cout << a << std::endl;
-		Form b = Form("Certificat of death", 49, 10);
-		std::cout << b;
-		b.beSigned(a);
-		b.signForm(a);
-	}
+    try 
+    {
+        Form form1("Player Contract", 150, 150);
+        Bureaucrat bCrat1("Richarlison", 1);
+        form1.beSigned(bCrat1);
+        std::cout << "Welcome to the Club" << std::endl;
+        bCrat1.IncrementGrade(); 
+    }
+    catch (std::exception &e) 
+    {
+        std::cout << "About to print the exception" << std::endl;
+        std::cout << e.what() << std::endl;
+    }
+  
+    std::cout  << "<<<<<<<<<<<<>>>>>>>>>>>" << std::endl;
+    try 
+    {
+        Form form1("Drivers License", 1, 1);
+        std::cout << form1;
+        Bureaucrat bCrat1("Caitlyn Jenner", 150);
+        form1.beSigned(bCrat1);
+    }
+    catch (std::exception &e) 
+    {
+        std::cout << "About to print the exception" << std::endl;
+        std::cout << e.what() << std::endl;
+    }
 
-
-	std::cout << std::endl;
-	{
-		Bureaucrat a = Bureaucrat("John", 1);
-		std::cout << a << std::endl;
-		Form b = Form("Certificat of death", 10, 1);
-		std::cout << b;
-		b.beSigned(a);
-		b.signForm(a);
-	}
-
-
-	std::cout << std::endl;
-	{
-		Bureaucrat a = Bureaucrat("John", 1);
-		std::cout << a << std::endl;
-		Form b = Form("Certificat of death", 0, 0);
-		std::cout << b;
-		b.beSigned(a);
-		b.signForm(a);
-	}
-	return 0;
+    std::cout << "<<<<<<<<<<<<<>>>>>>>>>>>>>" << std::endl;
+    Form form1;
+    Form pContract("PlayerContract", 1, 1);
+    Form pApplication("Passport Application", 150, 150);
+    Form copyApplication(pApplication);
+    
+    std::cout << form1;
+    form1 = pContract;
+    std::cout << "Uknown Form should become a Player Contract now" << std::endl;
+    std::cout << form1;
+    std::cout << "<<<<<<<<<<<<<>>>>>>>>>>>>>" << std::endl;
+    std::cout << copyApplication;
 }
