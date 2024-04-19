@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : _name(NULL), _to_signed(false), _grade_to_signed(1), _grade_to_exec(1)
+AForm::AForm() : _name("Unknow"), _to_signed(false), _grade_to_signed(1), _grade_to_exec(1)
 {
 	std::cout << "Default AForm Constructor called" << std::endl;
 }
@@ -28,12 +28,12 @@ AForm &AForm::operator=(const AForm& f)
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-	return "Grade too high";
+	return "Form Grade too high";
 }
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return "Grade too Low";
+	return "Form Grade too Low";
 }
 
 std::string AForm::getName() const
@@ -55,10 +55,8 @@ void AForm::beSigned(const Bureaucrat &f)
 {
 	if (f.getGrade() <= this->getGradeToSigned())
 		this->_to_signed = true;
-	else if (this->getGradeToSigned() <= 0)
-		std::cout << "Grade too High" << std::endl;
 	else
-		std::cout << "Grade too Low" << std::endl;
+		throw GradeTooLowException();
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &f)
@@ -71,9 +69,9 @@ void AForm::execute(Bureaucrat const &executor) const
 {
 	try
 	{
-		if (executor.getGrade() > this->getGradeToExec()) {
+		if (executor.getGrade() > this->getGradeToExec())
 			throw GradeTooLowException();
-		}
+		this->action();
 		std::cout << executor.getName() << " executes " << this->getName() << std::endl;
 	}
 	catch (const std::exception &e)

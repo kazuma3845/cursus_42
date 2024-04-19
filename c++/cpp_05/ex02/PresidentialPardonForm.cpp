@@ -31,5 +31,5 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 void PresidentialPardonForm::action() const
 {
-	std::cout << this->_target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
+	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

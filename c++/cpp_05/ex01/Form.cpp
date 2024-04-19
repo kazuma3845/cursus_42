@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form() : _name(NULL), _to_signed(false), _grade_to_signed(1), _grade_to_exec(1)
+Form::Form() : _name("Unknow"), _to_signed(false), _grade_to_signed(1), _grade_to_exec(1)
 {
 	std::cout << "Default Form Constructor called" << std::endl;
 }

@@ -22,4 +22,4 @@ fclean:
 	@rm -rf $(NAME)
 	@echo "\033[0;31mClean all files\033[0m"
 
-re: fclean all
+re: fclean all clean

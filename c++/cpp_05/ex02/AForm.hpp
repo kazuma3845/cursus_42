@@ -16,6 +16,7 @@ class AForm
 		virtual ~AForm();
 
 		std::string getName() const;
+		bool getSigned() const;
 		int getGradeToSigned() const;
 		int getGradeToExec() const;
 
@@ -32,8 +33,6 @@ class AForm
 		};
 
 		void beSigned(const Bureaucrat &f);
-
-		bool getSigned() const;
 
 		void execute(Bureaucrat const & executor) const;
 		virtual void action() const = 0;
