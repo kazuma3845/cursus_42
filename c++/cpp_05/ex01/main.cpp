@@ -9,7 +9,7 @@ int main()
         Bureaucrat bCrat1("Richarlison", 1);
         form1.beSigned(bCrat1);
         std::cout << "Welcome to the Club" << std::endl;
-        bCrat1.IncrementGrade(); 
+        bCrat1.IncrementGrade();
     }
     catch (std::exception &e) 
     {
