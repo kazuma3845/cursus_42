@@ -7,11 +7,7 @@ int main()
         Bureaucrat bureaucrat("bob", 2);
         std::cout << bureaucrat << std::endl;
     }
-    catch (Bureaucrat::GradeTooHighException &e) 
-	{
-        std::cerr << e.what() << std::endl;
-    }
-    catch (Bureaucrat::GradeTooLowException &e) 
+    catch (std::exception &e) 
 	{
         std::cerr << e.what() << std::endl;
     }
@@ -23,11 +19,7 @@ int main()
         bureaucrat1.IncrementGrade();
         std::cout << bureaucrat1 << std::endl;
     }
-    catch (Bureaucrat::GradeTooHighException &e) 
-	{
-        std::cerr << e.what() << std::endl;
-    }
-    catch (Bureaucrat::GradeTooLowException &e) 
+    catch (std::exception &e) 
 	{
         std::cerr << e.what() << std::endl;
     }
@@ -39,11 +31,7 @@ int main()
         bureaucrat2.DecrementGrade();
         std::cout << bureaucrat2 << std::endl;
     }
-    catch (Bureaucrat::GradeTooHighException &e) 
-	{
-        std::cerr << e.what() << std::endl;
-    }
-    catch (Bureaucrat::GradeTooLowException &e) 
+    catch (std::exception &e) 
 	{
         std::cerr << e.what() << std::endl;
     }

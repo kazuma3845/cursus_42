@@ -32,9 +32,15 @@ class AForm
 				const char *what() const throw();
 		};
 
+		class GradeNoSignException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
 		void beSigned(const Bureaucrat &f);
 
-		void execute(Bureaucrat const & executor) const;
+		void execute(const Bureaucrat &f) const;
 		virtual void action() const = 0;
 
 	private:

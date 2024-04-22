@@ -36,6 +36,11 @@ const char *AForm::GradeTooLowException::what() const throw()
 	return "Form Grade too Low";
 }
 
+const char *AForm::GradeNoSignException::what() const throw()
+{
+	return "Form Grade not sign";
+}
+
 std::string AForm::getName() const
 {
 	return this->_name;
@@ -65,14 +70,16 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
 	return os;
 }
 
-void AForm::execute(Bureaucrat const &executor) const
+void AForm::execute(const Bureaucrat &f) const
 {
 	try
 	{
-		if (executor.getGrade() > this->getGradeToExec())
+		if (f.getGrade() > this->getGradeToExec())
 			throw GradeTooLowException();
+		if (!this->getSigned())
+			throw GradeNoSignException();
 		this->action();
-		std::cout << executor.getName() << " executes " << this->getName() << std::endl;
+		std::cout << f.getName() << " executes " << this->getName() << std::endl;
 	}
 	catch (const std::exception &e)
 	{

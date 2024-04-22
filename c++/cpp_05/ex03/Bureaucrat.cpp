@@ -88,9 +88,7 @@ void Bureaucrat::DecrementGrade()
 void Bureaucrat::executeForm(AForm const &f)
 {
 	if (f.getGradeToExec() >= this->getGrade())
-	{
 		f.execute(*this);
-	}
 	else
 		throw Bureaucrat::GradeTooLowException();
 }

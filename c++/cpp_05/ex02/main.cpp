@@ -17,7 +17,8 @@ int main(void)
             b2.executeForm(*SCF);
             delete SCF;
         }
-        catch (std::exception & e) {
+        catch (std::exception &e)
+        {
             std::cout << "Exception: " << e.what() << std::endl;
         }
     }
@@ -34,7 +35,7 @@ int main(void)
         delete SCF;
     }
     
-	catch (std::exception & e) 
+	catch (std::exception &e) 
 	{
         std::cout << "Exception: " << e.what() << std::endl;
     }}
@@ -50,7 +51,7 @@ int main(void)
         b2.executeForm(*SCF);
         delete SCF;
     }
-	catch (std::exception & e) 
+	catch (std::exception &e) 
 	{
         std::cout << "Exception: " << e.what() << std::endl;
     }}
