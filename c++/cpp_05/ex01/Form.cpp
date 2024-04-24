@@ -55,11 +55,10 @@ void Form::beSigned(const Bureaucrat &f)
 {
 	if (f.getGrade() <= this->getGradeToSigned())
 		this->_to_signed = true;
-	else if (this->getGradeToSigned() <= 0)
-		std::cout << "Grade too High" << std::endl;
 	else
-		std::cout << "Grade too Low" << std::endl;
+		throw GradeTooLowException();
 }
+
 
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {

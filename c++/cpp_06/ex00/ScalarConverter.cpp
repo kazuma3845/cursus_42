@@ -27,25 +27,34 @@ const char *ScalarConverter::ImpossibleException::what() const throw()
 	return "Convert impossible";
 }
 
+//------------------------------------------------------------
 
 void ScalarConverter::convert(const std::string &input)
 {
+	if (false)
+		throw ImpossibleException();
 	if (true)
 		toChar(input);
-	else if (true)
+	if (isInt(input))
 		toInt(input);
-	else if (true)
+	if (isFloat(input))
 		toFloat(input);
-	else if (true)
+	if (isDouble(input))
 		toDouble(input);
-	else
-		throw ImpossibleException();
-
 }
+
+//------------------------------------------------------------
 
 void ScalarConverter::toChar(const std::string &input)
 {
 	std::cout << "Char : " << input << std::endl;
+}
+
+//------------------------------------------------------------
+
+bool isInt(const std::string &input)
+{
+	return true;
 }
 
 void ScalarConverter::toInt(const std::string &input)
@@ -54,10 +63,24 @@ void ScalarConverter::toInt(const std::string &input)
 	std::cout << "int : " << i << std::endl;
 }
 
+//------------------------------------------------------------
+
+bool isFloat(const std::string &input)
+{
+	return true;
+}
+
 void ScalarConverter::toFloat(const std::string &input)
 {
 	float i = std::stof(input);
 	std::cout << "Float : " << i << std::endl;
+}
+
+//------------------------------------------------------------
+
+bool isDouble(const std::string &input)
+{
+	return true;
 }
 
 void ScalarConverter::toDouble(const std::string &input)

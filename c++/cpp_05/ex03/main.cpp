@@ -8,6 +8,7 @@
 int main(void) 
 {
     Intern intern;
+	std::cout << std::endl << std::endl;
 
     try 
 	{

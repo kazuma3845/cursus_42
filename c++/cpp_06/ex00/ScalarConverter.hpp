@@ -25,7 +25,11 @@ class ScalarConverter
 		static void toFloat(const std::string &input);
 		static void toDouble(const std::string &input);
 
-};
+		static bool isInt(const std::string &input);
+		static bool isFloat(const std::string &input);
+		static bool isDouble(const std::string &input);
 
+
+};
 
 #endif

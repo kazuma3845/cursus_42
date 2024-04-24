@@ -32,7 +32,7 @@ class Bureaucrat
 
 	private:
 		int _grade;
-		std::string _name;
+		const std::string _name;
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &f);

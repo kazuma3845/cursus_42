@@ -35,8 +35,7 @@ Bureaucrat::~Bureaucrat(void)
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat& f)
 {
-	this->_grade = f._grade;
-	this->_name = f._name;
+	(void)f;
 	return *this;
 }
 
@@ -58,30 +57,30 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &f)
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Grade too High";
+	return "Grade too Low";
 }
 
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Grade too Low";
+	return "Grade too High";
 }
 
 void Bureaucrat::IncrementGrade()
 {
 	this->_grade--;
-	if (this->_grade < 1)
-		throw Bureaucrat::GradeTooLowException();
 	if (this->_grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	if (this->_grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 }
 
 void Bureaucrat::DecrementGrade()
 {
 	this->_grade++;
-	if (this->_grade < 1)
-		throw Bureaucrat::GradeTooLowException();
 	if (this->_grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	if (this->_grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 }
 
