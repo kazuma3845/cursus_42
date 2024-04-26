@@ -3,6 +3,8 @@
 int main()
 {
 	Data a;
+	a.valInt = 42;
+	a.valStr = "Test";
 	uintptr_t p = Serializer::serialize(&a);
 	std::cout << "Serializer : " << p << std::endl;
 	Data *d = Serializer::deserialize(p);
