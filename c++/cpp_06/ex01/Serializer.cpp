@@ -8,14 +8,14 @@ Serializer::~Serializer()
 {
 }
 
-static uintptr_t serialize(Data* ptr)
+uintptr_t Serializer::serialize(Data* ptr)
 {
 	uintptr_t val;
 
 	return val;
 }
 
-static Data* deserialize(uintptr_t raw)
+Data* Serializer::deserialize(uintptr_t raw)
 {
 	Data data;
 
