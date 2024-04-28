@@ -4,6 +4,5 @@
 
 typedef struct Data
 {
-	std::string	valStr;
 	int			valInt;
 }	Data;
