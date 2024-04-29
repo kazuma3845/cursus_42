@@ -8,7 +8,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@rm -rf $(OBJS)
 	@echo "\033[0;32mCompilation finished\033[0m"
 
 %.o: %.cpp
