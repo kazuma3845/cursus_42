@@ -85,6 +85,7 @@
 		"__availability": "cpp",
 		"deque": "cpp",
 		"stack": "cpp",
-		"filesystem": "cpp"
+		"filesystem": "cpp",
+		"*.tpp": "c"
 	}
 }
