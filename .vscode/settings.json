@@ -86,6 +86,7 @@
 		"deque": "cpp",
 		"stack": "cpp",
 		"filesystem": "cpp",
-		"*.tpp": "c"
+		"*.tpp": "c",
+		"list": "cpp"
 	}
 }
