@@ -41,25 +41,33 @@ void Span::addMultiNumber(unsigned int n)
 
 unsigned int Span::shortestSpan()
 {
-	unsigned int i = 0;
+	unsigned int i;
 
 	if (this->_temp.size() <= 1)
 		throw ExceptionOneNumber();
-	
+
+	std::sort(this->_temp.begin(), this->_temp.end());
+    i = (unsigned int)this->_temp[1] - (unsigned int)this->_temp[0];
+    for (size_t n = 0; n < this->_temp.size(); n++)
+	{
+		if (i > ((unsigned int)this->_temp[n + 1] - (unsigned int)this->_temp[n]))
+    		i = (unsigned int)this->_temp[n + 1] - (unsigned int)this->_temp[n];
+	}
 	return i;
 }
 
 unsigned int Span::longestSpan()
 {
-	unsigned int i = 0;
-	
+	unsigned int i;
+	std::vector<int>::iterator min;
+	std::vector<int>::iterator max;
+
 	if (this->_temp.size() <= 1)
 		throw ExceptionOneNumber();
-	std::vector<int> copy = this->_temp;
-	for (unsigned int j = 0; j < this->_temp.size(); j++)
-	{
-		
-	}
+
+	min = std::min_element(this->_temp.begin(), this->_temp.end());
+	max = std::max_element(this->_temp.begin(), this->_temp.end());
+	i = (long)(*max) - (long)(*min);
 	return i;
 }
 
