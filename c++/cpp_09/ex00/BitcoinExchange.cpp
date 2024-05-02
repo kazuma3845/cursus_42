@@ -5,7 +5,7 @@ BitcoinExchange::BitcoinExchange()
 	std::ifstream myfile;
 	std::string date;
 	std::string line;
-	double value;
+	double value = 0;
 	std::string val;
 
 	myfile.open(DATA);
@@ -14,19 +14,12 @@ BitcoinExchange::BitcoinExchange()
 	{
 		date = line.substr(0,10);
 		int i = 0;
-		int j = 0;
 			while (line[i] != ',')
 				i++;
 			i++;
-			while (line[i])
-			{
-				val[j++] = line[i++];
-			}
-		std::cout << " <<<<< " << val << " >>>>>";
+			val = line.substr(i, line.size());
 		value = std::stod(val);
-		std::cout << " <<<<< " << value << " >>>>>";
 		this->_data[date] = value;
-		std::cout << std::endl << this->_data.find(date)->second << " | Valu: " << value << std::endl;
 		if (date.compare("2012-01-11") == 0)
 			break ;
 	}
@@ -87,11 +80,10 @@ void BitcoinExchange::calcul(std::string line)
 	date = line.substr(0, 10);
 	if (this->_data.find(date)->second == 0 && num != 0)
 	{
-		throw ExceptionWrongDate();
+		//Find date;
 	}
-	// std::cout << "Num: " << num << ", data: " << this->_data.find(date)->second << std::endl;
-	// double value = this->_data[date] * num;
-	// std::cout << line.substr(0, 10) << " => " << num << " = " << value << std::endl;
+	double value = this->_data[date] * num;
+	std::cout << line.substr(0, 10) << " => " << num << " = " << value << std::endl;
 }
 
 const char *BitcoinExchange::ExceptionNegativNum::what() const throw()
