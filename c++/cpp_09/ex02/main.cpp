@@ -6,7 +6,8 @@ int main(int argc, char **argv)
 	try
 	{
 		PmergeMe a(argc, argv);
-		a.algo();
+		a.algo_vector();
+		a.algo_list();
 	}
 	catch(const std::exception &e)
 	{

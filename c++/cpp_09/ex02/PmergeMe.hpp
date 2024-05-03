@@ -5,14 +5,17 @@
 # include <vector>
 # include <list>
 # include <ctime>
-#include <cstring>
-#include <cctype>
+# include <cstring>
+# include <cctype>
+# include <limits>
+# include <iomanip>
 
 class PmergeMe
 {
 	private:
 		std::vector<int> _vect;
 		std::list<int> _lst;
+		double _timer;
 	public:
 		PmergeMe();
 		PmergeMe(int argc, char **argv);
@@ -20,7 +23,9 @@ class PmergeMe
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe &f);
 
-		void algo();
+		void algo_vector();
+		void algo_list();
+
 
 		class ExceptionBadArgument : public std::exception
 		{
