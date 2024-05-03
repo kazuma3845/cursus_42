@@ -9,9 +9,8 @@ int main(int argc, char **argv)
 			std::cout << "Error: could not open file." << std::endl;
 			return 1;
 		}
-		BitcoinExchange *value = new BitcoinExchange();
-		value->main_fonct(argv[1]);
-		delete value;
+		BitcoinExchange val;
+		val.main_fonct(argv[1]);
 	}
 	catch (std::exception &e)
 	{

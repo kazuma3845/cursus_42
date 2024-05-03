@@ -6,7 +6,7 @@
 # include <fstream>
 # include <string>
 
-# define DATA "../data.csv"
+# define DATA "./data.csv"
 
 class BitcoinExchange
 {
