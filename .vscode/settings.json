@@ -89,6 +89,7 @@
 		"*.tpp": "c",
 		"list": "cpp",
 		"__tree": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"set": "cpp"
 	}
 }
