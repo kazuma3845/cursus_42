@@ -12,6 +12,10 @@ class BitcoinExchange
 {
 	private:
 		std::map<std::string, double> _data;
+		void check(std::string line);
+		void calcul(std::string line);
+		bool check_month(int *day, int month);
+		bool check_date(std::string line);
 	public:
 		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &f);
@@ -19,8 +23,6 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &f);
 
 		void main_fonct(char *argv);
-		void check(std::string line);
-		void calcul(std::string line);
 
 		class ExceptionWrongDate : public std::exception
 		{
