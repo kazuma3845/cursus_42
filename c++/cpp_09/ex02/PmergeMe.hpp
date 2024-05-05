@@ -23,7 +23,8 @@ class PmergeMe
 		std::list<int> FordJohnsonList(std::list<int> base, unsigned int size);
 		std::list<int> UltimeMergeList(std::list<int> right, std::list<int> left, std::list<int> base);
 
-		void print(std::string name);
+		bool print_vector(std::string name);
+		bool print_list();
 	public:
 		PmergeMe();
 		PmergeMe(int argc, char **argv);

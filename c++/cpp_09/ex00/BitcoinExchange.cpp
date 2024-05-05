@@ -46,6 +46,8 @@ void BitcoinExchange::main_fonct(char *argv)
 	if (!myfile)
 		throw ExceptionWronginput();
 	std::getline(myfile, line);
+	if (line.empty())
+		throw ExceptionWronginput();
 	while (std::getline(myfile, line))
 	{
 		try
@@ -91,7 +93,7 @@ bool BitcoinExchange::check_date(std::string line)
 	int month = stoi(line.substr(5, 7));
 	int day = stoi(line.substr(8, 10));
 
-	if (year < 2010 || year > 2022)
+	if (year < 2009 || year > 2022)
 		return false;
 	if (month < 1 || month > 12 || (year == 2022 && month > 3))
 		return false;
@@ -103,11 +105,10 @@ bool BitcoinExchange::check_date(std::string line)
 		return false;
 	if (year == 2022 && month == 3 && day > 29)
 		return false;
-	if ((year == 2010 && month == 8 && day < 20) || (year == 2010 && month < 8))
+	if ((year == 2009 && month == 1 && day < 2) || (year == 2009 && month < 1))
 		return false;
 	return true;
 }
-
 
 void BitcoinExchange::calcul(std::string line)
 {
@@ -115,9 +116,9 @@ void BitcoinExchange::calcul(std::string line)
 	if (num > 1000)
 		throw ExceptionWrongNum();
 	std::string date = line.substr(0, 10);
-	if (this->_data.find(date)->second == 0 && num != 0)
+	if (this->_data.find(date) == this->_data.end() && num != 0)
 	{
-		while (this->_data.find(date)->second == 0)
+		while (this->_data.find(date) == this->_data.end())
 		{
 			int year = stoi(date.substr(0, 4));
 			int month = stoi(date.substr(5, 7));
@@ -136,10 +137,18 @@ void BitcoinExchange::calcul(std::string line)
 				month += 11;
 				year -= 1;
 			}
-			date = std::to_string(year) + "-0" + std::to_string(month) + "-0" + std::to_string(day);
+			if (day < 10 && month < 10)
+				date = std::to_string(year) + "-0" + std::to_string(month) + "-0" + std::to_string(day);
+			else if (day < 10)
+				date = std::to_string(year) + "-0" + std::to_string(month) + "-" + std::to_string(day);
+			else if (month < 10)
+				date = std::to_string(year) + "-0" + std::to_string(month) + "-" + std::to_string(day);
+			else
+				date = std::to_string(year) + "-" + std::to_string(month) + "-" + std::to_string(day);
 		}
 	}
-	double value = this->_data[date] * num;
+	double value = this->_data.find(date)->second * num;
+	// std::cout << "Num: " << num << " | Data: " << this->_data[date] << " | ";
 	std::cout << line.substr(0, 10) << " => " << num << " = " << value << std::endl;
 }
 

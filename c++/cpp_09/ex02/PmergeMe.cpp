@@ -52,8 +52,9 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &f)
 	return *this;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void PmergeMe::print(std::string name)
+bool PmergeMe::print_vector(std::string name)
 {
     bool isSorted = true;
     std::vector<int>::iterator it = this->_vect.begin();
@@ -72,38 +73,44 @@ void PmergeMe::print(std::string name)
         next_it++;
     }
     if (isSorted)
+    {
         std::cout << " ==> List Sort" << std::endl;
+        return false;
+    }
     else
         std::cout << " ==> List Not Sort" << std::endl;
+    return true;
 }
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 void PmergeMe::algo_vector()
 {
-    print("Before");
-    clock_t start = clock();
-
-    this->_vect = FordJohnsonVector(this->_vect, this->_vect.size()/2);
-    if (this->_vect.front() > this->_vect.back())
+    if (print_vector("Before"))
     {
-        std::vector<int> tmp;
-        std::vector<int>::iterator it = this->_vect.begin();
-        std::vector<int>::iterator ite = this->_vect.end();
-        while (it != ite)
+        clock_t start = clock();
+
+        this->_vect = FordJohnsonVector(this->_vect, this->_vect.size()/2);
+        if (this->_vect.front() > this->_vect.back())
         {
-            tmp.push_back(*it++);
-            this->_vect.pop_back();
+            std::vector<int> tmp;
+            std::vector<int>::iterator it = this->_vect.begin();
+            std::vector<int>::iterator ite = this->_vect.end();
+            while (it != ite)
+            {
+                tmp.push_back(*it++);
+                this->_vect.pop_back();
+            }
+            while (!tmp.empty())
+            {
+                this->_vect.push_back(tmp.back());
+                tmp.pop_back();
+            }
         }
-        while (!tmp.empty())
-        {
-            this->_vect.push_back(tmp.back());
-            tmp.pop_back();
-        }
+        clock_t end = clock();
+        this->_timer = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
     }
-    clock_t end = clock();
-    this->_timer = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
-    print("After");
+    else
+        this->_timer = 0;
+    print_vector("After");
 	std::cout << "Time to process a range of " << this->_vect.size() << " elements with std::vector : ";
     std::cout << std::fixed << std::setprecision(5) << this->_timer << " us" << std::endl;
 }
@@ -198,27 +205,52 @@ std::vector<int> PmergeMe::UltimeMerge(std::vector<int> right, std::vector<int> 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+bool PmergeMe::print_list()
+{
+    bool isSorted = true;
+    std::list<int>::iterator it = this->_lst.begin();
+    std::list<int>::iterator ite = this->_lst.end();
+    std::list<int>::iterator next_it = it;
+    next_it++;
+    while (it != ite)
+    {
+        if (*it > *next_it && next_it != ite)
+           isSorted = false;
+        it++;
+        next_it++;
+    }
+    if (isSorted)
+        return false;
+    return true;
+}
+
 void PmergeMe::algo_list()
 {
-    clock_t start = clock();
-    this->_lst = FordJohnsonList(this->_lst, this->_lst.size()/2);
-    if (this->_lst.front() > this->_lst.back())
+    if (print_list())
     {
-        std::list<int> tmp;
-        std::list<int>::iterator it = this->_lst.begin();
-        std::list<int>::iterator ite = this->_lst.end();
-        while (it != ite)
-            tmp.push_back(*it++);
-        while (!this->_lst.empty())
-            this->_lst.pop_back();
-        while (!tmp.empty())
+        clock_t start = clock();
+        this->_lst = FordJohnsonList(this->_lst, this->_lst.size()/2);
+        if (this->_lst.front() > this->_lst.back())
         {
-            this->_lst.push_back(tmp.back());
-            tmp.pop_back();
+            std::list<int> tmp;
+            std::list<int>::iterator it = this->_lst.begin();
+            std::list<int>::iterator ite = this->_lst.end();
+            while (it != ite)
+                tmp.push_back(*it++);
+            while (!this->_lst.empty())
+                this->_lst.pop_back();
+            while (!tmp.empty())
+            {
+                this->_lst.push_back(tmp.back());
+                tmp.pop_back();
+            }
         }
+        clock_t end = clock();
+        this->_timer = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
     }
-    clock_t end = clock();
-    this->_timer = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+    else
+        this->_timer = 0;
 	std::cout << "Time to process a range of " << this->_vect.size() << " elements with std::list : ";
     std::cout << std::fixed << std::setprecision(5) << this->_timer << " us" << std::endl;
 }
