@@ -7,7 +7,7 @@ PmergeMe::PmergeMe()
 
 PmergeMe::PmergeMe(int argc, char **argv)
 {
-
+    this->_timer = clock();
     for(int i = 1; i < argc; i++)
     {
         char* token = std::strtok(argv[i], " ");
@@ -84,10 +84,9 @@ bool PmergeMe::print_vector(std::string name)
 
 void PmergeMe::algo_vector()
 {
+    double timer;
     if (print_vector("Before"))
     {
-        clock_t start = clock();
-
         this->_vect = FordJohnsonVector(this->_vect, this->_vect.size()/2);
         if (this->_vect.front() > this->_vect.back())
         {
@@ -105,14 +104,12 @@ void PmergeMe::algo_vector()
                 tmp.pop_back();
             }
         }
-        clock_t end = clock();
-        this->_timer = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
     }
-    else
-        this->_timer = 0;
+    clock_t end = clock();
+    timer = static_cast<double>(end - this->_timer) / CLOCKS_PER_SEC * 1000000;
     print_vector("After");
 	std::cout << "Time to process a range of " << this->_vect.size() << " elements with std::vector : ";
-    std::cout << std::fixed << std::setprecision(5) << this->_timer << " us" << std::endl;
+    std::cout << std::fixed << std::setprecision(5) << timer << " us" << std::endl;
 }
 
 std::vector<int> PmergeMe::FordJohnsonVector(std::vector<int> base, unsigned int size)
@@ -227,9 +224,9 @@ bool PmergeMe::print_list()
 
 void PmergeMe::algo_list()
 {
+    double timer;
     if (print_list())
     {
-        clock_t start = clock();
         this->_lst = FordJohnsonList(this->_lst, this->_lst.size()/2);
         if (this->_lst.front() > this->_lst.back())
         {
@@ -246,13 +243,12 @@ void PmergeMe::algo_list()
                 tmp.pop_back();
             }
         }
-        clock_t end = clock();
-        this->_timer = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+
     }
-    else
-        this->_timer = 0;
+    clock_t end = clock();
+    timer = static_cast<double>(end - this->_timer) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "Time to process a range of " << this->_vect.size() << " elements with std::list : ";
-    std::cout << std::fixed << std::setprecision(5) << this->_timer << " us" << std::endl;
+    std::cout << std::fixed << std::setprecision(5) << timer << " us" << std::endl;
 }
 
 std::list<int> PmergeMe::FordJohnsonList(std::list<int> base, unsigned int size)

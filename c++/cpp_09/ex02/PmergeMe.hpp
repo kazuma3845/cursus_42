@@ -15,7 +15,7 @@ class PmergeMe
 	private:
 		std::vector<int> _vect;
 		std::list<int> _lst;
-		double _timer;
+		clock_t _timer;
 
 		std::vector<int> FordJohnsonVector(std::vector<int> base, unsigned int size);
 		std::vector<int> UltimeMerge(std::vector<int> right, std::vector<int> left, std::vector<int> base);
