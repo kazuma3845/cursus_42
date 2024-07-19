@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffccff;
+            color: #ff69b4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            font-size: 5em;
+            margin-bottom: 0.5em;
+            position: relative;
+            z-index: 1;
+        }
+        .heart, .kiss {
+            font-size: 2em;
+            position: absolute;
+            animation: float 5s infinite;
+        }
+        .heart1 { top: 10%; left: 20%; }
+        .heart2 { top: 30%; left: 70%; }
+        .heart3 { top: 50%; left: 40%; }
+        .heart4 { top: 70%; left: 10%; }
+        .heart5 { top: 20%; left: 50%; }
+        .kiss1 { top: 40%; left: 30%; }
+        .kiss2 { top: 60%; left: 80%; }
+        .kiss3 { top: 80%; left: 20%; }
+        .kiss4 { top: 50%; left: 60%; }
+        .kiss5 { top: 30%; left: 40%; }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-20px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello World</h1>
+        <div class="heart heart1">❤️</div>
+        <div class="heart heart2">❤️</div>
+        <div class="heart heart3">❤️</div>
+        <div class="heart heart4">❤️</div>
+        <div class="heart heart5">❤️</div>
+        <div class="kiss kiss1">💋</div>
+        <div class="kiss kiss2">💋</div>
+        <div class="kiss kiss3">💋</div>
+        <div class="kiss kiss4">💋</div>
+        <div class="kiss kiss5">💋</div>
+    </div>
+</body>
+</html>

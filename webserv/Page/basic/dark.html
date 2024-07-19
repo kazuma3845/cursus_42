@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Satan</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #ff4500; /* Orange Red */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            font-size: 5em;
+            margin-bottom: 0.5em;
+            position: relative;
+            z-index: 1;
+        }
+        .pentagram, .skull {
+            font-size: 2em;
+            position: absolute;
+            animation: float 5s infinite;
+            color: #ff4500; /* Orange Red */
+        }
+        .pentagram1 { top: 10%; left: 20%; }
+        .pentagram2 { top: 30%; left: 70%; }
+        .pentagram3 { top: 50%; left: 40%; }
+        .skull1 { top: 20%; left: 50%; }
+        .skull2 { top: 70%; left: 10%; }
+        .skull3 { top: 40%; left: 30%; }
+        .skull4 { top: 60%; left: 80%; }
+        .skull5 { top: 50%; left: 60%; }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-20px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello Satan</h1>
+        <div class="pentagram pentagram1">&#9956; &#x26E4;</div>
+        <div class="pentagram pentagram2">&#9956; &#x26E4;</div>
+        <div class="pentagram pentagram3">&#9956; &#x26E4;</div>
+        <div class="skull skull1">💀</div>
+        <div class="skull skull2">💀</div>
+        <div class="skull skull3">💀</div>
+        <div class="skull skull4">💀</div>
+        <div class="skull skull5">💀</div>
+    </div>
+</body>
+</html>

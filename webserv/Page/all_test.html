@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42 WebServ - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1d1f21;
+            color: #c5c6c7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            background: #282a2d;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #8abeb7;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .test-description {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .test-detail {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            background-color: #81a2be;
+            color: #1d1f21;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            font-size: 13px;
+            font-family: 'Arial', sans-serif;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #5f819d;
+        }
+
+        footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background: #282a2d;
+            color: #777;
+        }
+
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/42_Logo.svg" alt="42 Logo" class="logo">
+        <h1>Test for Eval WebServ</h1>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 1: GET</h2>
+                <p>This test checks a basic GET request.</p>
+            </div>
+            <a href="/basic/hello.html" class="btn">Test 1</a>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 2: CGI Functional</h2>
+                <p>Checks if CGI scripts are executing properly.</p>
+            </div>
+            <a href="/cgi/welcome.py?prenom=Evaluator&couleur=%23b2aeae" class="btn">Test 2</a>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 3: Autoindex On</h2>
+                <p>Verifies that the autoindex feature is enabled.</p>
+            </div>
+            <a href="/basic" class="btn">Test 3</a>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 4: Autoindex Off</h2>
+                <p>Ensures that the autoindex feature is disabled.</p>
+            </div>
+            <a href="/tours" class="btn">Test 4</a>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 5: CGI Failed</h2>
+                <p>Tests the response when a CGI script fails.</p>
+            </div>
+            <a href="/cgi/NoPerm.py" class="btn">Test 5</a>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 6: Upload one file</h2>
+                <p>curl -X POST -F "file=@PATH_TO_FILE" IP_ADRESS:PORT/</p>
+            </div>
+            <button class="btn"
+                onclick="copyToClipboard('curl -X POST -F &quot;file=@PATH_TO_FILE&quot; IP_ADRESS:PORT/')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 7: Upload two file (multipart)</h2>
+                <p>curl -X POST -F "file1=@PATH_TO_FILE1" -F "file2=@PATH_TO_FILE2" IP_ADRESS:PORT/</p>
+            </div>
+            <button class="btn"
+                onclick="copyToClipboard('curl -X POST -F &quot;file1=@PATH_TO_FILE1&quot; -F &quot;file2=@PATH_TO_FILE2&quot; IP_ADRESS:PORT/')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 8: Chunked upload</h2>
+                <p>curl -H "Transfer-Encoding: chunked" -F "file=@PATH_TO_FILE" IP_ADRESS:PORT/
+                </p>
+            </div>
+            <button class="btn"
+                onclick="copyToClipboard('curl -H &quot;Transfer-Encoding: chunked&quot; -F &quot;file=@PATH_TO_FILE&quot; IP_ADRESS:PORT/')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 9: Chunked upload + Type + Filename</h2>
+                <p>curl -X POST --data-binary "@PATH_TO_FILE" -H "Content-Type: FILE_TYPE" -H "Transfer-Encoding:
+                    chunked" -H "X-Filename: FILE_NAME" IP_ADRESS:PORT/
+                </p>
+            </div>
+            <button class="btn"
+                onclick="copyToClipboard('curl -X POST --data-binary &quot;@PATH_TO_FILE&quot; -H &quot;Content-Type: FILE_TYPE&quot; -H &quot;Transfer-Encoding: chunked&quot; -H &quot;X-Filename: FILE_NAME&quot;  IP_ADRESS:PORT/')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 10: Download file from server</h2>
+                <p>curl -o FILE_NAME IP_ADRESS:PORT/PATH_TO_FILE
+                </p>
+            </div>
+            <button class="btn" onclick="copyToClipboard('curl -o FILE_NAME IP_ADRESS:PORT/PATH_TO_FILE')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 11: DELETE request</h2>
+                <p>curl -X DELETE IP_ADRESS:PORT/PATH_TO_FILE
+                </p>
+            </div>
+            <button class="btn" onclick="copyToClipboard('curl -X DELETE IP_ADRESS:PORT/PATH_TO_FILE')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 12: Siege</h2>
+                <p>siege -b -v -r100 IP_ADRESS:PORT/PATH_TO_PAGE ⏎ [~]
+                </p>
+            </div>
+            <button class="btn" onclick="copyToClipboard('siege -b -v -r100 IP_ADRESS:PORT/PATH_TO_PAGE')">Copy</button>
+        </div>
+        <div class="test-description">
+            <div class="test-detail">
+                <h2>Test 13: Resolve</h2>
+                <p>url --resolve HOST_NAME:PORT:IP_ADRESS http://HOST_NAME:PORT/
+                </p>
+            </div>
+            <button class="btn" onclick="copyToClipboard('url --resolve HOST_NAME:PORT:IP_ADRESS http://HOST_NAME:PORT/')">Copy</button>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 42 WebServ.
+    </footer>
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function () {
+                alert('Copied to clipboard!');
+            }, function (err) {
+                alert('Failed to copy: ' + err);
+            });
+        }
+    </script>
+</body>
+
+</html>
